@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 关键帧 */
+        @keyframes donghua{
+            /* 第一帧 */
+            0%{
+                transform: translate(0,0) scale(1) rotate(0);
+            }
+            /* 第二针 */
+            25%{
+                transform: translate(600px,300px) scale(1) rotate(0);
+            }
+            /* 第三针 */
+            50%{
+                transform: scale(3) rotate(180);
+            }
+            /* 第四针 */
+            75%{
+                transform: scale(0.5) translate(100px,300px);
+            }
+            /* 循环播放回到初始状态 */
+            100%{
+                transform: translate(0,0) scale(1) rotate(0);
+            }
+        }
+        /* 为img使用动画,好几把酷炫*/
+         .img1{
+             animation: donghua 1s ease 0s 3 alternate;
+         }
+    </style>
+</head>
+<body>
+    <img src="./practice3/pic/象棋.png" alt="" class="img1">
+    <img src="" alt="" class="img2">
+    <img src="" alt="" class="img3">
+</body>
+</html>

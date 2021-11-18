@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span{
+            font-size: 100px;
+        }
+        h1{
+            width: 600px;
+        }
+        /* 块级元素 */
+        .container{
+            width: 800px;
+            height: 800px;
+            background: pink;
+        }
+        /* 虽然没设置宽度，但是下面box1和box2默认充满父级的宽度 */
+        .box1{
+            height: 100px;
+            background: green;
+        }
+        .box2{
+            height: 100px;
+            background: orange;
+        }
+        /* 转块元素 */
+        .zhuan-kuai{
+            background: greenyellow;
+            display: block;
+        }
+        .not-kuai{
+            background: gold;
+        }
+    </style>
+</head>
+<body>
+    <!-- 块级元素 -->
+    <div class="container">
+        <div class="box1"></div>
+        <!-- 具有换行符的意思是，上面box1为块级，下面的是另一部分内容，box1和span默认会换行不会写在一行里 -->
+        <!-- 哪怕box1设置了宽度，同样下面的span还会换行 -->
+        <span>hello1</span>
+        <span class="not-kuai">hello2</span>
+        <span class="zhuan-kuai">hello3</span>
+        <!-- 可以看到，上面两个hello1和hello2不是块级，写在了一行，下面的转块了之后独占一行 -->
+        <div class="box2"></div>
+    </div>
+</body>
+</html>

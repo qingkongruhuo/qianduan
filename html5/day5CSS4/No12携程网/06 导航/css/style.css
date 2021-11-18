@@ -1,0 +1,233 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+/* 1rem与1px等价 */
+html {
+    font-size: 0.3125vw;
+}
+html,
+body {
+    background-color: #fafafc;
+}
+/* app模块 */
+.app {
+    display: flex;
+    align-items: center;
+    height: 60rem;
+}
+.app img {
+    margin: 0 15rem;
+    width: 36rem;
+    height: 36rem;
+}
+.content {
+    flex: 1;
+}
+.btn {
+    height: 28rem;
+    width: 80rem;
+    color: #fff;
+    line-height: 28rem;
+    text-align: center;
+    margin: 0 15rem;
+    background-color: #3a99f6;
+    border-radius: 14rem;
+}
+/* banner区域 */
+.banner {
+    background: url(../img/banner.jpg) no-repeat center top;
+    background-size: cover;
+    height: 150rem;
+    position: relative;
+    /* 因为下面的列表超出了banner，要多设置一点margin-bottom */
+    margin-bottom: 42rem;
+}
+.banner .search {
+    position: absolute;
+    top: 8rem;
+    left: 12rem;
+    right: 50rem;
+    display: flex;
+}
+.banner .search input {
+    height: 28rem;
+    line-height: 28rem;
+    font-size: 12rem;
+    border-radius: 14rem;
+    display: block;
+    padding-left: 40rem;
+    flex: 1;
+}
+.banner .search .icon {
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    top: 6rem;
+    left: 15rem;
+    background: url(../img/search.png) no-repeat;
+    background-size: cover;
+}
+.banner .user {
+    top: 6rem;
+    right: 12rem;
+    position: absolute;
+    color: #fff;
+    font-size: 12rem;
+    text-align: center;
+}
+.banner .user span {
+    width: 18rem;
+    height: 18rem;
+    display: inline-block;
+    background: url(../img/my.png) no-repeat;
+    background-size: cover;
+}
+.banner .list {
+    position: absolute;
+    bottom: -32rem;
+    height: 64rem;
+    left: 12rem;
+    right: 12rem;
+    background-color: #fff;
+    border-radius: 10rem;
+    display: flex;
+    text-align: center;
+}
+.banner .list li {
+    flex: 1;
+    padding-top: 3rem;
+}
+.banner .list li span {
+    display: inline-block;
+    width: 40rem;
+    height: 40rem;
+    background: url(../img/tabs.png) no-repeat;
+    /* 精灵图缩放 */
+    background-size: 40rem 200rem;
+}
+.banner .list li:nth-child(1) span {
+    background-position: 0 0;
+}
+.banner .list li:nth-child(2) span {
+    background-position: 0 -40rem;
+}
+.banner .list li:nth-child(3) span {
+    background-position: 0 -80rem;
+}
+.banner .list li:nth-child(4) span {
+    background-position: 0 -120rem;
+}
+.banner .list li:nth-child(5) span {
+    background-position: 0 -160rem;
+}
+/* 导航 */
+.nav {
+    width: 295rem;
+    margin: 0 auto;
+    /* 导航的圆角 */
+    border-radius: 10rem;
+    /* 设置这个强制截取圆角？ */
+    overflow: hidden;
+}
+.nav .row {
+    /* 每一行都是flex布局 */
+    display: flex;
+    /* 两侧空白不要有，中间均分 */
+    justify-content: space-between;
+}
+.nav .nav-item {
+    width: 67rem;
+    height: 55rem;
+    font-size: 14rem;
+    color: #fff;
+    text-align: center;
+    line-height: 55rem;
+    background-repeat: no-repeat;
+    background-size: 104rem 327.5rem;
+    background-image: url(../img/icon.png);
+    background-position: 100rem 100rem;
+}
+.nav .nav-item:first-child {
+    width: 91rem;
+    text-align: left;
+    /* 调整第一列的位置（调缩进即可） */
+    text-indent: 12rem;
+}
+.nav .row:first-child .nav-item:last-child {
+    width: 135rem;
+}
+.nav .row:first-child .nav-item {
+    background-color: #fa5b55;
+}
+.nav .row:nth-child(2) .nav-item {
+    background-color: #4b91ed;
+}
+.nav .row:nth-child(3) .nav-item {
+    background-color: #36c3a8;
+}
+.nav .row:nth-child(1) .nav-item:first-child {
+    background-position: 46rem -109rem;
+}
+.nav .row:nth-child(2) .nav-item:first-child {
+    background-position: 46rem -275rem;
+}
+.nav .row:nth-child(3) .nav-item:first-child {
+    background-position: 50rem -168rem;
+}
+/* 菜单 */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 12rem;
+    text-align: center;
+}
+.menu li {
+    width: 20%;
+}
+.menu li span {
+    display: inline-block;
+    width: 28rem;
+    height: 28rem;
+    background: url(../img/icons.png) no-repeat;
+    background-size: 28rem 280rem;
+}
+.menu li p {
+    font-size: 12rem;
+    margin: 4rem 0 10rem;
+}
+.menu li:nth-child(1) span {
+    background-position: 0 0;
+}
+.menu li:nth-child(2) span {
+    background-position: 0 -28rem;
+}
+.menu li:nth-child(3) span {
+    background-position: 0 -56rem;
+}
+.menu li:nth-child(4) span {
+    background-position: 0 -84rem;
+}
+.menu li:nth-child(5) span {
+    background-position: 0 -112rem;
+}
+.menu li:nth-child(6) span {
+    background-position: 0 -140rem;
+}
+.menu li:nth-child(7) span {
+    background-position: 0 -168rem;
+}
+.menu li:nth-child(8) span {
+    background-position: 0 -196rem;
+}
+.menu li:nth-child(9) span {
+    background-position: 0 -224rem;
+}
+.menu li:nth-child(10) span {
+    background-position: 0 -252rem;
+}

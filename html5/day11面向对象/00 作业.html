@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- 倒计时 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="app"></h1>
+    <script>
+        // 获取开始时间的时间戳
+        // var start = new Date('2020-7-20');
+        // 获取时间戳
+        // var startTime = +start;
+        // var startTime = start.getTime();
+        var start = new Date('2022-7-20').getTime(); 
+        // 计算倒计时
+        function main() {
+            // 获取当前时间的时间戳
+            // var now = new Date().getTime();
+            var now = Date.now();
+            // 时间戳差值
+            var time = start - now;
+            // 获取，时，分，秒，天。
+            // console.log(time);
+            // 秒
+            var second = time / 1000;
+            // 分
+            var minute = second / 60;
+            // 时
+            var hour = minute / 60;
+            // 天
+            var day = hour / 24;
+            // console.log(day, hour, minute, second);
+            app.innerHTML = '还剩'+Math.floor(day) + '天 : ' + 
+                Math.floor(hour % 24) + '时 : ' + 
+                Math.floor(minute % 60) + '分 : ' + 
+                Math.floor(second % 60) + '秒';
+        }
+        // 开始的时候要执行一次
+        main();
+        // 定时器
+        setInterval(function() {
+            main();
+        }, 600)
+    </script>
+</body>
+</html>

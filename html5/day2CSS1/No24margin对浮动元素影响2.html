@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 1000px;
+            background: gold;
+            margin: 0 auto;
+        }
+        .container div{
+            width: 100px;
+            height: 100px;
+        }
+        
+        .box4{
+            background: gray;
+            float: left;
+            /* 首先让盒子4想左移动50 */
+            margin-left: -50px;
+        }
+        .box5{
+            background: purple;
+            float: left;
+            /* 盒子5想移动到盒子4前面去，只需要移动盒子4+盒子5的宽，完全不用管盒子4向前移动了多少 */
+            margin-left: -200px;
+            /* 盒子5移动了盒子4前面去了，而且盒子4没变地方 */
+        }
+        .box6{
+            background: orange;
+            float: left;
+            /* 这时盒子6和盒子4贴边了 */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <div class="box4">4</div>
+        <div class="box5">5</div>
+        <div class="box6">6</div>
+    </div>
+</body>
+</html>

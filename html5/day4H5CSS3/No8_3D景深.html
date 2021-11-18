@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 垂直屏幕方向：向用户移动300px */
+        .container{
+            width: 500px;
+            height: 500px;
+            border: 2px solid black;
+            margin: 0 auto;
+            /* 3d生效 */
+            transform-style: preserve-3d;
+            /* 设置景深  */
+            perspective: 1000px;
+            /* 为了看出来3d效果，让父盒子3d旋转一下 */
+            transform: rotateY(45deg);
+            position: relative;
+        }
+        img{
+            position: absolute;
+        }
+        .container .img1{
+            transform: translateZ(100px);
+            /* 相当于这个图片离我们近了一些 */
+        }
+        .container .img2{
+            transform: translateZ(-200px);
+            /* 相当于这个图片离我们远了一些 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="img1" src="./practice3/pic/象棋.png" alt="">
+        <img class="img2" src="./practice3/pic/象棋.png" alt="">
+    </div>
+</body> 
+</html>

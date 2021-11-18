@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 前三个box设置浮动后，设置左浮动后从左到右依次排列，右浮动就从右到左 */
+        .container{
+            margin: 10px auto;
+            width: 800px;
+            background-color: green;
+            /* 解决方案：1、给父元素设置高度 */
+            height: 200px;
+            /* 但是你不知道想用多少东西撑起来，这个高度不好设置，因为内容在变化 */
+        }
+        .container div{
+            width: 100px;
+            height: 100px;
+            /* box全部设置浮动 */
+            /* 可以看到父元素底层的green完全没有了，因为浮动的元素不占地方，没有任何内容将父元素撑起来 */
+            float: left;
+        }
+        .box1{
+            
+            background: red;
+
+        }
+        .box2{
+            background: yellow;
+
+        }
+        .box3{
+            background: blue;
+        }
+
+        .box4{
+            background: pink;
+        }
+        .box5{
+            background: orange;
+        }
+        .box6{
+            background: gold;
+        }
+        .outer{
+            height: 200px;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">1+1+1</div>
+        <div class="box2">2+2+2</div>
+        <div id="box3" class="box3">3+3+3</div>
+        <div class="box4">4+4+4</div>
+        <div class="box5">5+5+5</div>
+        <div class="box6">6+6+6</div>
+    </div>
+    <div class="outer">
+        外面的元素
+    </div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 单行文本居中*/
+        .box1{
+            width: 200px;
+            height: 200px;
+            border: 1px solid blue;
+            /* 水平方向 */
+            text-align: center;
+            /* 垂直方向 */
+            line-height: 200px;
+            /* 行高与高度一致 */
+        }
+        /* 多行文本居中 */
+        .box2{
+            margin-top: 10px;
+            width: 200px;
+            border: 1px solid blue;
+            /* 水平方向 */
+            text-align: center;
+            /* 垂直方向 */
+            /* 只需要行内距padding上下一样就是垂直居中咯 而且不要设置高度，让文本自己挤出高度 */
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .box3{
+            width: 300px;
+            border: 1px solid gray;
+            margin-top: 10px;
+            /* 行内元素水平居中,直接设置文本的对齐方式就行 */
+            text-align: center;
+            /* 为了让子盒子居中，不设置高度，设置内边距，让子盒子顶开 */
+            padding: 50px;
+        }
+        .box3zi{
+            width: 100px;
+            height: 100px;
+            background: gold;
+            /* 子盒子水平居中 */
+            margin: auto;
+            /* 垂直居中：1、父盒子高度-子盒子高度的差除以2，设为外边框 */
+            /* margin: 100px; */
+            /* 垂直居中 2、父元素高度不确定，父元素设置padding内边距，让子元素自己顶开*/
+
+        }
+        .box4{
+            width: 300px;
+            height: 300px;
+            border: 1px solid gray;
+            margin: 10px;
+            /* 行内块水平居中：还是可以通过行内文本居中调整 */
+            text-align: center;
+            /* 行内块垂直居中 调整行高，然后让图片不是基线对齐而是居中对齐*/
+            line-height: 300px;
+            
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            /* 设置居中对齐不是基线对齐 */
+            vertical-align:middle;
+        }
+        .table-model{
+            width: 200px;
+            height: 200px;
+            border: 1px solid gray;
+            margin: 100px;
+            /* 模拟表格 */
+            display: table-cell;
+            /* 水平居中 */
+            text-align: center;
+            /* 垂直居中 */
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1">
+        hello world
+        <br>
+    </div>
+    <div class="box2">
+        多行文本居中<br>hello<br>hello<br>hello
+    </div>
+
+    <div class="box3">
+        <div class="box3zi">
+            盒子在父盒子中水平居中
+        </div>
+    </div>
+    <div class="box4">
+        <img src="./继承.png" alt="">
+    </div>
+    <!-- -------------------------------------------------- -->
+    <div class="table-model">
+        全他妈能居中
+        <br>
+        <!-- 多行元素 -->
+        hello
+        <span>hello行内元素</span>
+        <div>块元素</div>
+        <!-- 全他妈能居中 -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 800px;
+            height: 800px;
+            background: pink;
+        }
+        .text1{
+            background: gold;
+            /* 下面不生效，因为是行内元素 */
+            width: 100px;
+            height: 100px;
+        }
+        .text2{
+            background: green;
+            /* 可以看到虽然写了200但是只有左右生效 */
+            /* 颜色可以呈现，但是不占位置，也就是说紧接着下面写个块级盒子，会直接顶在text2来的 */
+            margin: 200px;
+            padding: 10px;
+            border: 5px;
+        }
+        .text3{
+            background: greenyellow;
+        }
+        .box2{
+            margin-left: 100px;
+            background: black;
+            width: 1000px;
+            height: 1000px;
+        }
+        .container1{
+            width: 800px;
+            height: 800px;
+            background: blue;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="text1">text+1</span><span class="text2">text+2</span><span class="text3">text+3</span>
+        <div class="box2"></div>
+    </div>
+    <!-- 看他们挤在一起 -->
+    <div class="container1">
+        <img src="./继承.png" alt="" ><textarea></textarea><input type="text">
+    </div>
+</body>
+</html>

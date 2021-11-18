@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin-top: 10px;
+            position: relative;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">执行动画</button>
+    <div class="box1"></div>
+<script>
+// 获取div
+var div = document.getElementsByTagName('div')[0];
+var btn = document.getElementsByTagName('button')[0];
+// 点击按钮，更改元素位置
+btn.onclick = function() {
+    var left = 0;
+    // 运行的次数
+    var num = parseInt(2000 / 33);
+    // 每次运行的距离
+    var distence = 1200  / num;
+    // 启动动画
+    var timebar = setInterval(function() {
+        // 改变left位置
+        left += distence;
+        // 判断边界值
+        if (left >= 1200) {
+            // 清空定时器
+            clearInterval(timebar);
+            // 纠正最终的位置
+            left = 1200;
+        }
+        // 更改div的位置
+        div.style.left = left + 'px';
+    }, 33)
+}
+</script>
+</body>
+</html>

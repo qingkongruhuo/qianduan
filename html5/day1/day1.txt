@@ -1,0 +1,259 @@
+ 一、简介
+    1、浏览器
+        1、记住五大浏览器内核，从服务器接收的数据会放在一个本地临时文件夹内，第二次访问的时候速度会变快因为大部分内容都被缓存到本地了
+    2、HTTP请求
+        1、超文本传输协议，包含请求和响应两个部分
+    3、纯文本：
+        举例：txt：只保存文字内容，html css js全是纯文本文件
+        word不是，它还有样式，所以很大
+    4、html简介：超文本标记语言 hypertext markup language
+        hypertext：用文本去标记文本，也是纯文本文件<h1>hello</h1>,其中h1是不会显示的，但是h1这个标签会占字节的，比如新建一个html把这行代码打进去，就是14个字节大小
+        markup：比如h1和p标签，浏览器识别的就不一样，标记
+    5、编辑器：纯文本文件可以用编辑器编辑
+        1、记事本
+        2、vscode
+        3、notepad++
+二、html文件最上面上面的一些东西
+    1、DOCTYPE DEFINED：文档类型定义DTD，用来定义文档的规范，可以内部声明也可以外部声明，即声明html文件中能用哪些标签
+        内部声明：<!DOCTYPE 根元素[元素声明]> 例如<!DOCTYPE html>
+        外部声明：<!DOCTYPE 根元素 类型 文件名>
+        作用：规定了html使用的是哪个版本的html书写规范
+        html5不基于SGML规范，不再区分3个小版本，所以不需要引用DTD
+    2、html标签
+        双标签，成对出现，表示整个网页：标识html的起始和终止
+        两个属性：1、mainifest：定义一个url，在这个url上描述了文档的缓存信息(html5新增)
+                2、xmlns，html5不支持，只有XHTML支持，规定xml的namespace属性，xmlns表示明明空间：namespace
+        注意：html5规范中，html标签上的lang属性是全局属性
+    
+    3、元素：全是元素！html元素是通过html标签进行定义的
+    4、标签：用<>包起来的，不包括里面的内容，位于起始标签和结束标签之前的文本就是html元素的内容
+    5、属性：为html元素提供各种附加信息的就是html属性，键值对出现，属性只能在起始标签中添加
+    6、head标签
+        用于定义文档的头部，它是所有头部元素的容器，大部分是不显示的，除了title
+        表示引用的资源，医用的文档，
+        <title>：标题，标签内部是网页名字，可以做seo优化
+        <base>:页面上的所有链接规定默认地址或默认目标
+            属性：href：相对地址：即从相对地址开始往下找，比如写了www.qq.com,下面超链接里写了个www.baidu.com,会转到https://www.qq.com/www.baidu.com
+                 target：在何处打开页面中所有的链接，比如_blank(在新页面中打开超链接，如果没这个就是在本页面刷新，可以试一试),_parent
+        <link>：引入一些web资源
+        <script>：引入js
+        <style>：css样式
+        <meta>：提供页面相关的元信息，一般都是与请求和页面相关的东西
+            属性：content
+                 name：把content属性关联到一个名称(author,description,keywords)，后面两个和seo相关
+                 http-equiv:把content属性关联到HTTP头部，
+                <meta http-equiv="Refresh" content="5;url=http://www.baidu.com">
+                    解释：refresh：当页面重新刷新时，5秒后转到百度
+
+三、字符集
+    1、utf-8,包含了人类所有语言文字，一个汉字3字节
+    2、GBK/gb2312中国字库，包含所有简体中文，大部分繁体，一个汉字2字节
+    网页是外文网站，用utf-8，如果是有大量中文要求网页加载速度快，用gbk
+四、body标签
+    1、作用：是网页的主体，给客户浏览的区域
+    2、内容：里面放置html标签书写的网页结构
+    对缩进不敏感，对嵌套敏感
+    3、空白折叠现象：写了多个空格，浏览器中只显示一个空格
+五、标签分类：
+    1、容器级别标签：h1-h6,div，pre
+    2、文本级别标签：p code soan
+    文本级标签一般不能比建议嵌套容器级标签，反过来没问题
+    写代码规范：文本级标签写一行，容器级一个写一行
+六、属性
+    1、<tag att="value"> 文本内容</tag>
+        以键值对的方式来写
+    2、分类：
+        1、必须属性：img图片标签的src alt(图片加载失败提示的内容)，必须得写，（不过html5比较智能，不会出bug）
+            <img src="./images/1.png" alt="美女">，假如图片没插入进去会显示美女两个字，然后一个图片裂开的小表情
+        2、可选属性：img图片标签的width，height
+        3、标准(全局)属性：id class style lang，所有元素都可以设置这个属性
+        4、事件属性：onclick，onmouseout等
+七、h、p系列标签
+    1、h1-h6标题标签，给文本添加标题语义用，不能互相嵌套
+        默认加粗，具有换行符
+        1-6字体之间变小
+        由于h标签拥有确切的语义，因此要选择恰当的标签层级来构建文档的结构，
+        注意请不要利用标题标签来改变同一行中的字体大小，相反，我们应当使用层叠样式来表定义达到漂亮的效果 
+    2、P标签
+        给文本添加段落语义，具有换行符
+        p标签可以嵌套在块级元素内，但p标签不能嵌套在其它块元素，如div，h系列标签，p标签等
+八、img标签和路径
+    1、img标签是一个单标签
+        src 路径
+        alt 加载失败提示
+        title 鼠标悬停的信息
+        下面三个一般都用css来搞，没必要写进去
+        height
+        width
+        border 边框
+    2、路径 
+        绝对路径：目标文件的完整路径，或服务器的绝对路径
+        /Users/zhangyong/Desktop/11_qianduan_fight/html5/day1/day1.txt
+        相对路径：目标文件相对于引用文件虽在的位置
+        /根目录
+        ./当前目录
+        ../退出当前路径
+        ./day1.txt
+九、超链接
+    1、一个网站中有很多页面，页面之间通过超链接进行跳转。
+    <a></a>
+    2、属性
+        href 设置超链接的地址，#代表链接到当前页面或者页面的某个位置
+        title 文本提示信息
+        rel 规定当前文档与被连接文档之间的关系
+        download 规定被下载的超链接目标
+        media 规定被链接文档是为何种媒介/设备优化的
+        type 规定被链接文档的MIME类型
+        target：页面的打开方式 
+                _self 当前，即被新的页面覆盖
+                _blank 在新的页面中打开
+                _parent 页面的父窗口或父框架中打开
+                _top 将页面在整个浏览器窗口中打开
+                famename 在指定的框架中打开
+十、锚点
+    给标签设置id属性，通过另外一个a标签href属性去链接这个锚点，id相同时，会到第一个这个id的位置，所以要求id是唯一的
+    可以链接到当前页面中的指定位置，还可以链接到其它页面的指定部分
+    返回顶部功能可以用锚点实现，
+
+    超链接和锚点的案例在No2中演示
+
+十一、div和span标签
+    div：容器级标签，其实用来划分独立的逻辑块，没有任何的默认样式，可以放置任何标签和内容
+        可以存放一些相近的、相同功能的标签。
+    span：文本级标签，只能放文字、图片、表单元素等，用来装饰部分文本的效果。
+    span标签需要配合后面学的css样式使用
+    
+    大的内容放在div里，小的内容放在span里
+    div盒子内容会独占一行，span的内容会写在一行
+
+    总结：div划分区域的，span：区域里面的小文本等写在一行的，一般span都写在div里
+    剩下的长文本的就用p标签
+
+
+十二、无序列表
+    ul:unordered list无序列表
+    li list item列表项
+    li写在ul里面的，换句话说这俩标签必须同时出现，不能单独书写
+    ul标签里只能写一个或者多个li标签
+    而li标签是一个容器级的标签，可以放置任何内容标签
+    ul属性：type：disc 默认实心圆，circle空心圆，square实心方快
+
+十三、有序列表
+    ol ordered list
+    li
+    和上面完全相同，只不过是有序标签
+    ol属性：type：设置有序列表的项目符号
+            A 大写英文； a小写英文 ；1阿拉伯数字 I 大写罗马数字 i小写罗马数字
+        start ：设置列表符号从第几个开始排列，属性值只能是阿拉伯数字
+        reversed：设置有序列表项目符号的倒叙，这时一个布尔属性，reversed或reversed="reversed"
+
+    注意！！ol和ul样式不可以通用，但是li啥都行，type写什么disc 或者写个i都可以！不论在ul中还是ol中
+
+十四、定义列表
+    dl definition list 定义列表
+    dt definition title 定义标题
+    dd definition description 定义描述
+    dl里面嵌套了dt和dd，dt和dd同一级别的标签，dd是堆dt的解释，说明
+    dt和dd都是容器级别的标签，内容不做限制
+    dl里可以放置多组dt和dd，dt后面的dd可以有多个，这些dd都是在解释上面的dt
+    dt后面可以没有dd，表示没有解释说明
+    实际工作中，经常将每一组dt和dd单独放在一个dl标签内部
+十五、表格
+    table：定义表格容器
+    tr：table rows 行
+    th table head 表头,所谓表头就是第一行，用th就加粗，用td就不加粗 
+    td table dock 定义单元格
+    嵌套关系：table>tr>th|td
+
+    属性：border 设置表格的边框
+         bordercolor
+         height width
+         align：center居中，left左对齐，right右对齐
+         bgcolor背景颜色
+         summary 表格隐藏信息，可以来做seo
+    td和td有两个属性，可以合并单元格
+    rowspan跨行合并
+    colspan跨列合并
+    属性值：合并几个
+
+    划分区域：写在table标签里的几个标签
+        表格标题：caption   
+        表头：thead
+        主体部分:tbody
+    
+    给表格设置标签也可以用h1-h6，也可以用caption（一般都用caption，这样和表格是一个整体）
+    一个表格只能添加一个caption，多个时，ie和chrome能显示，火狐只能识别第一个
+    关于表格的操作全在No6中
+
+十六、表单form
+    1、收集用户输入选择等信息 
+    2、属性：
+        name：表单名
+        action:设置数据提交的地址
+        method 设置数据提交的方式：get post请求
+        target 页面打开方式，和之前_blank一样
+        标签：
+            textarea 文本框富文本框 可以设置rows行高，cols 列宽
+            select下拉框
+            input 输入
+            button 按钮
+            label标签为表单控制定义标注，也将表单元素写在label内。
+                for属性：规定label绑定到哪个表单控件
+
+        select标签：下拉框
+            属性：multiple 设置多选
+                 size 设置显示在页面上的列表的项数，1-7
+            option标签：定义下拉框的一个项目,纯文本标签
+                属性：selected：设置默认被选中的列表项，布尔属性
+            optgroup标签定义选项组
+                属性：label为选项组规定描述
+        input标签输入：自封闭标签
+            属性：type：text：单行文本框
+                       password :密码框
+                       radio：单选框
+                       checkbox ：复选框
+                            注意：因为单选框多选框都是并列的关系，所以还要写好几个，但是它们的name必须相同，才能保证写在同一个选项框里
+                       img：图片，属性：src，长宽高，不列举了
+                       file：上传文件
+                       hidden:隐藏文本，不希望用户看到
+                       button：按钮
+                       submit：提交
+                       reset：重置：将form表单里面全重置成默认值
+                 pattern：对输入的内容做校验，里面是正则表达式
+        button标签：按钮
+            属性 type：规定按钮的类型，button reset submit
+            button控件与input type="button"控件相比
+                button标签之间的所有内容都是按钮的内容，比如文本或者多媒体内容，比如点击图片提交、点击超链接提交按钮可以用button写
+                input只能通过value写内容
+                button可以渲染其它标签，input中不行
+
+            button控件在form表单中，ie浏览器默认类型为button，但是其它类型会当成submit处理 即type=“submit”
+            换句话说，input里的button，submit reset券可以用button代替
+十七、通用属性
+    1、name：字段名称
+    2、value：字段的值，
+        <input type="text" name="age" value="18"> 点击提交后 age=18就提交上去了
+    3、autofocus：直接写在标签内就行 规定在页面加载后文本区域自动获取焦点，比如百度搜索打开后直接光标出现在输入框内 
+    4、form 规定文本区域所属的一个或者多个表单
+    5、placeholder：规定描述文本区域预期的剪短提示，就是文本框的底色有“请输入文本信息”
+    <input type = "text" autofocus palceholder="请输入文本信息">
+    6、disabled 禁用该文本区，即变成灰色不能输入
+    7、readonly 只读，不能修改
+    8、maxlength 设置最大字符
+    9、required 必填
+
+十八、其它标签
+    1、pre：之前说过格式会压缩，比如多个空格只显示一个，回车也只显示空格，有了pre标签这些样式全部会保留
+    2、strong/em：强调标签，加粗，em也是，不过是斜体
+    3、br：换行
+    <p>hello <br> world </p>
+    4、hr：分割线
+    5、iframe：很有意思的标签，可以在页面中引入其它框架
+    <iframe src="https://www.baidu.com" ></frame> 这样就会在页面中引入一个百度网站，可以调整大小的 width height
+
+十九、规范
+    1、标签必须小写
+    2、属性名小写，属性值双引号
+    3、class必须全小写，词间以-分割
+    4、id驼峰命名，第二个单词首字符大写
+        <h1 id = "paggeTitle" class="page-title"></h1>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo {
+            border: 1px solid #ccc;
+            padding: 30px 50px;
+        }
+        .demo p {
+            margin-bottom: 20px;
+        }
+        #showText {
+            background-color: pink;
+            color: red;
+            /* display: none; */
+        }
+        #showText.hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo" id="app">
+        <p><input type="text"></p>
+        <p><input type="text"></p>
+        <p><input type="checkbox" name="" id="">点击选择<label for=""></label></p>
+        <div id="showText" class="hide">提示文本</div>
+    </div>
+
+    <div id="app2">
+        <div>
+            <button>变大</button>
+            <button>变小</button>
+        </div>
+        <p id="font">文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字</p>
+    </div>
+<script>
+// 1.获取<p class='demo'>hello icketang</p>内部文案
+// var str = "<p class='demo'>hello icketang</p>";
+// var str = '<h1 class="abc" id="demo"> hello abc </h1>'
+// // 标签特征  
+// var reg = /<(\w+)[^<>]*>(.*)<\/\1>/;
+// 替换
+// var result = reg.exec(str)
+// console.log(result, result[2]);
+// var result = str.replace(reg, '$2')
+// console.log(result);
+
+// 2.将div#demo.demo转化成<div id="demo" class="demo"></div>
+// var str = 'div#demo.demo';
+// var reg = /(\w+)#(\w+)\.(\w+)/;
+// // 处理str
+// var result = str.replace(reg, function(match, $1, $2, $3) {
+//     return '<' + $1 + ' id="' + $2 + '" class="' + $3 + '">' + '</' + $1 + '>'
+// })
+// console.log(result);
+
+// 3 切换提示内容
+// var app = document.getElementById('app');
+// // 获取文本容器
+// var showText = document.getElementById('showText');
+// // 绑定事件
+// app.onmouseenter = function() {
+//     // showText.style.display = 'block';
+//     showText.className = ''
+// }
+// app.onmouseleave = function() {
+//     // showText.style.display = 'none';
+//     showText.className = 'hide'
+// }
+
+// 4.控制文字字号效果。
+// 获取容器
+var app2 = document.getElementById('app2');
+// 获取按钮
+var btns = app2.getElementsByTagName('button');
+// 获取文字
+var font = document.getElementById('font');
+// 先设置默认字体大小
+var fontSize = 20;
+// 设置样式
+font.style.fontSize = fontSize + 'px';
+// 绑定事件
+for (var i = 0; i < btns.length; i++) {
+    // 设置属性
+    btns[i].index = i;
+    btns[i].onclick = function() {
+        // 第一个是增加，第二个是减少
+        fontSize += this.index === 0 ? 1 : -1;
+        // 设置样式
+        font.style.fontSize = fontSize + 'px';
+    }
+}
+</script>
+</body>
+</html>

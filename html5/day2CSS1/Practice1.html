@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 工作中建议将css写在外面的css文件中 */
+        *{
+            /* 清除默认样式 */
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+        }
+        /* 清除浮动工具类 */
+        .clearfix::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        .main{
+            /* 最外部的大小 */
+            width: 970px;    
+            margin: 0 auto; 
+        }
+        .header{
+            /* 图中header下面有隔开的 */
+            margin-bottom: 10px;
+        }
+        .header-left{
+            /* 头左 左浮动 */
+            float: left;
+            width: 277px;
+            height: 103px;
+            background: red;
+        }
+        .header-right{
+            /* 头右左浮动 */
+            float: left;
+            /* 和左边间隔 */
+            margin-left: 10px;
+            /* 头右宽度 */
+            width: 679px;
+            /* 靠右来 */
+            text-align: right;
+        }
+        .header-right-top{
+            float: right;
+            width: 137px;
+            height: 49px;
+            background: greenyellow;
+            
+        }
+        .header-right-buttom{
+            margin-top: 8px;
+            float: right;
+            width: 679px;
+            height: 46px;     
+            background: greenyellow;
+           
+        }
+        /* head部分结束======================= */
+        .body{
+            margin-bottom: 10px;
+        }
+        .body-left{
+            float: left;
+            height: 435px;
+            width: 310px;
+            background: gold;
+        }
+        .body-right{
+            float: left;
+            margin-left: 10px;
+            width: 650px;
+        }
+        .body-right-top{
+            margin-bottom: 10px;
+        }
+        .body-right-top-left{
+            float: left;
+            width: 450px;
+        }
+        .body-right-top-left-top{
+            height: 240px;
+            margin-bottom: 10px;
+            background: skyblue;
+        }
+        .body-right-top-left-middle{
+            height: 110px;
+            margin-bottom: 10px;
+            background: skyblue;
+        }
+        .body-right-top-left-buttom{
+            height: 30px;
+            
+            background: skyblue;
+        }
+        .body-right-top-right{
+            float: left;
+            margin-left: 10px;
+            height: 401px;
+            width: 190px;
+            background: purple;
+        }
+        .body-right-buttom{
+            background: green;
+            height: 25px;
+        }
+        .footer{
+            background: blue;
+            height: 35px;
+
+        }
+    </style>
+</head>
+<body>
+    <!-- 布局练习！！ -->
+    <!-- 上中下三部分 -->
+    <div class="main">
+        <div class="header clearfix">
+              <!-- 分为左右两部分 -->
+              <div class="header-left"></div>
+              <div class="header-right">
+                  <!-- 右边还能分成两部分 -->
+                  <div class="header-right-top"></div>
+                  <div class="header-right-buttom"></div>
+              </div>
+        </div>
+        <div class="body clearfix" >
+            <!-- 分成左右两部分，因为下面的绿贯通右部分 -->
+            <div class="body-left"></div>
+            <div class="body-right ">
+                <!-- 分成上下两部分，下面绿的算下，上面全算上 -->
+                <div class="body-right-top clearfix">
+                    <!-- 分成左右两部分 -->
+                    <div class="body-right-top-left ">
+                        <!-- 分成上中下三部分 -->
+                        <div class="body-right-top-left-top"></div>
+                        <div class="body-right-top-left-middle"></div>
+                        <div class="body-right-top-left-buttom"></div>
+                    </div>
+                    <div class="body-right-top-right">
+
+                    </div>
+                </div>
+                <div class="body-right-buttom"></div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>

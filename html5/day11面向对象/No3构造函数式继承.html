@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    /****
+     * 继承
+     *  父类：被继承的类，是一个大的范围
+     *  子类：要继承的类，是一个小的范文
+     * 例如：
+     *      动物是一个大的范围，是一个父类
+     *          动物可以吃，可以跑等等， 还有眼睛，鼻子，嘴等属性
+     *      狗是动物的一种，是一个子类
+     *          狗也可以吃，也可以跑等等，这些行为方法是类似的，我们是希望被复用的， 还有眼睛，鼻子，嘴等属性
+     *      继承就是讨论，如何让狗具有动物的吃，跑等行为。如何让狗复用动物的设置眼睛，鼻子，嘴等属性的过程。
+     * 在比如：
+     *  人类是一个大的范文
+     *      根据肤色：  白人，黑人，黄种人 ...
+     *      根据低于：  亚洲人，欧洲人，美洲人 ....
+     * ******/ 
+    // 面向对象主要就是：封装（类），继承，多态
+    // js中主要讨论封装和继承
+
+    // // 定义类
+    // function People(name, age, sex) {
+    //     // 存储属性
+    //     this.name = name;
+    //     this.age = age;
+    //     this.sex = sex;
+    // }
+    // // 行为方法
+    // People.prototype.getName = function() {
+    //     console.log('我是' + this.name);
+    // }
+    // People.prototype.getAge = function() {
+    //     console.log('我今年' + this.age + '岁');
+    // }
+    // People.prototype.getSex = function() {
+    //     console.log('我是' + this.sex + '人');
+    // }
+    // // 学生类
+    // function Student(name, age, sex, grade) {
+    //     // 存储属性
+    //     this.name = name;
+    //     this.age = age;
+    //     this.sex = sex;
+    //     this.grade = grade;
+    // }
+    // // 行为方法
+    // Student.prototype.getName = function() {
+    //     console.log('我是' + this.name);
+    // }
+    // Student.prototype.getAge = function() {
+    //     console.log('我今年' + this.age + '岁');
+    // }
+    // Student.prototype.getSex = function() {
+    //     console.log('我是' + this.sex + '孩子');
+    // }
+    // // 创建对象
+    // var p1 = new People('老李', 20, '男');
+    // var s1 = new Student('小白', 10, '男', 5);
+    // console.log(s1, p1);
+    // p1.getName();
+    // s1.getName();
+    // p1.getAge();
+    // s1.getAge();
+    // console.log(p1.getName === s1.getName);
+    // console.log(p1.getAge === s1.getAge);
+
+
+    // 父类
+    function People(name, age, sex) {
+        // 存储属性
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+    }
+    // 行为方法
+    People.prototype.getName = function() {
+        console.log('我是' + this.name);
+    }
+    People.prototype.getAge = function() {
+        console.log('我今年' + this.age + '岁');
+    }
+    People.prototype.getSex = function() {
+        console.log('我是' + this.sex + '人');
+    }
+    // 子类
+    function Student(name, age, sex, grade) {
+        // this.name = '爱创课堂-' + name;
+        /**
+         * 构造函数继承
+         *  让父类的构造函数，在子类对象(作用域)上执行，并传递子类的参数
+         * 问题
+         *  无法复用原型对象上的方法
+         * **/
+        People.call(this, name, age, sex)
+        // 存储属性
+        this.grade = grade;
+        // 我们还可以在继承后，重写属性（如果在继承前，重写属性，可能会被覆盖）
+        this.name = '爱创课堂-' + name;
+    }
+    // 行为方法
+    Student.prototype.getName = function() {
+        console.log('我是' + this.name);
+    }
+    Student.prototype.getAge = function() {
+        console.log('我今年' + this.age + '岁');
+    }
+    Student.prototype.getSex = function() {
+        console.log('我是' + this.sex + '孩子');
+    }
+    // 创建对象
+    var p1 = new People('老李', 20, '男');
+    var s1 = new Student('小白', 10, '男', 5);
+    console.log(s1, p1);
+    p1.getName();
+    s1.getName();
+    p1.getAge();
+    s1.getAge();
+    console.log(p1.getName === s1.getName);
+    console.log(p1.getAge === s1.getAge);
+    </script>
+</body>
+</html>

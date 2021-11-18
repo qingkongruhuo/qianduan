@@ -1,0 +1,142 @@
+html, 
+body {
+    background-color: #f8f3ed;
+}
+.nav {
+    background-color: #fff;
+}
+.nav .container {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.nav img {
+    /* width: 244px; */
+    /* height: 59px; */
+    width: 20.854700854700856%;
+    /* align-self: center; */
+}
+.nav .list {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.nav .list li {
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+}
+.nav .list li.choose,
+.nav .list li:hover {
+    background-color: #000;
+    color: #fff;
+}
+@media (max-width: 991px) {
+    .nav .list li {
+        padding: 0 10px;
+    }
+}
+@media (max-width: 767px) {
+    .nav .container {
+        flex-wrap: wrap;
+        height: 160px;
+        align-items: flex-end;
+    }
+    .nav img {
+        width: 244px;
+        height: 59px;
+    }
+    .nav .list {
+        min-width: 412px;
+    }
+    .nav .list li {
+        flex: 1;
+        text-align: center;
+    }
+}
+.banner {
+    background: url(../img/banner1.jpg) no-repeat center top;
+    background-size: cover;
+    height: 500px;
+}
+/* 利祥列表 */
+.lixiang-list {
+    margin-top: 30px;
+}
+.lixiang-list .item {
+    margin: 0 15px;
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 120px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.lixiang-list .col-lg-4 {
+    display: flex;
+}
+.lixiang-list .item img {
+    width: 100%;
+}
+.lixiang-list .item h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 10px 0 24px;
+}
+.lixiang-list .item p {
+    font-size: 14px;
+    line-height: 26px;
+    padding: 0 20px;
+    text-align: left;
+}
+.lixiang-list .item .more {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border: 1px dashed #ccc;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -31px;
+}
+.circle-list {
+    background: url(../img/bg.jpg) repeat;
+}
+.circle-list .row {
+    text-align: center;
+}
+.circle-list .row  p {
+    font-size: 18px;
+    margin: 15px 0;
+    width: 100%;
+}
+.circle-list .col-lg-3 {
+    height: 291px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* 商品列表 */
+.product-list .title {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 30px 0 50px;
+    text-align: center;
+}
+.product-list .item {
+    margin: 0 8px;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px  gray;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.product-list .item img {
+    width: 100%;
+}
+.product-list .item p {
+    font-size: 16px;
+    margin: 8px 15px;
+    text-align: center;
+}

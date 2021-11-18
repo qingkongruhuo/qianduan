@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .list {
+            width: 560px;
+            height: 300px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .list img {
+            width: 560px;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        .list img.choose {
+            display: block;
+        }
+        .prev, 
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 50px;
+            margin-top: -25px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .btns {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 30px;
+            text-align: center;
+        }
+        .btns span {
+            padding: 6px;
+            margin: 0 6px;
+            font-size: 0;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        .btns span.choose {
+            background-color: #f00;
+        }
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 560px;
+            height: 300px;
+        }
+        /* .content .row {
+            height: 100px;
+            position: relative;
+        } */
+        .content .col {
+            width: 112px;
+            height: 100px;
+            display: inline-block;
+            position: absolute;
+            /* background-color: pink; */
+        }
+    </style>
+</head>
+<body>
+    <div class="list">
+        <img class="choose" src="img/0.jpg" alt="">
+        <img src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/3.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+        <div class="content"></div>
+        <div class="btns">
+            <span class="choose"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="prev">&lt;</div>
+        <div class="next">&gt;</div>
+    </div>
+<script src="./jquery.js"></script>
+<script>
+// 获取元素
+var $img = $('.list img');
+var $btns = $('.btns span');
+var $content = $('.content');
+// 当前显示图片的序号
+var id = 0;
+// 定时器句柄
+var timebar;
+// 三行五列
+// 通过循环创建15个div
+// for (var i = 0; i < 3; i++) {
+//     // 创建行元素
+//     // $() 方法内部，书写标签就会创建元素
+//     // var row = $('<div ></div>')
+//     // 简写成单标签元素
+//     var row = $('<div class="row" />')
+//     // 内部控制列
+//     for (var j = 0; j < 5; j++) {
+//         var col = $('<div class="col" />')
+//         // 将列放入行内
+//         row.append(col)
+//     }
+//     // 将行放入content元素内
+//     $content.append(row)
+// }
+// 字符串拼接
+var str = ''
+// `
+//     <div class="row">
+//         <div class="col"></div>
+//         <div class="col"></div>
+//         <div class="col"></div>
+//         <div class="col"></div>
+//         <div class="col"></div>
+//         <div class="col"></div>
+//     </div>
+// `
+// 外部控制行
+for (var i = 0; i < 3; i++) {
+    // str += '<div class="row">';
+    // 内部控制列
+    for (var j = 0; j < 5; j++) {
+        str += '<div class="col"></div>';
+    }
+    // str += '</div>';
+}
+// 写入内容
+$content.html(str)
+// console.log($(str));
+
+// 渲染第二张图片
+$content.find('.col')
+    // .css('background-image', 'url(img/' + id + '.jpg)')
+    .each(function(index) {
+        // console.log(index, parseInt(index / 5), index % 5)
+        // 设置背景图片位置
+        $(this).css({
+            // backgroundPosition: ''
+            backgroundPositionX: -112 * (index % 5),
+            backgroundPositionY: -100 * parseInt(index / 5),
+            top: 100 * parseInt(index / 5),
+            left: 112 * (index % 5)
+        })
+    })
+// $content.find('.col').css({
+//     backgroundImage: 'url(img/' + id + '.jpg)',
+//     width: 0,
+//     height: 0,
+//     opacity: 0
+// }).each(function() {
+//     // 每一个元素设置不同时间的动画
+//     $(this).animate({
+//         width: 112,
+//         height: 100,
+//         opacity: 1
+//     // 0.5-3秒
+//     }, 500 + 2500 * Math.random())
+// })
+// 启动定时器方法
+function startInterval() {
+    timebar = setInterval(function() {
+        // 页面显示前一张图片，id加之前，就是前一张图片
+        // 将这张图片的添加choose，其它图片删除choose类
+        // $img.eq(id).addClass('choose').siblings().removeClass('choose')
+        prepareAnimate();
+        // 更改id
+        id++;
+        // 判断条件
+        // if (id >= $img.length) {
+        //     // 最后一张图片的下一张就是第一张
+        //     id = 0;
+        // }
+        // 执行动画
+        doAnimation();
+    }, 5000)
+}
+// 执行动画
+function doAnimation() {
+    // 判断边界
+    if (id > $img.length) {
+        // 最后一张图片的下一张就是第一张
+        id = 0;
+    } else if (id < 0) {
+        // 第一张的上一张是最后一张
+        id = $img.length - 1;
+    }
+    // 启动动画
+    $content.find('.col').css({
+            backgroundImage: 'url(img/' + id + '.jpg)',
+            width: 0,
+            height: 0,
+            opacity: 0
+        }).each(function() {
+            // 每一个元素设置不同时间的动画
+            $(this).stop(true).animate({
+                width: 112,
+                height: 100,
+                opacity: 1
+            // 0.5-3秒
+            }, 500 + 2500 * Math.random())
+        })
+    // 更新小圆点
+    $btns.eq(id).addClass('choose').siblings().removeClass('choose')
+}
+// 动画之前的处理也是一样的，也可以封装
+function prepareAnimate() {
+    // 清除定时器
+    clearInterval(timebar);
+    // 显示上一张图片
+    $img.eq(id).addClass('choose').siblings().removeClass('choose')
+}
+// 启动动画
+startInterval()
+// 点击下一张图片
+$('.next').click(function() {
+    // // 清除定时器
+    // clearInterval(timebar);
+    // // 显示上一张图片
+    // $img.eq(id).addClass('choose').siblings().removeClass('choose')
+    prepareAnimate()
+    // 更新id
+    id++;
+    // 处理边界
+    // if (id >= $img.length) {
+    //     // 最后一张图片的下一张就是第一张
+    //     id = 0;
+    // }
+    // 执行动画
+    doAnimation();
+    // 处理小圆点
+    // 启动定时器
+    startInterval();
+})
+// 点击上一张图片
+$('.prev').click(function() {
+    // // 清空定时器
+    // clearInterval(timebar)
+    // // 显示上一张图片
+    // $img.eq(id).addClass('choose').siblings().removeClass('choose')
+    prepareAnimate()
+    // 更新id
+    id--;
+    // 处理边界
+    // if (id < 0) {
+    //     // 第一张的上一张是最后一张
+    //     id = $img.length - 1;
+    // }
+    // 执行动画
+    doAnimation();
+    // 处理小圆点
+    // 情动定时器
+    startInterval();
+})
+// 点击小圆点
+$btns.click(function() {
+    // 获取index
+    var index = $(this).index();
+    // 判断id是否相同
+    if (id === index) {
+        return;
+    }
+    // 准备动画
+    prepareAnimate();
+    // 更改id
+    id = index;
+    // 执行动画
+    doAnimation();
+    // 启动定时器
+    startInterval();
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        /* 前三个box设置浮动后，设置左浮动后从左到右依次排列，右浮动就从右到左 */
+        .container{
+            margin: 10px auto;
+            width: 800px;
+            background-color: green;
+        }
+        .container div{
+            width: 100px;
+            height: 100px;
+            /* box全部设置浮动 */
+            /* 可以看到父元素底层的green完全没有了，因为浮动的元素不占地方，没有任何内容将父元素撑起来 */
+            float: left;
+        }
+        .box1{
+            
+            background: red;
+
+        }
+        .box2{
+            background: yellow;
+
+        }
+        .box3{
+            background: blue;
+        }
+
+        .box4{
+            background: pink;
+        }
+        .box5{
+            background: orange;
+        }
+        .box6{
+            background: gold;
+        }
+        .outer{
+            height: 200px;
+            background: yellowgreen;
+        }
+        #innerWall{
+            /* 让内墙清除浮动  */
+            /* 内墙清除浮动，即浮动元素不能再内墙上浮动，也就是说内墙会在浮动元素下面展现内容 */
+            /* 但是要展现内容，父元素必须给撑起来，地盘得划到内墙这里，即把高度撑起来 */
+            width: 100% ;
+            height: 0px;
+            clear: both;
+            float: none;
+            /* 看上面的.container div,设置了各种属性，而内墙也是div全他妈给设置好了，所以要用
+            id选择器重新设置，其实也可以用span标签
+             */
+            
+        }
+        span{
+            clear: both;
+            /* 让span标签成为块 */
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">1+1+1</div>
+        <div class="box2">2+2+2</div>
+        <div id="box3" class="box3">3+3+3</div>
+        <div class="box4">4+4+4</div>
+        <div class="box5">5+5+5</div>
+        <div class="box6">6+6+6</div>
+        <div class="box2">2+2+2</div>
+        <div id="box3" class="box3">3+3+3</div>
+        <div class="box4">4+4+4</div>
+        <div class="box5">5+5+5</div>
+        <div class="box6">6+6+6</div>
+        <!-- 内墙法 -->
+        <div id="innerWall"></div>
+        <!-- <span></span> -->
+    </div>
+    <div class="outer">
+        外面的元素
+    </div>
+</body>
+</html>

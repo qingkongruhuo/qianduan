@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 清空默认样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            display: block;
+            width: 560px;
+            height: 300px;
+        }
+        .list {
+            width: 900px;
+            margin: 50px auto;
+            position: relative;
+            border: 5px solid green;
+            height: 300px;
+            overflow: hidden;
+        }
+        .list li {
+            /* 用绝对路径实现的遮盖效果 */
+            position: absolute;
+            width: 560px;
+            height: 300px;
+        }
+        .mask {
+            /* 遮罩层 */
+            width: 560px;
+            height: 300px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+        } 
+    </style>
+</head>
+<body>
+    <ul class="list">
+        <li>
+            <img src="./img/0.jpg" alt="">
+            <div class="mask"></div>
+        </li>
+        <li>
+            <img src="./img/1.jpg" alt="">
+            <div class="mask"></div>
+        </li>
+        <li>
+            <img src="./img/2.jpg" alt="">
+            <div class="mask"></div>
+        </li>
+        <li>
+            <img src="./img/3.jpg" alt="">
+            <div class="mask"></div>
+        </li>
+        <li>
+            <img src="./img/4.jpg" alt="">
+            <div class="mask"></div>
+        </li>
+    </ul>
+<script src="./jquery.js"></script>
+<script>
+// 初始样式
+$('li').each(function(index) {
+    // 设置样式给绝对定位遮盖
+    $(this).css('left', 180 * index)
+})
+// 绑定事件
+$('li').mouseenter(function() {
+    console.log($('li').is(':animated'))
+    // 如果运行了动画，不要再执行了
+    if ($('li').is(':animated')) {
+        return;
+    }
+    // 是第几个
+    var index = $(this).index();
+    // console.log(index);
+    // 将前面的li向左移动，间隔85
+    // 它自己以及它前面的元素向左移动，
+    //:lt 选择器选取带有小于指定 index 值的元素。index 值从 0 开始。 
+    // $('li:lt(' + (index + 1) + ')').each(function(i) {
+    //     // 间隔是85
+    //     $(this).css('left', 85 * i)
+    // })
+    // prevAll获取的顺序是：离的越近序号越小离的越远序号越大,从0开始 
+    $(this).prevAll().each(function(i) {
+        // $(this).prevAll()长度就是 index - 1
+        // [0, 1, 2]    =>      [2, 1, 0]   => [len - 1 - 0, len - 1 - 1, len - 1 - 2]
+        // console.log(85 * i);
+        // console.log(this);
+        // 间隔是85
+        $(this).animate({ 'left': 85 * (index - i - 1) }, 500)
+    })
+    // 当前元素也要向左移动
+    $(this).animate({ 'left': 85 * index }, 500)
+    // console.log($(this).prevAll(), $(this).nextAll())
+    // 将后面的li向右移动，间隔85，但是腾出560，显示当前图片
+    // $('li:gt(' + index + ')').each(function(i) {
+    //     // 间隔85，腾出560
+    //     $(this).css('left', 85 * (i + index) + 560)
+    // })
+    $(this).nextAll().each(function(i) {
+        // 间隔85，腾出560
+        $(this).animate({ 'left': 85 * (i + index) + 560 }, 500)
+    })
+    // 当前图片的遮罩隐藏
+    $(this).find('.mask').fadeOut(500)
+})
+// 鼠标移走恢复默认状态
+$('li').mouseleave(function() {
+    // 设置默认状态
+    $('li').each(function(index) {
+        $(this).animate({ left: 180 * index }, 500)
+    })
+    // 将遮罩层隐藏
+    $('.mask').fadeIn(500);
+})
+</script>
+<script>
+</script>
+</body>
+</html>

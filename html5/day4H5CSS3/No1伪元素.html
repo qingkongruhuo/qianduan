@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{
+            width: 200px;
+            height: 100px;
+            color: pink;
+        }
+        /* 第一个字母 */
+        p::first-letter{
+            font-size: 30px;
+            color: blue;
+        }
+        /* 第一行 */
+        p::first-line{
+            font-size: 25px;
+            color: aqua;
+        }
+        /* 鼠标圈选时变色 */
+        p::selection{
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <h1>helloworld</h1>
+    <p>大胆上炸他应屁股大胆上炸他应屁股大胆上炸他应屁股大胆上炸他应屁股大胆上炸他应屁股大胆上炸他应屁股</p>
+</body>
+</html>

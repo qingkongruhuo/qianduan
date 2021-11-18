@@ -1,0 +1,5 @@
+*{
+    /* 为所有元素加边框 */
+    border:1px solid green;
+    padding:10px;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 1000px;
+            height: 400px;
+            background-color: pink;
+            border: 1px solid black;
+            margin: 0 auto;
+            /*弹性盒 */
+            display: flex;
+            /* 换行 */
+            flex-wrap: wrap;
+        }
+        .box{       
+            height: 100px;     
+            color: white;
+            text-align: center;
+            
+        }
+        .box1{
+            width: 300px;
+            background-color: green;
+            /* 通过order调整顺序 */
+            order: 3;
+            /* 放大，因为容器还有空间 */
+            /* 如果有其它的也设置了，一起均分，按数字比重 */
+              /*缩小同理的，不演示了  */
+            flex-grow: 1;
+        }
+        .box2{
+            width: 200px;
+            background-color: skyblue;
+            /* 通过order调整顺序 */
+            order: 2;
+        }
+        .box3{
+            width: 400px;
+            background-color: yellowgreen;
+            /* 通过order调整顺序 */
+            order: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,117 @@
+html, 
+body {
+    background-color: #f8f3ed;
+}
+.nav {
+    background-color: #fff;
+}
+.nav .container {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.nav img {
+    /* width: 244px; */
+    /* height: 59px; */
+    width: 20.854700854700856%;
+    /* align-self: center; */
+}
+.nav .list {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.nav .list li {
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+}
+.nav .list li.choose,
+.nav .list li:hover {
+    background-color: #000;
+    color: #fff;
+}
+@media (max-width: 991px) {
+    .nav .list li {
+        padding: 0 10px;
+    }
+}
+@media (max-width: 767px) {
+    .nav .container {
+        flex-wrap: wrap;
+        height: 160px;
+        align-items: flex-end;
+    }
+    .nav img {
+        width: 244px;
+        height: 59px;
+    }
+    .nav .list {
+        min-width: 412px;
+    }
+    .nav .list li {
+        flex: 1;
+        text-align: center;
+    }
+}
+.banner {
+    background: url(../img/banner1.jpg) no-repeat center top;
+    background-size: cover;
+    height: 500px;
+}
+/* 利祥列表 */
+/* 布局说明：首先 lixiang-list container独占一大行，最大父元素
+然后里面有一个row，第二大父元素，这个row的大小是由内部撑起
+row里面三个元素col-lg-4用栅格化来显示
+这三个元素col-lg-4用里面的item撑起来
+
+item里面三个元素，图片，h，p并列写下去*/
+.lixiang-list {
+    margin-top: 30px;
+}
+.lixiang-list .item {
+    margin: 0 15px;
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 120px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.lixiang-list .col-lg-4 {
+    /*这里给弹性的意思是：
+        每一个item都是被自己的内容撑起来的，
+        item是块级元素，被自己的内容高度撑起来
+        给col-lg-4来一个弹性直接脱离，直接拉满和父盒子一样高
+    因为设置弹性后，默认主轴是横轴，主轴对齐，也就是横着对齐，
+    那么横着对齐，竖着如果没设置高度，直接拉满和父盒子一样高，父盒子是col-lg-4
+    而父盒子被最高的那个撑起来了，即三个col-lg-4都是最高的那个，那么item也就和最高的一样高了
+    
+    */
+    display: flex;
+}
+.lixiang-list .item img {
+    width: 100%;
+}
+.lixiang-list .item h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 10px 0 24px;
+}
+.lixiang-list .item p {
+    font-size: 14px;
+    line-height: 26px;
+    padding: 0 20px;
+    text-align: left;
+}
+.lixiang-list .item .more {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border: 1px dashed #ccc;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -31px;
+}

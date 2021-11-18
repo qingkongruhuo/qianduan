@@ -1,0 +1,53 @@
+一、BootStrap
+    1、Bootstrap简介：Bootstrap,来自 Twitter,是目前很受欢迎的前端框架。 
+    Bootstrap是基于HTML、CSS、 Javascript的,它简洁灵活,使Web开发更加快捷。
+    它对HTML、CSS和 Javascript进行了封装,使它们使用起来更方便。我们只需要使用它已经设定好的类,或
+    规则,即可快速应用它提供的功能。
+        Bootstrap使用了一些HTML5元素和CSS3属性(如媒体查询)。为了让这些正常工作,需要使用HTML5文档
+    类型<! DOCTYPE html>。如果在 Bootstrap创建的网页开头不使用HTML5的文档类型( Doctype),可能会
+    面临一些浏览器显示不一致的问题。 
+        框架是代码的可重用设计,体现为一些组件,或抽像的方法。
+    2、Bootstrap分为：全局css样式、组件、JavaScript插件这么几个部分组成的
+        1、设置全局css样式：
+            基本的html元素均可以通过class设置样式并得到增强效果。还有先进的栅格系统
+        2、组件：
+            无数可复用的组件，包括字体图标、下拉菜单、导航栏等，即可复用模块
+        3、js插件
+            jquery
+        3、响应式设计：
+            BootStrap的响应式使css能够自适应与台式机、手机、pad等
+    3、使用 Bootstrap样式库
+        1、Bootstrap下载
+            官网:http://Www.bootcss.com/点击 bootstrap3中文文档,点击下载bootstrap3
+            下载“用于生产环境的” Bootstrap,下載完后它有三个文件夹 css,fonts,js
+        2、在html文档中引入bootstrap样式文件
+            bootstrap.min.css
+        3、使用html5的文档类型声明
+            <!Doctype html>, bootstrap用到了h5,所以它包含一个htm5版本的DOCTYPE
+            添加适用于移动端的meta标签
+            <meta name="viewport content="width-device-width, initial-scale10">
+            因为现在越来越多的用户使用移动设备,为了让 Bootstrap开发的网站对移动设备友好,确保适
+            和触屏缩放,需要在网页的head之中添加 viewport meta标签
+二、栅格系统
+    1.行必须放置在.container类内,以便获得bootstrap设置的对齐(alignment)和内边距(padding
+    2.使用.row来创建一行,每行又分为多个列。
+    3.内容应该放置在列内,且唯有列可以是行的直接子元素。row>col正确写法行>列
+    4.预定义的网格类,比如.row和.col-xs4,可用于快速创建网格布局。
+    5.列通过内边距( padding)来创建列内容之间的间隙。该内边距是通过,rows上的外边距( margin)取负
+    值得到,就是说,列和列之间有间隙,你想改变间隙,用负的 margin来写。
+    6.栅格系统是通过指定你想要横跨的十二个可用的列来创建的。例如,要创建三个相等的列,则使用三
+    个, col-xs4
+三、辅助类
+    1、使用 Bootstrap的排版特性,可以创建标题、段落、列表及其他内联元素,实际上它是把大部分在HTML的基
+本标签加了样式。所以这部分相对比较简单。
+    2、【内联子标题】:如果需要向任何标題添加一个内联子标题,只需要在标題标签中添加<small>,用small标
+    签包裹复标题的内容,或者添加.smal类,这样子您就能得到一个字号更小的颜色更浅的文本。
+    3、【引导主体副本】:为了给段落添加强调文本,则可以添加dass"ead",这将得到更大更粗、行高更高的
+    文本,它的作用相当于是文章摘要。
+    4、【强调标签】: bootstrap直接使用了HTML中用于标注强调的标签,并给他们另外赋予了少许的样式。这几
+    个用于强调的标签是: small、 strong、em
+    5、【对齐类】:简单方便将文字对齐的类,它们一般应用在p标签上(用在div上不符合规范,用在span标签则
+    不能生效)。
+    6、【强调类】:这些强调类,通过颜色来表示强调。之前我们学习过强调标签small、 strong、em。现在学习
+    强调类,P元素加了这些类,会显示不同的颜色。
+

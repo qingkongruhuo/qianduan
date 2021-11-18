@@ -1,0 +1,198 @@
+/* 通用样式 */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* 容器 */
+.container {
+    margin: 0 auto;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+/* 把最大的视口的元素全拿出来了，为什么没限制最大视口？
+如果放在
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}里
+某个元素只添加了最大视口的样式，没添加剩余视口的样式，那么在缩小屏幕尺寸的时候，
+比如缩小到中等屏幕，元素的样式就没了，所以要把最大视口的样式作为默认样式，不管什么情况下
+至少都得显示 
+bootstrap里是把手机屏幕的拿出来当默认了
+*/
+.col-lg-12 {
+    width: 100%;
+}
+.col-lg-11 {
+    /* 为什么保留八位小数？因为像素很多，比如8k屏幕，像素点特别多，保留月多越精确
+    如果只保留两三位，一乘个特别大的数太不精确了 */
+    width: 91.66666667%;
+}
+.col-lg-10 {
+    width: 83.33333333%;
+}
+.col-lg-9 {
+    width: 75%;
+}
+.col-lg-8 {
+    width: 66.66666667%;
+}
+.col-lg-7 {
+    width: 58.33333333%;
+}
+.col-lg-6 {
+    width: 50%;
+}
+.col-lg-5 {
+    width: 41.66666667%;
+}
+.col-lg-4 {
+    width: 33.33333333%;
+}
+.col-lg-3 {
+    width: 25%;
+}
+.col-lg-2 {
+    width: 16.66666667%;
+}
+.col-lg-1 {
+    width: 8.33333333%;
+}
+/* 栅格系统 */
+/* 四类视口：768， 992， 1200，屏幕宽度如下面所示，官网有 */
+/* 超大屏幕 */
+/* 内嵌式媒体查询 */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+/* 中型屏幕 */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        width: 970px;
+    }
+    /* 看这些比例其它视口都一样，代码重复率相当高，为什么还要这么写？
+    不想让大的影响小的，比如在大视口下影响手机屏幕 */
+    .col-md-12 {
+        width: 100%;
+    }
+    .col-md-11 {
+        width: 91.66666667%;
+    }
+    .col-md-10 {
+        width: 83.33333333%;
+    }
+    .col-md-9 {
+        width: 75%;
+    }
+    .col-md-8 {
+        width: 66.66666667%;
+    }
+    .col-md-7 {
+        width: 58.33333333%;
+    }
+    .col-md-6 {
+        width: 50%;
+    }
+    .col-md-5 {
+        width: 41.66666667%;
+    }
+    .col-md-4 {
+        width: 33.33333333%;
+    }
+    .col-md-3 {
+        width: 25%;
+    }
+    .col-md-2 {
+        width: 16.66666667%;
+    }
+    .col-md-1 {
+        width: 8.33333333%;
+    }
+}
+/* 平板屏幕 */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        width: 750px;
+    }
+    .col-sm-12 {
+        width: 100%;
+    }
+    .col-sm-11 {
+        width: 91.66666667%;
+    }
+    .col-sm-10 {
+        width: 83.33333333%;
+    }
+    .col-sm-9 {
+        width: 75%;
+    }
+    .col-sm-8 {
+        width: 66.66666667%;
+    }
+    .col-sm-7 {
+        width: 58.33333333%;
+    }
+    .col-sm-6 {
+        width: 50%;
+    }
+    .col-sm-5 {
+        width: 41.66666667%;
+    }
+    .col-sm-4 {
+        width: 33.33333333%;
+    }
+    .col-sm-3 {
+        width: 25%;
+    }
+    .col-sm-2 {
+        width: 16.66666667%;
+    }
+    .col-sm-1 {
+        width: 8.33333333%;
+    }
+}
+/* 手机屏幕 */
+@media (max-width: 767px) {
+    .col-xs-12 {
+        width: 100%;
+    }
+    .col-xs-11 {
+        width: 91.66666667%;
+    }
+    .col-xs-10 {
+        width: 83.33333333%;
+    }
+    .col-xs-9 {
+        width: 75%;
+    }
+    .col-xs-8 {
+        width: 66.66666667%;
+    }
+    .col-xs-7 {
+        width: 58.33333333%;
+    }
+    .col-xs-6 {
+        width: 50%;
+    }
+    .col-xs-5 {
+        width: 41.66666667%;
+    }
+    .col-xs-4 {
+        width: 33.33333333%;
+    }
+    .col-xs-3 {
+        width: 25%;
+    }
+    .col-xs-2 {
+        width: 16.66666667%;
+    }
+    .col-xs-1 {
+        width: 8.33333333%;
+    }
+}

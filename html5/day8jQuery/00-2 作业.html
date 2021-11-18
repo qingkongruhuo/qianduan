@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .list {
+            text-align: center;
+        }
+        img {
+            width: 200px;
+            margin: 0 10px;
+        }
+        body {
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-size: cover;
+        }
+        /* #app {
+            width: 100;
+        } */
+    </style>
+</head>
+<body>
+    <div class="list">
+        <img src="./img/loop/0.jpg" alt="">
+        <img src="./img/loop/1.jpg" alt="">
+        <img src="./img/loop/2.jpg" alt="">
+        <img src="./img/loop/3.jpg" alt="">
+        <img src="./img/loop/4.jpg" alt="">
+        <img src="./img/loop/5.jpg" alt="">
+        <img src="./img/loop/6.jpg" alt="">
+    </div> 
+    <!-- <div id="app"></div> -->
+<script src="./jquery.js"></script>
+<script>
+// 获取元素
+$('img').click(function() {
+    // this指向元素，是原生的
+    // 获取地址
+    var url = this.getAttribute('src');
+    // console.log(this.src, url);
+    // 修改body的背景
+    $('body').css('background-image', 'url(' + url + ')')
+})
+console.log(document.body.style.backgroundSize)
+</script>
+<script>
+// // 获取图片，绑定事件
+// var imgs = document.getElementsByTagName('img');
+// // 批量绑定事件
+// for (var i = 0, len = imgs.length; i < len; i++) {
+//     // 点击图片，获取图片的地址，给body设置
+//     imgs[i].onclick = function() {
+//         // 获取元素的地址
+//         // var url = this.src;
+//         // 两种方式都剋获取，src属性获取的是绝对地址，getAttribute获取的是属性值
+//         var url = this.getAttribute('src')
+//         // console.log(this);
+//         // console.log(url);
+//         // 给body设置背景
+//         document.body.style.backgroundImage = 'url(' + url + ')'
+//     }
+// }
+</script>
+</body>
+</html>

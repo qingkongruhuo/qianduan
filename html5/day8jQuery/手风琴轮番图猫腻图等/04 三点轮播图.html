@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<!-- 之前的轮播策略是火车左右拉，比如在第一张图片点第四个小圆点，还是会过很多张图片
+三点轮播不会 
+三点轮播逻辑：
+    1、首先全部图片全藏到右侧，然后首张图片显示在中间，
+    2、点击下一张，索引index的图片向左移动一张图片的距离，索引index+1的图片给个css样式
+让它紧挨着屏幕正中间右侧边框，然后向左移动一张图片的距离，这样就显示了连续动画。
+    3、点击上一张同理。
+    4、边界问题：如果index=0，还想上一张：首先把0图向右动画移动，然后判断，如果index-1<0;index变成4
+把index图片给个属性显示屏幕左侧，然后给个动画移到中间。
+    -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .list {
+            width: 560px;
+            height: 300px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .list img {
+            width: 560px;
+            height: 300px;
+            position: absolute;
+            /* 因为不需要火车了，所以没了content，首先先把所有图片移到最右侧，想用哪张哪张再移回来 */
+            left: 560px;
+        }
+        .prev, 
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 50px;
+            margin-top: -25px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .btns {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 30px;
+            text-align: center;
+        }
+        .btns span {
+            padding: 6px;
+            margin: 0 6px;
+            font-size: 0;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        .btns span.choose {
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="list">
+        <img src="img/0.jpg" alt="">
+        <img src="img/1.jpg" alt="">
+        <img src="img/2.jpg" alt="">
+        <img src="img/3.jpg" alt="">
+        <img src="img/4.jpg" alt="">
+        <div class="btns">
+            <span class="choose"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="prev">&lt;</div>
+        <div class="next">&gt;</div>
+    </div>
+<script src="./jquery.js"></script>
+<script>
+// 获取元素
+var $img = $('.list img');
+// 按钮
+var $btns = $('.btns span');
+// 维护当前显示图片的索引值
+var index = 0;
+// 循环定时器
+var timebar;
+// 默认显示第一张图片，先给第一章图片移过来
+$img.eq(index).css('left', 0)
+// 启动轮播
+function startInterval() {
+    timebar = setInterval(change, 3000)
+}
+// 页面加载完成，启动轮播
+startInterval();
+// // 更改图片以及按钮
+function change(fn) {
+    // 前一张图片,向左移动560
+    $img.eq(index).stop(true).animate({ left: -560 }, 500)
+    // 显示下一张
+    index++;
+    // 判断边界
+    if (index >= 5) {
+        index = 0;;
+    }
+    // 当前图片，放在舞台的右侧，再向左移动560
+    $img.eq(index).css('left', 560).stop(true).animate({ left: 0 }, 500, fn)
+    // 处理小圆点
+    $btns
+        // 当前选中的
+        .eq(index).addClass('choose')
+        // 其它的
+        .siblings().removeClass('choose')
+}
+// 点击下一张按钮
+$('.next').click(function() {
+    // 清空定时器
+    clearInterval(timebar)
+    // 更改索引值
+    // 处理边界
+    // 更改杨思华
+    change(startInterval);
+})
+// 点击上一张按钮
+$('.prev').click(function() {
+    // 清空定时器
+    clearInterval(timebar)
+    // 处理上一个的元素
+    $img.eq(index).stop(true).animate({ left: 560 }, 500)
+    // 更改索引值
+    index--;
+    // 处理边界
+    if (index < 0) {
+        index = 4;
+    }
+    // 更改杨思华
+    $img.eq(index).css('left', -560).stop(true).animate({ left: 0 }, 500, startInterval)
+    // 处理小圆点
+    $btns
+        // 当前选中的
+        .eq(index).addClass('choose')
+        // 其它的
+        .siblings().removeClass('choose')
+})
+// 点击了小圆点
+$btns.click(function() {
+    // 获取索引值
+    var i = $(this).index();
+    // console.log(i, index);
+    // 如果点击右侧按钮，向左移动
+    if (i > index) {
+        // 清除定时器
+        clearInterval(timebar)
+        // 处理前一个图片
+        $img.eq(index).stop(true).animate({ left: -560 }, 500)
+        // 更改索引值
+        index = i;
+        // 处理当前图片,放到右侧
+        $img.eq(index).css('left', 560).stop(true).animate({ left: 0 }, 500, startInterval)
+        // 处理小圆点
+        // $btns
+        //     // 当前选中的
+        //     .eq(index).addClass('choose')
+        //     // 其它的
+        //     .siblings().removeClass('choose')
+    } else if (i < index) {
+        // 如果点击左侧按钮，向右移动
+        // 清空定时器
+        clearInterval(timebar)
+        // 处理前一张图片
+        $img.eq(index).stop(true).animate({ left: 560 }, 500)
+        // 更改索引值
+        index = i;
+        // 处理当前图片
+        $img.eq(index).css('left', -560).stop(true).animate({ left: 0 }, 500, startInterval)
+        // 处理小圆点
+    }
+    // 处理小圆点
+    $btns
+        // 当前选中的
+        .eq(index).addClass('choose')
+        // 其它的
+        .siblings().removeClass('choose')
+})
+
+</script>
+<script>
+// // 获取元素
+// var $img = $('.list img');
+// // 按钮
+// var $btns = $('.btns span');
+// // 维护当前显示图片的索引值
+// var index = 0;
+// // 循环定时器
+// var timebar;
+// // 默认显示第一张图片
+// $img.eq(index).css('left', 0)
+// // 启动轮播
+// function startInterval() {
+//     timebar = setInterval(change, 3000)
+// }
+// // 页面加载完成，启动轮播
+// startInterval();
+// // // 更改图片以及按钮
+// function change(fn) {
+//     // 定义开关
+//     var num = 0;
+//     // 判断动画子执行完毕
+//     function end() {
+//         // 执行完毕
+//         num++;
+//         // 如果两个都执行完毕，并且传递了回调函数，就执行回调函数
+//         if (num === 2 && fn) {
+//             fn();
+//         }
+//     }
+//     // 前一张图片,向左移动560
+//     $img.eq(index).stop(true).animate({ left: -560 }, 500, end)
+//     // 显示下一张
+//     index++;
+//     // 判断边界
+//     if (index >= 5) {
+//         index = 0;;
+//     }
+//     // 当前图片，放在舞台的右侧，再向左移动560
+//     dealFn(end)
+// }
+// // 处理当前的元素
+// function dealFn(end) {
+//     $img.eq(index).css('left', 560).stop(true).animate({ left: 0 }, 500, end)
+//     // 处理小圆点
+//     $btns
+//         // 当前选中的
+//         .eq(index).addClass('choose')
+//         // 其它的
+//         .siblings().removeClass('choose')
+// }
+// // 点击下一张按钮
+// $('.next').click(function() {
+//     // 清空定时器
+//     clearInterval(timebar)
+//     // 更改索引值
+//     // 处理边界
+//     // 更改杨思华
+//     change(startInterval);
+// })
+// // 点击上一张按钮
+// $('.prev').click(function() {
+//     // 清空定时器
+//     clearInterval(timebar)
+//     // 对执行完动画的统计
+//     var num = 0;
+//     // 定义end方法
+//     function end() {
+//         num++;
+//         // 如果结束了
+//         if (num === 2) {
+//             // 启动循环定时器
+//             startInterval()
+//         }
+//     }
+//     // 处理上一个的元素
+//     $img.eq(index).stop(true).animate({ left: 560 }, 500, end)
+//     // 更改索引值
+//     index--;
+//     // 处理边界
+//     if (index < 0) {
+//         index = 4;
+//     }
+//     // 更改杨思华
+//     $img.eq(index).css('left', -560).stop(true).animate({ left: 0 }, 500, end)
+//     // 处理小圆点
+//     $btns
+//         // 当前选中的
+//         .eq(index).addClass('choose')
+//         // 其它的
+//         .siblings().removeClass('choose')
+// })
+</script>
+</body>
+</html>

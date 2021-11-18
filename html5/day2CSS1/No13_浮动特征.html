@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 前三个box设置浮动后，设置左浮动后从左到右依次排列，右浮动就从右到左 */
+        .container{
+            margin: 10px auto;
+            width: 800px;
+            background-color: green;
+        }
+        .container div{
+            width: 100px;
+            height: 100px;
+        }
+        .box1{
+            
+            background: red;
+            float: left;
+            /* 设置浮动后可以设置margin 等*/
+            /* 而且不存在合并的问题，即坍塌，上面外边距是10，下面上边距是10，那么上下边距就是20，不会是10 */
+            /* 设置浮动后脱离了文档流，不再占用原来位置，box456顶上去了 */
+            margin: 10px;
+        }
+        .box2{
+            background: yellow;
+            float: left;
+        }
+        #box3{
+            width:auto;
+            /* box 3设置了浮动，一旦取消它的宽度，它不会再像之前的容器一样充满父元素的宽度，它只以内容的宽度作为宽度*/
+        }
+        .box3{
+            background: blue;
+            float: left;
+        }
+
+        .box4{
+            background: pink;
+            /* 清除前面盒子浮动带来的影响，让box4正常显示 */
+            clear:  both;
+        }
+        .box5{
+            background: orange;
+        }
+        .box6{
+            background: gold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1">1+1+1</div>
+        <div class="box2">2+2+2</div>
+        <div id="box3" class="box3">3+3+3</div>
+        <div class="box4">4+4+4</div>
+        <div class="box5">5+5+5</div>
+        <div class="box6">6+6+6</div>
+    </div>
+</body>
+</html>

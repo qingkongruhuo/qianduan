@@ -1,0 +1,395 @@
+body{
+    /* background: url("../pic/index.png") no-repeat center top; */
+}
+li{
+    list-style: none;
+}
+
+.nav{
+    /* 可以先写个背景色，然后调成半透明，看和背景图片差多少 */
+    height: 58px;
+}
+.nav-container{
+    /* 固定定位的块 */
+    background-color: #191d3a;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 58px;
+    top:0;
+}
+.nav .nav-inner{
+    /* ul列表要居中 */
+    margin: 0 auto;
+    height: 58px;
+    line-height: 58px;
+    width: 1002px;
+    /* background-color: pink; */
+    /* opacity: 0.5; */
+}
+
+/*设置导航栏logo*/
+.nav .logo{
+    float: left;
+    /* 图片中间对齐，因为浮动，不能用vertical-align设置垂直居中*/
+    margin-top: 10px;
+    margin-left: 20px;
+}
+/* 设置导航栏的列表 */
+.nav ul{
+    /* 默认样式有问题margin重新设置成0 */
+    margin: 0;
+    padding: 0;
+    /* 让ul在logo后面紧挨着，调整位置 */
+    margin-left: 50px;
+ /* 列表浮动 */
+    float: left;
+    color: white;
+    font-size: 14px;
+
+}
+.nav ul li{
+    /* 每个小块给浮动，这样就能在一行 */
+    float: left;
+    /* 高度 */
+    height: 58px; 
+    width: 86px;
+    text-align: center;
+    /* 改变鼠标形状 */
+    cursor: pointer ;
+    /* 每个列表右边都有个框 */
+    border-right: 1px solid gray;
+}
+
+
+.nav .choose,
+.nav .list-item:hover{
+    /* 当选中的时候有个颜色 */
+    background-color: #252847;
+}
+.nav .last-item{
+    /* 加入我们 */
+    width: 100px;
+    height: 34px;
+    margin-left: 10px;
+    line-height: 34px;
+    background-color: #38b774;
+    margin-top: 12px ;
+}
+.nav .nav-lang{
+    float: right;
+    color: #3a4866;
+}
+.nav .lang-zh{
+    color: green;
+    margin-left: 15px;
+}
+/* ==============导航栏结束================= */
+.banner{
+    /* 试试用定位来搞banner */
+    position: relative;
+    height: 460px;
+    background: url("../pic/banner.png") no-repeat center;
+    /* opacity: 0.5; */
+}
+.banner .banner-content{
+    position: absolute;
+    left: 50%;
+    top: 65px;
+    margin-left: 40px; 
+
+}
+.banner .first .btn{
+    width: 115px;
+    height: 37;
+    float: right;
+    background-color: white;
+    /* 圆角 */
+    border-radius: 18px;
+    font-size: 16px;
+    line-height: 37px;
+    text-align: center;
+    margin-top: 17px;
+    margin-right: 37px;
+    /* 为了给俩三角形做定位 */
+    position: relative;
+}
+/* 做上下小箭头，可以学一学 */
+.banner .first .btn::before,
+.banner .first .btn::after{
+    content: "";
+    position: absolute;
+    right: 15px;
+    border: 4px solid transparent;
+    font-size: 0;
+}
+.banner .first .btn::before{
+    border-bottom-color: green;
+    top: 8px;
+}
+.banner .first .btn::after{
+    border-top-color: green;
+    top: 21px;
+}
+.banner .introduce{
+    margin-top: 38px;
+    width: 496px;
+    line-height: 30px;
+    font-size: 14px;
+}
+.banner .download{
+    letter-spacing:-2px;
+    margin-left: -5px;
+    color: black;
+    font-size: 20px;
+    margin-top: 25px;
+    padding-left: 34px;
+    background: url("../pic/download.png") no-repeat 10px 3.5px;
+
+}
+/* 下载列表 */
+.banner .list{
+    margin-left: -40px;
+    margin-top: -7px;
+}
+.banner .list li{
+    float: left;
+    width: 82px;
+    text-align: center;
+    border: 1px solid white;
+    background-color: rgba(255,255,255,.7);
+    /* 改变鼠标形状 */
+    cursor: pointer ;
+}
+.banner .list li:hover{
+    /* 当选中的时候有个颜色 */
+    background-color: white;
+}
+/* 里面span装图片 */
+.banner .list span{
+    display: block;
+    padding: 22px;
+    background-image: url("../pic/精灵图.png");
+    background-repeat: no-repeat;
+    margin-top: 15px;
+    margin-left: 28px;
+}
+/* 调整背景图片位置 */
+.banner .list .item1 span{
+    background-position: 0px -197px;
+    /* margin-left: -10px;
+    margin-top: 8px; */
+}
+.banner .list  p{
+    margin-left: 0px;
+    margin-top: 11px;
+}
+.banner .list .item2 span{
+    background-position: 0px 0px;
+}
+.banner .list .item3 span{
+    background-position: 0px -97px;
+    margin-left: 23px;
+}
+.banner .list .item4{
+    width: 109px;
+    height: 104px;
+}
+
+.banner .list img{
+    /* 这种图片用padding改居中 */
+    padding: 15px;
+}
+
+/* ==============banner结束================= */
+.content{
+    margin: 0 auto;
+    width: 1002px;
+}
+.content .movie-list{
+    margin-top: 50px;
+    margin-right: -42.666px;
+    width: 1002px;
+    /* 底边边框 */ 
+    padding-left: 0px;
+    padding-bottom: 43px;
+    border-bottom: 1px solid #dbe1e7;
+}
+/* 列表布局公式w=iw*n+(n01)*m  */
+/* 1000=218*4+(4-1)n  */
+/* n=42.66666 */
+.content .movie-list li{
+    float: left;
+    width: 218px;
+    margin-right: 42.666px;
+}
+.content .movie-list .last-li{
+    margin-right: 0;
+}
+/* 设置图片大小 */
+.content .movie-list img{
+    width: 218px;
+    height: 128px;
+}
+/* 设置下面文字 */
+.content .movie-list .intro{
+    margin-top: -24px;
+    padding-top: 5px;
+    height: 64px;
+    text-align: center;
+padding-bottom: 10px;
+}
+.content .movie-list p{
+    margin-top: -10px;
+    color: green;
+    font-size: 15px;
+}
+/* 设置那个小三角形 */
+.content .movie-list p::after{
+    content: "";
+    display: inline-block;
+    border: 4px solid transparent;
+    border-left-color: green;
+    position: relative;
+    left: 7px;
+}
+
+
+/* 鼠标移动到li上变颜色 */
+.content .movie-list li:hover .intro{
+    background-color: green;
+    cursor: pointer ;
+    color: white;
+}
+.content .movie-list li:hover p{
+    color: white;
+}
+.content .movie-list li:hover p::after{
+    border-left-color: white;
+}
+/* 设置中间线条上的小按钮 */
+.btns{
+    position: absolute;
+    left: 50%;
+    top: 785px;
+    width: 68px;
+    margin-left: -34px;
+    text-align: center;
+    background-color: white;
+    
+}
+.btns span{
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    background-color: gray;
+    /* 圆角 */
+    border-radius: 50%;
+    /* 间隔 */
+    margin: 7px;
+}
+
+.btns span:hover{
+    background-color: green;
+    cursor: pointer ;
+}
+/* ==============content结束================= */
+/* news区 */
+.news{
+    padding-top: 53px;
+    background: url("../pic/indexmainbg.png") no-repeat;
+    height: 420px;
+
+}
+.news .news-inner{
+    width: 1000px;
+    margin: 0 auto;
+}
+.news .news-left{
+    position: relative;
+    float: left;
+    width: 50%;
+    background: url("../pic/bynewsbg.png") no-repeat left top;
+
+}
+.news .news-left ul{
+    padding-top: 103px;
+    padding-left: 20px;
+    margin-right: 20px;
+
+}
+.news .news-left ul li{
+    line-height: 49px;
+    border-bottom: 1px solid black;
+    font-size: 14px;
+}
+.news .news-left li span{
+    float: right;
+    margin-right: 10px;
+}
+.news .news-right{
+    /* position: relative; */
+    margin-top: 10px;
+    float: left;
+    width: 50%;
+    height: 310px;
+    background: url("../pic/byhrbg3.png") no-repeat left top;
+    position: relative;
+}
+.news .more{
+    border: 1px solid green;
+    color: green;
+    border-radius: 3px;
+    padding: 6px 10px;
+}
+.news .more span{
+    position: relative;
+    top: -4px;
+}
+.news .news-left .more{
+    position: absolute;
+    top: 52px;
+    left: 220px;
+}
+.news .news-right .more{
+    color: white;
+    border-color: white;
+    position: absolute;
+    top: 52px;
+    left: 220px;
+}
+
+.news .info{
+    color: white;
+    padding-top: 38px;
+    padding-left: 81px;
+}
+.news .info h3{
+    margin: 0px;
+    font-size: 29px;
+}
+.news .info p{
+    margin: 4px;
+    font-size: 13px;
+}
+.news .news-jobs-title{
+    margin-left: 20px;
+    font-size: 14px;
+    margin-top: 20px;
+    color: white;
+}
+.news .news-jobs{
+    margin-top: -10px;
+    margin-right: 180px;
+}
+.news .news-jobs li{
+    color: white;
+    margin-left: -19px;
+    line-height: 40px;
+    border-bottom:1px gray solid;
+    font-size: 14px;
+}
+/* ==============news区结束================= */
+.footer{
+    height: 233px;
+}

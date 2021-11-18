@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 80%;
+            margin: 0 auto;
+            border:3px solid black;
+            /* 给父盒子高度 */
+            overflow: hidden;
+        }
+        .box1{
+            float: left;
+            width: 20%;
+            height: 300px;
+            background-color: red;
+            /* 通过padding，让矮盒子占有空间 */
+            padding-bottom: 500px;
+            /* 盒子变高，把盒子高度减回去 */
+            margin-bottom: -500px;
+            /* 解释：500px：大数肯定能补高度差
+            padding加完，margin减了，相当于对父盒子来说高度没变化
+            还是以最大的盒子的高度来计算，但是因为设置了padding，颜色
+            可是从padding开始设置的，所以颜色还是被填充进去了*/
+        }
+        .box2{
+            float: left;
+            width: 50%;
+            height: 500px;
+            background-color: green;
+        }
+        .box3{
+            float: left;
+            width: 30%;
+            height: 400px;
+            background-color: blue;
+            /* 通过padding，让矮盒子占有空间 */
+            padding-bottom: 500px;
+            /* 盒子变高，把盒子高度减回去 */
+            margin-bottom: -500px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+</body>
+</html>

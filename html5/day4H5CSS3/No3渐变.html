@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1{
+            width:400px;
+            height: 400px;
+            margin: 50px;
+            border: 5px solid green; 
+            /* 设置渐变 */
+            /* 兼容浏览器添加前缀,高级浏览器不用 */
+            /* 从左上开始渐变 */
+            background-image: -webkit-linear-gradient(top left,green,orange,red);
+        }
+        .box2{
+            width:400px;
+            height: 400px;
+            margin: 50px;
+            border: 5px solid green; 
+            /* 修改渐变位置 */
+            background-image: -webkit-linear-gradient(top right,green 10%,orange 20%,red 70%);
+        }
+        .box3{
+            width:400px;
+            height: 400px;
+            margin: 50px;
+            border: 5px solid green; 
+            /* 径向渐变 */
+            background-image: radial-gradient(red green orange);
+        }
+        .box4{
+            width:400px;
+            height: 400px;
+            margin: 50px;
+            border: 5px solid green; 
+            /* 椭圆径向渐变 */
+            background-image: radial-gradient(ellipse,red green orange);
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+    <div class="box4"></div>
+</body>
+</html>

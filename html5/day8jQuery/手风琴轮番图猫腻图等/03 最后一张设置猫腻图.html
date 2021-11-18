@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .list {
+            width: 560px;
+            height: 300px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .content {
+            width: 4000px;
+            height: 300px;
+            font-size: 0;
+            position: absolute;
+        }
+        .content img {
+            width: 560px;
+            height: 300px;
+        }
+        .prev, 
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 50px;
+            margin-top: -25px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .btns {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 30px;
+            text-align: center;
+        }
+        .btns span {
+            padding: 6px;
+            margin: 0 6px;
+            font-size: 0;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        .btns span.choose {
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="list">
+        <div class="content">
+            <img src="img/0.jpg" alt="">
+            <img src="img/1.jpg" alt="">
+            <img src="img/2.jpg" alt="">
+            <img src="img/3.jpg" alt="">
+            <img src="img/4.jpg" alt="">
+            <img src="img/0.jpg" alt="">
+        </div>
+        <div class="btns">
+            <span class="choose"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="prev">&lt;</div>
+        <div class="next">&gt;</div>
+    </div>
+<script src="./jquery.js"></script>
+<script>
+// 获取元素
+var $content = $('.content');
+// 按钮
+var $btns = $('.btns span');
+// 维护当前显示图片的索引值
+var index = 0;
+// 循环定时器
+var timebar;
+// 启动轮播
+function startInterval() {
+    timebar = setInterval(function() {
+        // console.log(index);
+        // 显示下一张
+        index++;
+        // 判断边界
+        if (index >= 6) {
+            // 最后一张的下一张就是第一张。
+            index = 0;
+        }
+        // 更改content的位置
+        change();
+        // $content.animate({ left: -index * 560 }, 500, function() {
+        //     // 更新小圆点
+        //     $btns
+        //         .eq(index).addClass('choose')
+        //         // 兄弟节点，删除choose类
+        //         .siblings().removeClass('choose')
+        // })
+    }, 3000)
+}
+// 页面加载完成，启动轮播
+startInterval();
+// 更改图片以及按钮
+function change(fn) {
+    $content.stop(true).animate({ left: -index * 560 }, 500, function() {
+        // 最后一张是猫腻图，要换成第一张
+        if (index === 5) {
+            index = 0;
+            $content.css('left', 0)
+        }
+        // 更新小圆点
+        $btns
+            .eq(index).addClass('choose')
+            // 兄弟节点，删除choose类
+            .siblings().removeClass('choose')
+        // 启动轮播
+        // if (fn) {
+        //     fn();
+        // }
+        fn && fn();
+    })
+}
+// 点击小圆点，切换图片
+$btns.click(function() {
+    // 情况轮播
+    clearInterval(timebar)
+    // 获取按钮索引值
+    index = $(this).index();
+    // 更改content位置
+    // 修改按钮样式
+    // change(function() {
+    //     // 启动轮播
+    //     startInterval();
+    // });
+    // 传递startinterval，
+    change(startInterval);
+})
+// 下一张
+$('.next').click(function() {
+    // 清除定时器
+    clearInterval(timebar)
+    // 更改索引值
+    index++;
+    // 边界处理，最后一张的下一张就是第一张
+    if (index >= 6) {
+        index = 0;
+    }
+    // 切换图片
+    change(startInterval);
+})
+// 上一张
+$('.prev').click(function() {
+    // 清楚定时器
+    clearInterval(timebar)
+    // 更改索引值
+    index--;
+    // 边界处理，第一张的上一张，就是最后一张
+    if (index < 0) {
+        // 如果是第一张, 要显示最后一张猫腻图
+        index = 4;
+        // 移动到最后
+        $content.css('left', -560 * 5);
+    }
+    // 切换图片
+    change(startInterval);
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .line{
+            margin: 0 auto;
+        }
+        .line::after{
+            content: "";
+            border: 10px solid transparent;
+            border-right-width: 1120px;
+            border-right-color: #00b5e2;
+            border-left-width: 0px;
+        }
+    </style>
+    <!-- 懒得写了，渐变线原理：
+    1、给一个超长的尖朝左的三角形
+    2、三角形一半的高设为盒子的高度
+    3、盒子overflow hidden，即盒子高为上半个三角形，下半个三角形超出去了，hidden    -->
+    
+</head>
+<body>
+    <div class="line"></div> 
+</body>
+</html>

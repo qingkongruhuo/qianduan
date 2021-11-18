@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            font-size: 50px;
+            color: green;
+            border: 1px solid black;
+        }
+        /* box2,相让它移走，但是如果用浮动会影响后面的，可以用相对定位 */
+        .box2{
+            /* 设置相对定位 */
+            position: relative;
+            top: 100px;
+            left: 100px;
+        }
+
+        span{
+            display: inline-block;
+            padding: 12px;
+            background-image: url("./继承.png");
+            /* span有个默认字号 */
+            font-size: 0px;
+            /* 发现文字和图标不再一个地方，不能用margin调整位置，因为字会随着图标一起洞，这时候可以用相对定位 */
+            position: relative;
+            top: 6px;  
+            /* 这样就可以用文字和图标对齐了 */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box1">1</div>
+     <div class="box2">2</div>
+    <div class="box3">3</div>
+    <div class="box4">4</div>
+
+    <!-- 设置列表 -->
+    <ul>
+        <li><span></span>标题</li>
+    </ul>
+</body>
+</html>

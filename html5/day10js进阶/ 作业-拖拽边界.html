@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- 更新功能：不希望移出大盒子。 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #box1 {
+        width: 800px;
+        height: 500px;
+        border: 2px solid #000;
+        position: relative;
+        margin: 0 auto;
+    }
+    #box2 {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: green;
+    }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+    <script src="./ickt.js"></script>
+    <script>
+    // 获取元素
+    var box1 = document.getElementById('box1');
+    var box2 = document.getElementById('box2');
+    // 定义方法
+    function demo(e) {
+        // 获取鼠标位置
+        var x = e.clientX;
+        var y = e.clientY;
+        // console.log(box2._x, box2._y, box2._top, box2._left, x, y);
+        // 确定盒子的定位偏移量
+        var top = box2._top + y - box2._y;
+        var left = box2._left + x - box2._x;
+        // 边界处理：上边处理
+        if (top < 0) {
+            top = 0;
+        // 底边边界
+        } else if (top + box2._box2height > box2._box1height) {
+            top = box2._box1height - box2._box2height;
+        }
+        // x方向左边界
+        if (left < 0) {
+            left = 0;
+        // 右侧边界
+        } else if (left + box2._box2width > box2._box1Width) {
+            left = box2._box1Width - box2._box2width;
+        }
+        // 修改元素的位置
+        box2.style.top = top + 'px';
+        box2.style.left = left + 'px';
+    }
+    // 绑定事件
+    bindEvent(box2, 'mousedown', function(e) {
+        // 获取定位偏移量
+        box2._top = parseInt(getStyle(box2, 'top'));
+        box2._left = parseInt(getStyle(box2, 'left'));
+        // 获取鼠标位置信息
+        box2._x = e.clientX;
+        box2._y = e.clientY;
+        // 获取盒子1的宽度和高度以及盒子二的宽度和高度
+        box2._box1Width = parseInt(getStyle(box1, 'width'))
+        box2._box1height = parseInt(getStyle(box1, 'height'))
+        box2._box2width = parseInt(getStyle(box2, 'width'))
+        box2._box2height = parseInt(getStyle(box2, 'height'))
+        // console.log(box2._box1Width, box2._box1height, box2._box2width, box2._box2height);
+        // 鼠标移动
+        bindEvent(document, 'mousemove', demo)
+    })
+    // 鼠标弹起，停止移动
+    bindEvent(box2, 'mouseup', function() {
+        // 移除document的事件
+        removeEvent(document, 'mousemove', demo)
+    })
+    </script>
+</body>
+</html>

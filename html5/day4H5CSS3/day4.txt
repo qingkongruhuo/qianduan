@@ -1,0 +1,541 @@
+一、html5
+    我们之前学的是html4.01(xhtml1.0)，现在学html5
+    1、一个新的语言版本，包含新的元素，属性，行为
+    2、有更强大的api，让web更多的变化
+二、html5骨架
+面试重点！！    1、第一步就是DTD <!DOCTYPE html>
+        确定html的语法集 使用哪些标签，哪些规范，能使用哪些属性
+        DTD没有数字5，采用标准模式解析，对于不认识的属性和标签，浏览器按照默认方式处理，不报错
+        对于认识的属性或者标签直接渲染
+    2、语法：
+        1、单标签可以不写关闭
+        2、type属性可以不写
+        3、属性值可以不用双引号包裹（千万别这么用）      
+        4、标签可以使用大写字母（千万别这么用）
+    3、html5语义化标签，
+        html是负责语义的，4.01版本div任务太多语义没拆分
+        html5加了很多标签：section article nav header footer aside
+        上面这些标签都是容器级标签，block-level，标准流中是块级元素
+        还有
+            figure：插图片，可以给图片一些解释
+                <figure>
+                    <figcaption>图片标题</figcaption>
+                    <img url="">
+                <figure>
+            time：时间语义化标签，行内元素
+                只是个标签，里面自己写时间，语义化的，让大家知道这是时间
+            mark：强调
+            details和summary：总结含义的标签     
+三、表单拓展
+    1、之前写form表单，比如一个input，里面再写一个buttom提交才可以提交，写在外面不知道提交的是啥
+        在h5中，表单可以不包裹表单元素，通过id定义名称，表单控件使用form属性产生绑定
+        <form id="demo" action="/向哪里提交数据.html">
+            <input type="text">
+        </form>
+        <button form="demo">提交</button>，给button一个form属性绑定form的id，就可以提交
+    2、label标签不用使用for绑定，直接包裹要绑定的单选框或者复选框
+    3、placeholder：输入框的提示文案
+        <input type="text" placeholder="请输入">
+    4、autofocus：自动获取焦点，
+        <input type="text" autofocus>,刷新页面直接进入input，就好比打开百度直接可以输入
+    5、required：表单必填项
+    6、智能提示
+        <input type="text" list="color">
+        <details id="color">
+            <option >red</option>
+            <option >green</option>
+            <option >yellow</option>
+        </details>
+        这样在输入框里写ye的时候下面直接提示yellow，就是浏览器搜索我，后面自动联想出我是大傻子  
+    7、正则校验
+    8、多了表单控件类型  type
+        search：搜索框
+        tel:电话 只能输入电话
+        url：统一资源定位符 比如提示只能输入网址
+        number：数字 只能输入数字
+        email：电子邮箱 只能输入邮箱
+        range：拖拽条 类似电脑音量拖拽
+        date：日期 出来的是选择日期，每日一报上的那种
+        week:周同上
+        color：颜色出来rgb选择颜色
+四、多媒体
+    1、视频
+        h4插入视频
+            将要播放的视频先放到网站上（比如上传到b站），将网上的地址直接复制，该方法播放视频必须由flash插件，而且要播放广告
+        h5插入视频
+            将视频上传到服务器上，播放视频不需要借助falsh
+        1、video标签插入，格式：mp4,还有其他要求
+            <video src="" controls autoplay loop poster="url" muted>
+                <source src=""></source>
+            </video>
+            路径 出现控制条 自动播放 循环播放 视频加载之前显示的图片 静音（选了静音会自动播放视频，因为不会干扰用户）。
+            但是上面的链接可能会挂掉，可以用source引入备用链接。
+            source标签：引入视频。
+    2、音频
+        h4插入音频
+            将要播放的视频先放到网站上（比如上传到酷狗音乐），将网上的地址直接复制，该方法播放音频必须由flash插件。
+        h5插入视频
+            将视频上传到服务器上，播放音频不需要借助falsh
+        1、audio标签
+            <audio src="" controls autoplay loop></audio>
+
+五、CSS3前缀与色彩
+    CSS3一些改变：
+        1、选择器的增加、圆角、盒子阴影和文字阴影、盒模型、背景、变换、过渡、动画、弹性盒、媒体查询。
+        2、使用CSS3不需要声明,和使用什么html骨架没有关系。CSS3的属性直接使用。
+        3、CSS3对于不认识的属性静默不报错。支持css3就解析，不支持就忽略，永不报错（但是不可以有语法错误）
+        4、浏览器样式前缀:为了让CSS3样式兼容,需要将某些样式加上浏览器前缀
+            -ms-兼容E浏览器
+            -moz-兼容 firefox
+            -o-兼容 opera
+            -webkit-兼容 chrome和 safari
+            现在虽然最新浏览器都兼容，但是也有没升级的，所以建议添加
+        5、css2.1：red rgb(x,x,x) #xxxxxx 
+           css3
+            rgba(x,x,x,a) a表示不透明度，0-1,贼好用！！
+                与opacity相比，rgba设置不会影响子元素，而opacity会
+            hsl(x,x,x) 色相，饱和度 明度
+            hsla() 最后加了个透明度 
+六、选择器
+    1、属性选择器
+        1、属性存在匹配[key]
+            div[class="hello"]
+        2、属性值匹配 [key="value"]
+        3、包含完整单词匹配 [key~="value"]
+            上面都不太好用，因为有一些要求，
+        4、开头匹配[key^="value"]
+            无任何限制，只要以hello开头就行
+        5、结尾匹配：[key$="value"]
+            无任何限制
+        6、包含匹配:[key*="value"]
+            无任何限制
+    2、儿子序列选择器
+        css3给了大量伪类来作为儿子选择器
+        1、p:first-child
+            必须保证p是第一个！
+            比如
+                div
+                p
+                这样就选不到p了，因为p不是第一个，所以俩要求都要满足，1、是p标签，2、是第一个
+            后面选择器全部同理 
+        2、p:last-child  
+        3、p:nth-child(n)
+            n可以是odd even 单复数
+            也可以是数字
+            也可以an+m表示，比如3n+1,注意这里n从0开始计数
+        4、p:nth-lash-child(n)
+            倒数第n个
+            .div:nth-last-child(9)倒数第9个
+        受其它同级元素影响
+        最开始的不一定要用标签选择器，类选择器啊id选择器啊都完全ok
+        .demo::first-child
+    3、儿子类型选择器
+         1、h3:first-of-type同级元素中同种类型的第一个元素
+         div
+         div
+         h3
+         h3
+            用这个h3:first-of-type ，就能选到第一个h3标签
+         2、h3:last-of-type最后一个
+         3、h3:nth-of-type(n) 同级元素中同种类型的第n个元素
+         4、h3:nth-last-of-type(n) 倒数第n个    
+            这里面的n都可以写an+m
+        同理，这里前面不只是可以选标签，还可以选什么id选择器之类的
+    4、关系节点选择器
+        1、> 子级选择器（只能选中儿子节点）
+            .demo>p{
+
+            }
+            将demo类的p标签全部选中
+        2、+  后面第一个亲兄弟,亲兄弟是紧挨着的兄弟
+        3、~ 后面所有兄弟
+            .demo~.item{
+                
+            }
+            demo类的全部item类兄弟
+七、伪类
+    1、:checked被选中伪类
+        比如多选框checkbox，可以设置被选中后改变颜色啦
+        input[type="checkbox"]:checked{
+            background:red;
+        }
+    2、:focus获取焦点的伪类
+    3、:disabled不可以用的表单元素伪类
+    4、:enabled可以用的表单元素的伪类
+    5、:not(selector)排除伪类,选择非selector元素的伪类,selector为选择器
+        :not(.item){
+
+        }
+        这个要注意范围，不然body也给你干了
+    6、:target 选择当前活动的元素(url上#后面内容指向的元素)。
+    7、:empty空节点的伪类(标签之间没有任何内容(空格,缩进,换行也属于节点))
+    8、:only-child该元素是某个元素的唯一一个儿子的伪类。
+        比如，有个div里面有一个span，有一个div里有3个span
+        那么span:only-child{
+
+        }
+        就会选中第一个div里面的span
+    注:节点(Node)是JS部分内容,页面中的一切都可以看成是节点,包括元素节点,文本节点,属性节点等
+八、伪元素
+    css2中是单冒号，但是css3中是双冒号
+    之前学过的1、::before ,2、::after
+    3、::first-letter 第一个字母（汉字）的伪元素。
+    4、::first-line 第一行的伪元素。
+    5、::selection 鼠标圈选的伪元素。
+    例子NO1
+
+九、盒模型扩展
+    之前学过俩，标准盒模型，怪异盒模型
+    box-sizing:设置盒模型：
+        1、默认padding、border是外扩的。
+            width、height的意思是盒子的内容宽度、高度
+        2、box-sizing:border-box后，盒模型是内减的
+            width、height的意思是盒子的内容宽度+padding+border、内容高度+padding+border
+十、圆角
+    border-radius:用来设置盒子的圆角
+    1、表示法：
+        border-radius:10px 20px 30px 40px,分别表示左上右上右下左下，顺时针表示 
+        当然也可以统一设置
+    2、拆分
+        border-top-left-radius:20px 左上，可以分开写，比如 20px 30px 代表上边用了20px，右边用了30px，会出现椭圆圆角
+        border-top-right-radius:20px 右上
+        border-bottom-left-radius:20px 左下
+        border-bottom-left-radius:20px 右下
+    注：参数解读：
+        10px：以10px半径画圆弧，然后挪到角的部位（90°圆弧）
+        也就是说数值越大，圆弧的长也就越大
+    当然也可以是百分比，如果是正放形是圆，如果是长方形，会按照宽高分别来搞，会出现椭圆的，
+但是用px就不会出现椭圆，角全是圆的。
+    圆角给大了最后会成圆，而且不影响文字显示，还是按方形显示
+    3、运用圆角就可以做出来椭圆啊，什么扇形啊之类的东西
+十、阴影
+    1、box-shadow：投影1、投影2....
+        每组投影有多个参数
+        第一个参数:水平偏移量,正值向右,负值向左
+        第二个参数:垂直偏移量,正值向下,负值向上
+        第三个参数:模糊半径(可选)数值越大越模糊,数值为0表示实心阴影
+        第四个参数:投影尺寸(可选)
+        第五个参数:阴影颐色
+        第六个参数:投影方式(可选)，outset:外部阴影(默认值), inset:内部阴影
+    多个阴影，用逗号隔开。贼几把酷炫，依次向后，不是重叠在一起。
+    注：盒子投影不是元素
+    2、text-shadow:h-shadow v-shadow blur color；文字投影
+        第一个参数：水平偏移量
+          二     ：垂直偏移量
+          三     ：模糊半径（可选）
+          四     ：阴影颜色
+        也可以设置多次投影，用逗号隔开
+    盒模型，投影，圆角都在No2盒模型.html中
+
+十一、背景拓展
+    之前学的，背景图片是从content开始的（如果重复是向padding扩展），背景颜色是从padding开始，
+    1、background-orign: 背景起源 第一张图片绘制位置，不包括背景色！
+        padding-box:相对于内边距框来定位（默认，即第一张图片从这里开始的）
+        border-box:相对于边框盒来定位
+        contenbox:相对于内容框来定位 ，比如里面有个hello文字，设置了这个从hello左上角开始
+    2、background-clip：背景裁切 比如设置了平铺，repated，这样充满整个padding，可以裁剪到指定位置，裁剪包括背景色！
+        border-box:裁剪到边框盒（默认）
+        padding-box:裁剪到内边距框
+        content-box:裁剪到内容区
+    3、background-size背景尺寸
+        像素表示法:背景图的宽度背景图的高度 
+        百分数表示:背景图的宽度是整个大背景宽度的比背景图的高度是整个大背景高度的比 （width|height+两个padding）*百分比 
+            上面两种方法可以拉长图片，或者压扁图片
+        单词表示法: cover :表示覆盖,尽可能大, 
+                   此时会保持图像的纵横比并将图像缩放成将完全覆盖背景定位区域的最小大小.
+                   解读：不会缩放图片，比如给个块，里面有图片，这个表示会用图片盖住这个块，当块变小，图片用更小的部分盖住块
+                   contain表示容纳,显示全部
+                   此时会保持图像的纵横比并将图像缩放成将适合背景定位区域的最大大小。
+                   解读：会缩放图片，比如给个块，里面有图片，把图片扩充到整个块，等比例放大缩小把图片全放进去
+        意义：原来只能通过img标签调整大小拉伸，现在可以用css来搞了
+十二、渐变
+    1、linear-gradient()属性定义线性渐变,由于该属性值CS3提供的,因此要添加浏览器前缀
+        linear- gradient:线性的渐变
+        linear- gradient(top left, ed, yellow, orange),参数解释:
+            第一个参数表示渐变的起始方向
+            第二个参数表示渐变结束方向(可选)
+            从第三个参数开始,表示渐变颜色(色可以有很多个,用逗号隔开
+                如: linear-gradient(top left, red, yellow, orange)
+        还可以在颜色后面书写百分数,表示该颜色在整体渐变中出现的位置。
+                如: linear-gradient(left r ed 20%, green 60%, blue 80%)
+        注:渐变使用的是background-image而不是 background-color!!!
+    2、径向渐变
+        1、径向渐变( Radial Gradients)-由它们的中心定义
+            如: radial-gradient(red, yellow, blue)
+        2、形状有两种
+            circle圆形如: radial-gradient(circle, ed yellow,blue)
+            ellipse椭圆如: adial-gradient( ellipse,ed, yellow,blue)
+        3、设置渐变位置
+            特殊变量设置: radial-gradient(circle at left top, red, yellow,blue)
+            定点位置: adial-gradient( circle at80opx400px, red, yellow, blue
+        径向渐变兼容性有问题
+十三、fixed
+    background: url() fixed :固定，跟随鼠标滚轮移动
+    No4例子.html,百度搜索用了这个功能
+
+十四、多背景
+    设置背景的时候，用逗号隔开即可添加多个背景图
+    前面背景图剩余的区域显示后面的背景图
+    注：1、其它的单一属性也是用逗号隔开，按照顺序一一对应
+        2、所有背景都是从左上角content开始的，不是并列贴着的！
+        3、每个都可以设置定位等属性，比如两个url，设置定位的时候
+        background-position: 0 0,left bottom 分开逗号隔开就行了
+
+十五、过渡
+    1、css3中最好的三个新增内容：过渡变换和动画
+    2、过渡的基本形式
+        元素→元素:hover只要元素属性发生改变就可以使用过渡)。
+        元素原来变为:hover状态都是干嘣。过渡效果就是让元素以动画形式,平滑的完成。
+    3、语法: transition:al 2s linear 0s,参数解释:
+        第一个参数:参与过渡的属性,一般我们书写all
+        第二个参数:过渡完成的时间。单位是ms或s,千万不能省略
+        第三个参数:缓冲描述(函数)
+            linear(匀速),ease非匀速(两头慢中间快),贝塞尔曲线( cubic-bezier(0,03,1,035);
+        第四个参数:延迟时间,单位也是ms或S,不能省略。
+        还可以单独定义这四个单一属性: transition-property(参与过渡属性), transition-duration(过渡时间)
+        transition-timing-function(缓存描述), transition- delay(延迟时间)
+    4、参与过渡的属性:只要是数值型的属性以及颜色都可以参与过渡。比如: width, height, border-width.
+
+十六、变换
+    1、2D变换：通过 transform属性实现变换
+        1、旋转: transform: rotate30(deg),旋转的单位是deg(度数)
+            旋转的方向的是顺时针
+        2、缩放: transform: scale(2),放缩没有单位是数值。
+            放大:1-正无穷表示放大的倍数
+            缩小:0-1表示缩小的倍 数。
+        3、斜切: transform: skew(l0deg,10deg),单位是deg，举例：长方形拉成平行四边形
+            两个参数:水平斜切,垂直斜切。
+        4、移动: transform: translate(100pX,100px),参数分別表示水平方向和垂直方向的移动距离,还可以单独定义
+            translateX表示水平方向的移动。单位px
+            translateY表示垂直方向的移动。单位也是px
+            和定位不一样，相对定位是相对于左上角这个点来走，移动是相对于中心，不过效果差不多，按需求来
+                都不影响后面元素，因为盒子都没动。
+                移动会好一些，因为相对定位会影响后面的子元素的绝对定位，本来人家想和body绝对，你这来一下直接和这个元素定位了
+        注: transform可以书写多个变形。用空格隔开, transform: rotate(360deg) scale(1.5) skew(10deg, 10deg)...
+    
+  
+十七、动画
+    1、定义动画
+        @\keyframes 动画名称{
+            from{}
+            to{}
+        }
+        keyframe:关键帧
+        from:开始状态
+        to:结束状态
+        每一组状态表示一帧
+        还可以用百分数来表示该时间内动画所处的状态
+            from 可以写成0%,to可以写成100%
+    2、启动动画
+        animation:donghua 1.5s linear 0s 3 alernate forwards
+        参数解释：
+            1、调用动画的名称
+            2、完成一次动画的时间，单位s
+            3、缓冲描述
+            4、延迟时间，单位s
+            5、动画的次数，返回动画也算一次，infinite无线
+            6、自动补全反方向动画,就是正着来一遍反着来一遍
+            7、保持最后一帧的状态
+    比如网易云音乐，就是动画转圈嘛，来360帧，1°一帧，无限次数
+
+十八、景深
+    1、3D维度
+        x正向右
+        y正向下
+        z表示垂直屏幕
+        translate表示空间唯一，此时维度对盒子具有意义。
+            当元素具有translate属性时，如果之前发生了旋转，那么这个旋转并不是单纯的旋转元素本身，
+        而是他所在的整个坐标系都在旋转。
+            此时只设置translatez，盒子没有任何变化，盒子应该向我们移动300px，应该变大才对，但是为啥没变化
+        因为舞台没有景深。
+    2、景深表示场景深度。规定父元素距离屏幕有多远。
+        比如,人在看戏的时候,距离舞台有远有近。景深就表示舞台与人的距离。
+    第一排的人的景深小。最后一排的人景深大。演最在表演的时候移动,对应的第一排的人感觉演员运动
+    的幅度大。最后一排的人感觉演员运动幅度小。
+        通过perspective属性设置景深,在舞台有景深的前提下,一个盒子能够实现沿x、y、z轴的空间移动
+            可以通过 ranslate3D属性来设置三个方向的移动距离: translate3D(30px40px,100px)
+            也可以分开单独设置
+                transform: translateX(30px)
+                transform: translateY(40px)
+                transform: translateZ(100px)
+        舞台自己发生了旋转,那么在默认情况下,自己内部的元素是不能保留自己的3D轴的。
+        想让一个旋转了的舞台内部的演员保留自己的3D轴,那么就要使用: transform-style: preserve3d属性
+    3、3D变换
+        1、transform-origin 改变旋转轴中心,可以接收两个参数
+            可以单词法
+            可以是像素法
+            可以是百分比
+        注意：这个也可以改变2d的，2d中相当于坐标轴
+        2、backface-visibility: hidden背面不可见
+        3、3D变换总结
+            translate3d(x,y, z)定义3D移动
+            代表: translate(x), translate(y), translate(z)
+            scale3d(x,y,z) 定义3D缩放
+            代表: scalex(x), scaley(y)), scalez(z)
+            rotate3d(x,y,z,angle)定义3D旋转
+            代表: rotate(angle), rotate(angle), rotate(angle)
+    4、图片翻转
+        看No10案例翻转显示图片
+十九、制作正方体
+    步骤
+        1、父元素设置保留子元素的3d属性 transform-style:oreserve-3d
+        2、父相对位置，子绝对定位
+        3、前后面直接translate：正负宽度的一半
+        上下面先沿x周旋转90度，translate：正负宽度的一般
+        左右面先沿y轴旋转90度，translate：正负宽度的一半 
+        前后面先沿z轴旋转90度，translate：正负宽度的一半 
+    具体看No11正方体.html
+
+二十、布局
+    1、浮动布局
+    2、列表布局
+    3、双飞翼布局：和固比固的区别是，中间的写在前面，剩下俩后面排着然后调整
+    4、固比固布局：就是把左边的写在前面，中间写在中间后面的写在后面
+    5、圣杯布局，自适应等高布局
+    6、百分比布局,也叫作流式布局。怎么缩放大家的比例都是一样的
+        用百分比为单位,最最重要的事情,就是参考谁,是谁的百分比?
+            width:参考的是父盒子的width(注意,是内容的宽度，不算padding)如果没有父盒子,此时父盒子就是
+        body,参考的就是浏览器的页面宽度。
+            height:参考的是父盒子的height
+            padding:参考的是父盒子的width。注意,无论是哪个方向的 padding都是参考的是父盒子的width
+            margin:参考的是父盒子的width。注意,无论是哪个方向的 margin都参考的是父盒子的width
+            border不能用%写
+        如果是绝对定位,全算padding
+            子盒子 width:百分比参考的是距离最近,且有定位的父盒子的 width(算上 padding.)
+            子盒子 height:百分比参考的是距离最近,且有定位的父盒子的 height(算上 padding.)
+            子盒子 padding, margin:百分比参考的是距离最近,且有定位的父盒子的Midh(算上 padding
+
+二十一、视口
+    分辨率:就是屏幕像素的数量,比如1600*900,指的是横向有1600的像素点,
+纵向有900个像素点。所谓的像素点是物理元件最小的发光单位。手机的分辨率
+是多少呢?非常的大,如今大屏手机能达到1920×1080如果手机真的用自己的真
+实分辨率,来呈递网页,就是这种情况了:
+    就像在3000米的高空,俯瞰整个页面。字非常小,h1巨小.
+    有的同学说,这样挺好,正好可以把整个网页一目了然的看全。乔布斯也这么想。
+乔布斯说,手机可以呈递电脑网页,但是网页制作者还来不及制作,所以此时我们如果设置
+手机的一个宽度为980pX,而实际上的网页的版心(网页内容区域),绝大多是都是980pX,
+岂不是手机刚好卡住了整个版心么?乔布斯在 iphone就命令工程师,把自己的手机的浏
+览器,认为自己是980pX宽,而不是像素宽度,这个宽度就是视口。
+    简单解释：iphone 3.5英寸，装不下电脑屏幕那么多的字，但是就认为他是980px
+    宽，这就是视口。
+    好处：可以直接显示电脑网页的页面，适配性非常好，但是字太小了
+
+        所有手机的视口都是980，用document.documentElement.clientWident查
+    这个数字就是视口宽度，viewport，980是所有设备初始视口宽度。浏览器会以980这个宽度
+    来渲染画面，也就是说前端开发，完全没必要关心手机分辨率。
+        但是980对于手机来说太大了，所以乔布斯设计了一个巧妙的设计，能然开发者自定义设置
+    移动设备视口宽度。
+
+    2、视口宽度：开发者可以自定义设置移动设备的视口宽度,用meta标签
+    <meta name="viewport" content="width=300"/>
+    一旦设置，浏览器会认为自己的宽度是300px，会按照300px来渲染页面，不论什么浏览器或者手机打开都是300px宽度
+    3、viewport太好用了，通过该属性就可以更改视口宽度
+    不同的视口大小，呈递相同的页面，给人的感觉是不一样的，尤其是文字，h1默认字号是32px
+    如果视口是980px，此时看文字非常小，如果视口是320左右，就刚刚好
+    此时需要有个换算关系：300px的盒子，在电脑上看和再手机上看到的理论长度一样，用尺子量也是一样，就需要搞一些操作
+    4、缩放因子DPR(设备像素比) 电脑都是1比1，即你电脑1920*1080那就是1920*1080
+    DPR( Devicepixel Ratio):手机的物理像素与实际使用像素的缩放比,早期的 iphone3GS的屏幕屏幕分辨率是
+    320·480,这个时候的DPR是1。iOS绘制图形( Cgpoint/ Cgsize/ CGRECT)均以 point.为单位:1 point=1 pixel
+    后来在iphone4中,同样大小(3.5inch)的屏幕采用 Retina(视网膜)屏幕显示技术(同样的尺寸,像素多了一
+    倍),横、纵向方向像素密度都被放大到2倍,像素分辦率提高到(320*2)(480*2)=640·960,显像分
+    辨率提高到iphone3GS的4倍。
+    
+    DPR的计算公式:DPR=单位长度内(pixel/point);如iphone6中的scale的值=750pX/375pt=2.0
+所以任何手机如果想要有显示和计算机一样的宽度,就要根据自己的分辨率、DPR的不同,而设置不同的视口。
+通常将视口设置为设备宽度。
+    如果我们加上:< meta name=" viewport" content=" width=device-width"
+    此时每个手机的视口宽度,都是“视口约束宽度”
+    每个手机的视口约束宽度不一样,这是为了给人看上去的物理感觉是一样的
+    各个设备约束视口之后的视口宽度(300-420)
+    你会发现这个宽度都不一样,但是此时人看上去的感觉是一样的。字号是一样大的。
+    
+    viewport
+    开发手机页面的时候,一定要加上:
+    < meta name= viewport" content-" width- device-width, initial-scale=1.0,minimum-scale=1. 0, maximum-scale=1.0,user-scalableno"id"viewport"/>
+    width= device-width：约束视口
+    initial-scale=1.0：初始视口倍数是1倍
+    minimum-scale=1.0：最小允许视口宽度是1倍
+    maximum- scale=1.0：最大允许视口宽度是1倍
+    user-scalable=no不允许用户缩放视口
+        此时如果你写一个p的字号为 ifont-size: 14px不用担心用户能不能看清!用户一定能看的清清楚楚的!此时厂
+    商已经计算好了一个所谓视口约束宽度。14px和14px的感觉完全一样!
+    般来说,手机视口约束之后都是320~420之间。而分辨率基本上都是1000~1200,也就是说,约束视口之
+    后,所谓的1px,实际上手机用了2点多个像素来渲染。手机中的图片,必须使用放大两倍的图片缩小使用,这样
+    能精细(不会导致图片放大后失真)。
+
+二十二、弹性盒模型 容器属性
+    1、Flex是Flexible Box的缩写，意为弹性布局，用来为盒模型提供最大的灵活性。
+            弹性布局可以使子元素按照规定的规定进行空间分配，对齐和排列
+            弹性布局包括两个部分：弹性盒和弹性项（弹性子元素）
+        采用Flex布局的元素，称为弹性容器（flex container），简称弹性盒
+        它的所有子元素自动成为容器成员，称为弹性项目（flex item），简称弹性项
+        将一个盒子设置称为弹性盒：
+            display:flex;
+            或display:inline-flex;
+    2、容器的轴
+        容器默认存在两根轴，水平的主轴（main axis）和垂直的交叉轴（cross axis）
+            主轴的开始位置（与边框的交叉点）叫main start，结束位置叫main end；
+            交叉轴的开始位置叫cross start，结束位置叫cross end 
+        其实就是xy轴，
+    3、容器的属性，注意是容器的属性
+        1、flex-direction 决定主轴的方向
+            row（默认值）：主轴水平方向，起点在左端
+            row-reverse：主轴水平方向，起点在右端
+            colunm：主轴垂直方向，起点在上端
+            colunm-reverse：主轴为垂直方向，起点在下端
+        2、flex-wrap 是否换行
+            nowrap（默认）不换行
+            wrap：换行，第一行在上方
+            wrap-reverse：换行，第一行在下方
+        3、flex-flow 
+            是flex-direction和flex-wrap属性的简写形式，默认值为 row nowrap
+        4、justify-content 项目在主轴上的对齐方式
+            flex-start(默认值):左对齐
+            flex-end：右对齐
+            center：居中
+            space-between 两端对齐,项目之间的间隔都相等，盒子之间均分空白，项目和盒子边框无间隔
+            space-around:每个项目两侧的间隔相等 
+                所以,项目之间的间隔比项目与边框的间隔大一倍，没塌陷
+                好处：和浏览器大小自适应调节，比直接写margin调整间距好得多
+            space-evenly:均匀排列每个元素,每个元素之间的间隔相等
+                项目之间的空白和项目与盒子之间的空白一致
+        要想在纵向这个么搞，直接把flex-direction主轴改成交叉轴就行了呗~
+        当然下面的更简单
+        5、align-items项目在交又轴上如何对齐
+            flex-start交叉轴的起点对 顶部对齐
+            flex-end交又轴的终点对齐 底部对齐
+            center交叉轴的中点对齐
+            baseline:项目的第一行文字的基线对齐
+            stretch(默认值):如果项目未设置高度或设为auto,将占满整个容器的高度
+    4、多轴对齐,主要是针对交叉轴 和上面的align-items很类似，但是必须要有多跟轴线
+        1、align-content:多根轴线的对齐方式。如果项目只有一根轴线,该属性不起作用
+            flex-start与交叉轴的起点对齐
+            flex-end与交叉轴的终点对齐
+            center与交叉轴的中点对齐
+            space-between与交叉轴两端对齐,轴线之间的间隔平均分布
+            space-around每根轴线两侧的间隔都相等。
+                所以,轴线之间的间隔比轴线与边框的间隔大一倍
+            stretch(默认值):轴线占满整个交叉轴
+        这个就完全可以当主轴对齐的交叉轴版本，记住要多轴（多行）
+二十三、弹性盒模型项目属性
+    1、order项目的排列顺序。数值越小,排列越靠前,默认为0，记住不是权重，越小越靠前
+    2、flex-grow项目的放大比例,默认为0,即如果存在剩余空间,也不放大
+        如果所有项目的 flex-grow属性都为1,则它们将等分剩余空间(如果有的话)。
+        如果一个项目的fex-grow属性为2,其他项目都为1,则前者占据的剩余空间将比其他项多一倍
+    3、flex-shrink项目的缩小比例,默认为1,即如果空间不足,该项目将缩小
+        如果所有项目的 flex-shrink属性都为1,当空间不足时,都将等比例缩小。
+        如果一个项目的 flex-shrink属性为0,其他项目都为1,则空间不足时,前者不缩小
+    4、flex-basis在分配多余空间之前,项目占据的主轴空间( main size)。
+        浏览器根据这个属性,计算主轴是否有多余空间。
+
+        它的默认值为auto,即项目的本来大小
+        它可以设为跟 widths或 height属性一样的值(比如350pX),
+        则项目将占据固定空间
+        比如3个盒子，都是200宽，主轴对齐，容器600，你给第一个盒子flex-basis：400px，
+        那么第一个盒子占了400px，另外俩盒子根据flex-shrink的比重缩小
+    5、上面的flex前缀的都可以用flex一起设置，简写，按上面的顺序来写就行
+    6、align-self：允许单个项目与其它项目有不一样的对齐方式，可以覆盖父容器的align-items属性
+        默认值为auto，表示继承父元素的align-items属性
+        如果没父元素，则等同于stretch（默认值）
+
+

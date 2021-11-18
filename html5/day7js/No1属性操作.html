@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="app" class="demo" color="red" style="color: red;">hello ickt</div>
+    <script>
+        //可以通过点语法设置属性
+        //1、获取元素
+        var app = document.getElementById("app");
+        console.log(app);
+        //getAttribute不需要将for写成htmlFor，不需要将class写成className
+        console.log(app.getAttribute('class'),app.getAttribute('for'),);
+        console.log(app.getAttribute('style'));//这里只是获得了一个字符串，
+        console.log(app.style.color);//而点语法的.style可以获得style对象继续得到里面的细节属性
+
+    </script>
+</body>
+</html>

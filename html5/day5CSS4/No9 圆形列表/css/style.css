@@ -1,0 +1,131 @@
+html, 
+body {
+    background-color: #f8f3ed;
+}
+.nav {
+    background-color: #fff;
+}
+.nav .container {
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+.nav img {
+    /* width: 244px; */
+    /* height: 59px; */
+    width: 20.854700854700856%;
+    /* align-self: center; */
+}
+.nav .list {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.nav .list li {
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+}
+.nav .list li.choose,
+.nav .list li:hover {
+    background-color: #000;
+    color: #fff;
+}
+@media (max-width: 991px) {
+    .nav .list li {
+        padding: 0 10px;
+    }
+}
+@media (max-width: 767px) {
+    .nav .container {
+        flex-wrap: wrap;
+        height: 160px;
+        align-items: flex-end;
+    }
+    .nav img {
+        width: 244px;
+        height: 59px;
+    }
+    .nav .list {
+        min-width: 412px;
+    }
+    .nav .list li {
+        flex: 1;
+        text-align: center;
+    }
+}
+.banner {
+    background: url(../img/banner1.jpg) no-repeat center top;
+    background-size: cover;
+    height: 500px;
+}
+/* 利祥列表 */
+.lixiang-list {
+    margin-top: 30px;
+}
+.lixiang-list .item {
+    margin: 0 15px;
+    background-color: #fff;
+    text-align: center;
+    padding-bottom: 120px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.lixiang-list .col-lg-4 {
+    display: flex;
+}
+.lixiang-list .item img {
+    width: 100%;
+}
+.lixiang-list .item h2 {
+    font-size: 20px;
+    font-weight: normal;
+    margin: 10px 0 24px;
+}
+.lixiang-list .item p {
+    font-size: 14px;
+    line-height: 26px;
+    padding: 0 20px;
+    text-align: left;
+}
+.lixiang-list .item .more {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    border: 1px dashed #ccc;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    margin-left: -31px;
+}
+/* 圆形列表 */
+.circle-list { 
+    background: url(../img/bg.jpg) repeat;
+}
+.circle-list .row {
+    text-align: center;
+}
+.circle-list .row  p {
+    font-size: 18px;
+    margin: 15px 0;
+    width: 100%;
+}
+.circle-list .col-lg-3 {
+    /* 设置高度是为了让图片居中 ，因为没设置高度由于父row设置了flex
+    所以col-lg-3是row的高度，col-lg-3内的元素全挤到一起了
+    当然也可以调图片margin等居中
+    
+    其实如果不设置高度，那么row啊container啊因为都没设置过高度
+    全特么是图片和p撑起来的高度
+    */
+    height: 291px;
+    /*col-lg-3设置flex是为了让图片和文字左右上下利用flex
+    设置居中，老方法当然可以用margin等设置居中  */
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    /* 设置了换行，等屏幕缩小的时候会换行 */
+    flex-wrap: wrap;
+}

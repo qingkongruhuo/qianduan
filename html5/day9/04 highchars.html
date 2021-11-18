@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+<script src="./jquery.js"></script>
+<script src="./highcharts.js"></script>
+<script src="./exporting.js"></script>
+<script>
+// 绘制图表
+$('#app').highcharts({
+    // 标题
+    title: {
+        text: '出勤统计表'
+    },
+    // 横坐标
+    xAxis: {
+        title: {
+            text: '星期'
+        },
+        categories: ['星期一', '星期二', '星期三', '星期四', '星期五']
+    },
+    // 数据列
+    series: [
+        {
+            data: [30, 29, 28, 32, 35],
+            type: 'column'
+        }
+    ],
+    // 版权
+    credits: {
+        text: '爱创课堂'
+    }
+})
+</script>
+</body>
+</html>

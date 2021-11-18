@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 为了看到旋转效果，定义动画 */
+        @keyframes donghua{
+            from{
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to{
+                /* 旋转360度 */
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+        /* 容器 */
+        .container{
+            width: 300px;
+            height: 300px;
+            margin: 200px auto;
+            /* border: 3px solid black; */
+            /* 1、父相对定位 */
+            position: relative;
+            /* 2、3d渲染 */
+            transform-style: preserve-3d;
+            /* 给舞台一个角度看到其它的面 */
+            transform: rotateX(30deg) rotateY(30deg);
+            /* 4、给整个舞台做动画 */
+            animation: donghua 5s linear infinite;
+        }
+        .box{
+            /* 1、子绝对定位 */
+            position: absolute;
+            font-size: 100px;
+            line-height: 300px;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+            color: white;
+        }
+        .box1{
+            /* 3前面的面，向z轴前面移动150px，宽度一半 */
+            background-color: pink;
+            transform: translateZ(150px);
+        }
+        .box2{
+            /* 3后面的面，向z轴前面移动150px，宽度一半 */
+            background-color: orange;
+            transform: translateZ(-150px);
+        }
+        .box3{
+            /* 3左侧的面，先移动水平，再旋转 */
+            background-color: green;
+            transform: translateX(-150px) rotateY(-90deg );
+        }
+        .box4{
+            /* 3右侧的面，先移动水平，再旋转 */
+            background-color: blue;
+            transform: translateX(150px) rotateY(90deg);
+        }
+        .box5{
+            /* 3上侧的面，先水平向上移动，再旋转 */
+            background-color: yellow;
+            transform: translateY(150px) rotateX(-90deg);
+        }
+        .box6{
+            /* 3下侧的面，先水平向上移动，再旋转 */
+            background-color: gray ;
+            transform: translateY(-150px) rotateX(90deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+        <div class="box box5">5</div>
+        <div class="box box6">6 </div>
+    </div>
+</body>
+</html>

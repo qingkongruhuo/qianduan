@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<!-- 怎么让灰色背景有一块白色区域？ 盒子上面加一层蒙版，
+    拖拽小盒子让小盒子背景也是图片，然后改小盒子的样式改变图片位置-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="ickt.js"></script>
+    <script>
+    // 写布局
+    // 处理图片
+    dealImage(app, './images/small.jpg')
+    // 实现裁剪方法,函数提升，所以写下面也没事
+    function dealImage(dom, url) {
+        // 创建图片
+        var img = new Image();
+        // 监听图片加载完成
+        img.onload = function() {
+            // 图片加载完成就直到它的宽高了，当然也可以在dealImage传递参数宽高。
+            // console.log(img.width, img.height);
+            var width = img.width;
+            var height = img.height;
+            // 写布局
+            //弹层
+            var layer = document.createElement('div');
+            // 小图片
+            var mask = document.createElement('div');
+            // 小圆点
+            var dot = document.createElement('div');
+            // 组装
+            dom.appendChild(layer);
+            dom.appendChild(mask);
+            // 小圆点在mask里面
+            mask.appendChild(dot);
+            // 设置样式
+            css(dom, {
+                width: width + 'px',
+                height: height + 'px',
+                backgroundImage: 'url(' + url + ')',
+                position: 'relative',
+                top: 0,
+                left: 0,
+                border: '2px solid pink'
+            })
+            css(layer, {
+                position: 'absolute',
+                //都写了为了设置宽高
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: '#000',
+                opacity: 0.5
+            })
+            // 小图片，默认宽高是150*150
+            css(mask, {
+                width: '150px',
+                height: '150px',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                backgroundImage: 'url(' + url + ')',
+                cursor: 'move'
+            })
+            // 小圆点
+            css(dot, {
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                backgroundColor: 'red',
+                position: 'absolute',
+                right: '-5px',
+                bottom: '-5px',
+                cursor: 'default'
+            })
+            // 局部变量
+            var ox, oy, top, left, domWidth, domHeight, maskLeft, maskTop;
+            // 移动小圆点
+            function moveDot(e) {
+                // 获取鼠标位置
+                var dx = e.clientX;
+                var dy = e.clientY;
+                // 获取新的坐标
+                x = dx - ox + left;
+                y = dy - oy + top;
+                // 处理边界
+                if (x < 0) {
+                    x = 0;
+                // 右侧边界
+                // 5表示小圆点宽度的一半
+                } else if (maskLeft + x > width) {
+                    x = width - maskLeft;
+                }
+                if (y < 0) {
+                    y = 0;
+                // 底边边界
+                } else if (maskTop+ y > height) {
+                    y = height - maskTop;
+                }
+                // console.log(ox, dx, x, maskLeft);
+                // 修改样式
+                css(mask, {
+                    width: x + 'px',
+                    height: y + 'px'
+                })
+            }
+            // 交互
+            bindEvent(dot, 'mousedown', function(e) {
+                // 阻止冒泡
+                e.stopPropagation();
+                // 获取它的位置
+                ox = e.clientX;//视口中的位置
+                oy = e.clientY;
+                // 小圆点的偏移量就是小图片的宽高
+                left = parseInt(getStyle(mask, 'width'));
+                top = parseInt(getStyle(mask, 'height'));
+                // 获取盒子原来的偏移量
+                maskLeft = mask.offsetLeft;
+                maskTop = mask.offsetTop;
+                // 在页面中拖拽
+                bindEvent(document, 'mousemove', moveDot)
+            })
+            // 鼠标弹起，取消移动
+            bindEvent(document, 'mouseup', function(e) {
+                // 取消拖拽
+                removeEvent(document, 'mousemove', moveDot)
+            })
+            // 获取鼠标点击的位置
+            var mx, my, mw, mh, ml, mt;
+
+            
+            // 移动小图片
+            function moveMask(e) {
+                // 获取位置
+                var ox = e.clientX;
+                var oy = e.clientY;
+                // 获取移动的距离
+                x = ox - mx + ml;
+                y = oy - my + mt;
+                // 判断边界
+                if (x < 0) {
+                    x = 0;
+                // 右侧边界
+                } else if (x + mw > width) {
+                    x = width - mw;
+                }
+                if (y < 0) {
+                    y = 0;
+                // 底边边界
+                } else if (y + mh > height) {
+                    y = height - mh;
+                }
+                // 修改背景图片的位置
+                css(mask, {
+                    backgroundPositionX: -x + 'px',
+                    backgroundPositionY: -y + 'px',
+                    left: x + 'px',
+                    top: y + 'px'
+                })
+            }
+            // mask绑定事件，
+            bindEvent(mask, 'mousedown', function(e) {
+                // 获取当前小圆点位置
+                mx = e.clientX;
+                my = e.clientY;
+                // 获取盒子宽高
+                mw = parseInt(getStyle(mask, 'width'));
+                mh = parseInt(getStyle(mask, 'height'));
+                // 获取原来的偏移量
+                // mt = parseInt(getStyle(mask, 'top'));
+                // ml = parseInt(getStyle(mask, 'left'));
+                mt = mask.offsetTop;
+                ml = mask.offsetLeft;
+                // console.log(mt, ml);
+                // 监听移动的位置
+                bindEvent(document, 'mousemove', moveMask)
+            })
+            // 鼠标弹起来终止移动
+            bindEvent(document, 'mouseup', function() {
+                // 取消移动
+                removeEvent(document, 'mousemove', moveMask)
+            })
+        }
+        // 为图片设置地址
+        img.src = url;
+    }
+    </script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+class Book{
+    //构造函数
+    constructor(title,price){
+        //实例属性
+        this.title = title;
+        this.price = price;
+        this.colors = ['red','green']
+    }
+    //原型方法
+    getTitle(){
+        console.log(this.title);
+    }
+    getTitle(){
+        console.log(this.title);
+    }
+    //原型属性,因为设置了特性，在实例上面也能看得到，以...的方式
+    get num(){
+        return this._num;
+    }
+    set num(val){
+        this._num = val; 
+    }
+    get arr(){
+        return this._arr;
+    }
+    set arr(val){
+        this._arr = val; 
+    }
+    //静态数据
+    static get writer(){
+        return 'zhang';
+    }
+    static getWriter(){
+        return this.writer;
+    }
+
+}
+//实例化
+var b1 = new Book('java',59);
+var b2 = new Book('java',60);
+b1.colors===b2.colors//false，每一个实例都会存储一份独立的数据
+b1.arr = [1,2,3]
+console.log(b2.arr)//undefined,每一个数据都是存在实例上的，其它实例读取不到
+//外部添加静态数据,实力对象访问不到
+Book.msg = 'hello'
+Book.getMsg = function(){
+    return this.msg;
+}
+    </script>
+</body>
+</html>

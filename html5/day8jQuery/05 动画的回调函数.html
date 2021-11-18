@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin-top: 10px;
+            position: relative;
+            background-color: pink;
+            display: none;
+        }
+        .box2{
+            background-color: gold;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">执行动画</button>
+    <div class="box1"></div>
+    <div class="box2"></div>
+<script src="./jquery.js"></script>
+<script>
+// 点击按钮，更改元素位置
+$('.btn').click(function() {
+    // 让盒子移动过, 结束后，将背景色变成绿色
+    $('.box2').animate({ left: 1200 }, 2000, function() {
+        // 回调函数表示，动画结束完毕
+        $('.box2').css({ backgroundColor: 'green' })
+    });
+    // 设置背景
+    // $('.box2').css({ backgroundColor: 'green' })
+
+    // 下拉显示
+    $('.box1').slideDown(2000, function() {
+        // 监听动画结束
+        $('.box1').css({ backgroundColor: 'green' })
+    })
+    // $('.box1').css({ backgroundColor: 'green' })
+
+})
+</script>
+</body>
+</html>

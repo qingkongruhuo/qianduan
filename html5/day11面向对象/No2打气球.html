@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script>
+    /****
+     * 思路
+     *      1 定义一个数组，存储所有气球，每隔一段时间，添加一个气球
+     *      2 绑定键盘事件，获取按下的字母，判断与气球字母是否一致，
+     *      3 一致的话，将气球移除，加一分
+     *      4 不一致的话，扣一分
+     *      5 气球移除了视图，没有被打中，扣二分
+     *      6 规定时间内，终止游戏
+     * ******/ 
+
+
+    // 视口宽度
+    var width = document.documentElement.clientWidth;
+    var height = document.documentElement.clientHeight;
+    var letter = 'abcdefghijklmnopqrstuvwxyz';
+
+    // 随机创建一个气球，再页面中划过
+    function Balloon(id, top, speed) {
+        // 存储数据
+        this.id = id;
+        // 根据索引值获取行列号  id / 每列显示的个数，  结果代表行号，余数代表列号
+        // this.row = parseInt(id / 4);
+        this.row = Math.floor(id / 4);
+        this.col = id % 4;
+        this.top = top;
+        this.left = -125;
+        // 移动速度
+        this.speed = speed;
+        // 创建元素
+        this.dom = document.createElement('div');
+        // 容器元素
+        this.container = document.getElementById('app');
+        // 是否可以移动
+        this.remove = true;
+        // 随机生成一个字母
+        this.letter = letter[Math.floor(Math.random() * letter.length)];
+        // 让气球移动
+        this.move = function() {
+            // 边界判断
+            if (this.remove) {
+                // 更改left值
+                this.left += this.speed;
+                // 修改样式
+                this.dom.style.left = this.left + 'px';
+            }
+        }
+        // 边界判断
+        this.check = function() {
+            // 如果超出右边
+            if (this.left >= width - 125) {
+                // 删除元素
+                this.container.removeChild(this.dom)
+                // 已经移除
+                this.remove = false;
+            }
+        }
+        // 从页面中移除
+        this.die = function() {
+            // 不能移动
+            // this.remove = false;
+            // 从父元素中移除该呀u四年
+            this.container.removeChild(this.dom);
+        }
+        // 绘制到页面中
+        this.init = function() {
+            // 显示字母
+            this.dom.innerHTML = this.letter;
+            this.dom.style.fontSize = '50px';
+            this.dom.style.color = '#fff';
+            this.dom.style.textAlign = 'center';
+            this.dom.style.lineHeight = '140px';
+            this.dom.style.position = 'absolute';
+            this.dom.style.width = '125px';
+            this.dom.style.height = '166px';
+            this.dom.style.top = this.top + 'px';
+            this.dom.style.backgroundImage = 'url(./images/balloon.jpg)';
+            this.dom.style.backgroundRepeat = 'no-repeat';
+            // 设置背景图片
+            this.dom.style.backgroundPositionX = -this.col * 125 + 'px';
+            this.dom.style.backgroundPositionY = -this.row * 500 / 3 + 'px';
+            this.container .appendChild(this.dom);
+        }
+    }
+    // 所有气球的数组
+    // var arr = [];
+    // 随机一个整数
+    // var num = Math.floor(Math.random() * 12);
+    // // 随机一个1到3之间的速度
+    // var speed = 1 + 4 * Math.random();
+    // 实例化
+    // var b1 = new Balloon(num, 200, speed)
+    // // 渲染
+    // b1.init();
+    // console.log(b1);
+
+    // 定义数组
+    var arr = [];
+    // 定义执行的次数
+    var time = 0;
+    // 定义分数
+    var score = 0;
+
+    // 定时器
+    var timebar = setInterval(function() {
+        // 每个一段时间，加入一个气球
+        if (time % 50 === 0) {
+            // 加入气球
+            var num = Math.floor(Math.random() * 12);
+            // 随机一个1到3之间的速度
+            var speed = 1 + 4 * Math.random();
+            // 实例化
+            var b1 = new Balloon(num, Math.random() * (height - 200), speed)
+            // 初始化
+            b1.init();
+            // 放入数组
+            arr.push(b1)
+        }
+        // 遍历数组，并移动
+        // for(var i = 0; i < arr.length; i++) {
+        // 从后向前遍历
+        for(var i = arr.length - 1; i >= 0; i--) {
+            // 对气球左校验
+            arr[i].check()
+            // 让每一个气球移动
+            arr[i].move()
+            // 如果该气球移除了页面
+            if (!arr[i].remove) {
+                // 数组中移除该气球
+                arr.splice(i, 1)
+                // 纠正i
+                // i--;
+                // 更改分数
+                score -= 2;
+            }
+        }
+        // 下一次
+        time++;
+        // 超过100次，就停止游戏
+        if (time > 1000) {
+            clearInterval(timebar);
+            // 提示分数
+            console.log('您的分数是: ' + score);
+        }
+    }, 30)
+    // 绑定键盘事件
+    document.onkeydown = function(e) {
+        // if (e.shiftKey) {
+        //     return;
+        // }
+        // console.log(e.keyCode, e.key, e)
+        // 获取按下的字母
+        // console.log('e.key :>> ', e.key);
+        // 有没有气球与之对应
+        for (var i = 0; i < arr.length; i++) {
+            // 如果字母相等
+            if (e.key.toUpperCase() === arr[i].letter.toUpperCase()) {
+                // 找到了
+                score++;
+                // 停止移动
+                arr[i].die();
+                // 将气球从arr中移除，其实，移除了，气球就不能移动了
+                arr.splice(i, 1)
+                // console.log(score);
+                return
+            }
+        }
+        // 寻找一轮，没有对应的字母，说明点击错了
+        score--;
+        // console.log(score);
+    }
+    </script>
+</body>
+</html>

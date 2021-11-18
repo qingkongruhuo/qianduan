@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">按钮</button>
+    <script src="./ickt.js"></script>
+    <script>
+    /***
+     * 实现bindEvent
+     * @dom     元素
+     * @type    事件类型
+     * @fn      事件回调函数
+     **/
+    function bindEvent(dom, type, fn) {
+        // 能力检测：判断方法是否存在，存在的话使用，不存在不使用
+        if (dom.addEventListener) {
+            // dom2级绑定方式, 都在冒泡阶段触发
+            dom.addEventListener(type, fn);
+        } else if (dom.attachEvent) {
+            // 针对ie绑定事件
+            dom.attachEvent('on' + type, function(e) {
+                // 让fn在dom上执行
+                fn.call(dom, e)
+            });
+        } else {
+            // 缓存
+            var oldFn = dom['on' + type];
+            // dom0级绑定方式
+            dom['on' + type] = function() {
+                // 如果已经绑定过，先执行之前的
+                oldFn && oldFn(window.event);
+                // 再执行新的
+                fn(window.event);
+            }
+        }
+    }
+    // 绑定事件
+    bindEvent(btn, 'click', function(e) {
+        console.log(111, this, e);
+    })
+    </script>
+</body>
+</html>

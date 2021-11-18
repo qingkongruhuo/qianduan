@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div></div>
+    <script>
+    // 获取容器元素
+    var app = document.getElementById('app');
+    // 创建h1元素
+    var h1 = document.createElement('h1');
+    // 设置内容 
+    h1.innerHTML = 'hello';
+
+
+
+    
+    /**
+     * 在元素后面插入元素 
+     * @parent      父元素
+     * @child       插入的子元素
+     * @next        参考元素
+     **/
+    function insertAfter(parent, child, next) {
+        // 插入
+        return parent.insertBefore(child, next.nextSibling)
+    }
+    /**
+     * 在子元素最前面插入元素
+     * @parent      父元素
+     * @child       插入的元素
+     **/ 
+    function prependChild(parent, child) {
+        // 在所有元素的前面插入： 在第一个元素的前面插入
+        return parent.insertBefore(child, parent.firstChild);
+    }
+
+    // 3的后面，插入h1
+    // console.log(app.childNodes[2]);
+    // console.log(app.childNodes[5]);
+    // var result = insertAfter(app, h1, app.childNodes[2])
+    // insertAfter(app, h1, app.childNodes[4])
+    // insertAfter(app, h1, app.childNodes[0])
+
+    // app.insertBefore(h1, undefined)
+
+    // app子元素的前面插入h1
+    var result = prependChild(app, h1)
+
+    console.log(result);
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border: 1px solid blue;
+            /* solid为边界线，调整颜色 */
+            width: 800px;
+            height: 800px;
+        }
+        .box1,.box2{
+            width: 100px;
+            height: 100px;
+            background: pink;
+        }
+        .box1{
+            margin-bottom: 150px;
+        }
+        .box2{
+            margin-top: 100px;
+        }
+        /* 上面的下边距为150，下面的上边距为100，但是两个盒子不会出现250的边距，最终的边距是150，塌陷了 */
+        .fu{
+            height: 200px;
+            background-color: yellowgreen;
+            /* 因为下面加的上边距比子元素的上边距小，所以没用，就是塌陷问题 */
+            margin-top: 50px;
+            /* 要是写了150px，那就是150了，谁大算谁的 */
+        }
+        .zi{
+            height: 100px;
+            margin-left: 20px;
+            background-color: pink;
+            /* 子元素设置下边距 ,上边距传递到父元素上去了*/
+            margin-top: 100px;
+            /* 子元素设置的下边距会传递给上边距 */
+            /* 父元素设置了上边距，会与子元素塌陷 */
+
+            /* 孙子同理，一直会传递到最底层 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 兄弟之间的塌陷 -->
+        <div class="box1">box1</div>
+        <div class="box2">box2</div>
+    </div>
+    <!-- 父子塌陷 -->
+    <div class="fu">
+        <div class="zi">子</div>
+    </div>
+</body>
+</html>

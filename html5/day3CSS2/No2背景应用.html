@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .demo{
+            width: 400px;
+            height: 400px;
+            padding: 100px;
+            border: 50px dotted orange;
+            /* 通过一个属性实现效果 */
+            background: green url("./继承.png") no-repeat left top;
+        }
+        /* 渐变背景，但是没有渐变背景，瞎搞搞 */
+        .nav{
+            width: 150px;
+            height: 60px;
+            line-height: 60px;
+            font-size: 20px;
+            background: url("./继承.png");
+        }
+        /* 网站导航图，也没下载凑合看了， */
+        .banner{
+            height: 400px;
+            width: 1200px;
+            margin: 0 auto;
+            background: url("./继承.png") center;
+        }
+        /* 通过伪元素设置列表图标 */
+        /* 之前是通过span标签撑起来一块地方放图片，现在用伪元素撑起来一块地方放背景图片 */
+        li::before{
+            content: "";
+            padding: 14px;
+            font-size: 0px;
+            vertical-align: middle;
+            background-image: url("./sucai/tushu.png");
+        }
+        /* SEO */
+        h1{
+            /* 把这个图片当成淘宝网logoQAQ */
+            background-image: url("./继承.png");
+            width: 148px;
+            height: 148px;
+            /* 隐藏文字 */
+            /* 1、缩进1000字符，肯定没了 */
+            /* text-indent: -1000em; */
+            /* 2、 溢出隐藏，行高弄得特别高*/
+            line-height: 1000px;
+            overflow: hidden;
+        }
+
+         
+    </style>
+</head>
+<body>
+    <div class="demo"></div>
+    <div class="nav">主页</div>
+    <div class="banner"></div>
+    <ul>
+        <li class="item">哈利波特</li>
+        <li class="item">暮光之城</li>
+        <li class="item">白夜行</li>
+    </ul>
+    <!-- seo -->
+    <h1 class="SEO">淘宝网</h1>
+</body>
+</html>

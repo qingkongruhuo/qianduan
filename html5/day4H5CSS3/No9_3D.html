@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 垂直屏幕方向：向用户移动300px */
+        .container{
+            width: 500px;
+            height: 500px;
+            border: 2px solid black;
+            margin: 50px auto;
+            /* 代表：x轴向上翻转30度，y轴向右30度 */
+            /* transform: rotateX(30deg) rotateY(30deg); */
+            /* 想让内部元素3d变换 */
+            transform-style: preserve-3d;
+            /* 旋转给景深可以看出旋转大小效果，如果没景深，左右都是一边大，因为在一个平面上 */
+            perspective: 1000px;
+        }
+        img{
+            position: absolute;
+        }
+        .container .img1{
+            /* 如果旋转180度，直接倒个了 */
+            transform: rotateY(30deg);
+            /* 如果想让背面不可见,过了90度就看不见了 */
+            backface-visibility: hidden;
+        }
+
+        .container2{
+            width: 500px;
+            height: 500px;
+            border: 2px solid black;
+            margin: 50px auto;
+            /* 代表：x轴向上翻转30度，y轴向右30度 */
+            /* transform: rotateX(30deg) rotateY(30deg); */
+            /* 想让内部元素3d变换 */
+            transform-style: preserve-3d;
+            /* 旋转给景深可以看出旋转大小效果，如果没景深，左右都是一边大，因为在一个平面上 */
+            perspective: 1000px;
+            
+        }
+        .container2 .img2{
+            /* 给个过渡 */
+            transition: all 2s linear;
+            /* 以左上角的点作为旋转中心 */
+            transform-origin: left;
+        }
+        .container2 .img2:hover{
+            transform: rotateY(180deg);
+            backface-visibility: hidden;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="img1" src="./practice3/pic/象棋.png" alt="">
+    </div>
+    <div class="container2">
+        <img class="img2" src="./practice3/pic/象棋.png" alt="">
+    </div>
+</body>
+</html>

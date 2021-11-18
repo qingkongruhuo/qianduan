@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!-- 所谓猫腻图，就是说第一张图上一张是最后一张，最后一张下一张是第一章
+如何制作：只需要在火车头补一张最后一张图，最后一张后补张第一张图，这样
+滑到最后一张，再点下一张时会出现第一张图，然后动画结束后把火车css样式改到火车头
+滑到第一张图再点前一张同理。 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .list {
+            width: 560px;
+            height: 300px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .content {
+            width: 4200px;
+            height: 300px;
+            font-size: 0;
+            position: absolute;
+        }
+        .content img {
+            width: 560px;
+            height: 300px;
+        }
+        .prev, 
+        .next {
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 50px;
+            margin-top: -25px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.6);
+            font-size: 30px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .prev {
+            left: 0;
+        }
+        .next {
+            right: 0;
+        }
+        .btns {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 30px;
+            text-align: center;
+        }
+        .btns span {
+            padding: 6px;
+            margin: 0 6px;
+            font-size: 0;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        .btns span.choose {
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="list">
+        <div class="content">
+            <!-- 0 -->
+            <img src="img/4.jpg" alt="">
+            <!-- 1 -->
+            <img src="img/0.jpg" alt="">
+            <!-- 2 -->
+            <img src="img/1.jpg" alt="">
+            <!-- 3 -->
+            <img src="img/2.jpg" alt="">
+            <!-- 4 -->
+            <img src="img/3.jpg" alt="">
+            <!-- 5 -->
+            <img src="img/4.jpg" alt="">
+            <!-- 6 -->
+            <img src="img/0.jpg" alt="">
+        </div>
+        <div class="btns">
+            <span class="choose"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="prev">&lt;</div>
+        <div class="next">&gt;</div>
+    </div>
+<script src="./jquery.js"></script>
+<script>
+// 获取元素
+var $content = $('.content');
+// 按钮
+var $btns = $('.btns span');
+// 维护当前显示图片的索引值
+var index = 1;
+// 前面猫腻图，所以要修正第一张图片位置
+$content.css('left', -560 * index)
+// 循环定时器
+var timebar;
+// 启动轮播
+function startInterval() {
+    timebar = setInterval(function() {
+        // console.log(index);
+        // 显示下一张
+        index++;
+        // 判断边界
+        if (index >= 7) {
+            // 最后一张的下一张就是第一张。
+            index = 0;
+        }
+        // 更改content的位置
+        change();
+        // $content.animate({ left: -index * 560 }, 500, function() {
+        //     // 更新小圆点
+        //     $btns
+        //         .eq(index).addClass('choose')
+        //         // 兄弟节点，删除choose类
+        //         .siblings().removeClass('choose')
+        // })
+    }, 3000)
+}
+// 页面加载完成，启动轮播
+startInterval();
+// 更改图片以及按钮
+function change(fn) {
+    $content.stop(true).animate({ left: -index * 560 }, 500, function() {
+        // 修改猫腻图（猫腻图：额外添加的图片）
+        if (index === 0) {
+            index = 5;
+            // 修正图片位置
+            $content.css('left', -560 * index)
+        } else if (index === 6) {
+            // 如果是最后一张，是猫腻图，代表第一张，要修正
+            index = 1;
+            // 修正图片位置
+            $content.css('left', -560 * index)
+        }
+        // 更新小圆点
+        // 按钮是从0计数的，图片是从1计数的
+        $btns
+            .eq(index - 1).addClass('choose')
+            // 兄弟节点，删除choose类
+            .siblings().removeClass('choose')
+        // 启动轮播
+        // if (fn) {
+        //     fn();
+        // }
+        fn && fn();
+    })
+}
+// 点击小圆点，切换图片
+$btns.click(function() {
+    // 情况轮播
+    clearInterval(timebar)
+    // 获取按钮索引值
+    // 按钮是从0计数的，图片是从1开始的。
+    index = $(this).index() + 1;
+    // 更改content位置
+    // 修改按钮样式
+    // change(function() {
+    //     // 启动轮播
+    //     startInterval();
+    // });
+    // 传递startinterval，
+    change(startInterval);
+})
+// 下一张
+$('.next').click(function() {
+    // 清除定时器
+    clearInterval(timebar)
+    // 更改索引值
+    index++;
+    // 边界处理，最后一张的下一张就是第一张
+    if (index >= 7) {
+        index = 0;
+    }
+    // 切换图片
+    change(startInterval);
+})
+// 上一张
+$('.prev').click(function() {
+    // 清楚定时器
+    clearInterval(timebar)
+    // 更改索引值
+    index--;
+    // 边界处理，第一张的上一张，就是最后一张
+    if (index < 0) {
+        index = 4;
+    }
+    // 切换图片
+    change(startInterval);
+})
+</script>
+</body>
+</html>

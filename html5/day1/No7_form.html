@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 表单 -->
+    <form action="./create" method="post" target="_blank">
+        <!--对表单控件的标签，for指向表单控件的id  -->
+        <label for="1">请输入</label>
+        <textarea id="1" name="" cols="30" rows="10"></textarea>
+        <!-- 尽量使用上面的方式，比较标准 -->
+        <hr>
+        <label>
+            再次输入
+            <textarea cols="30" rows="10"></textarea>
+        </label>
+        
+    </form>
+    <hr>
+    <form action="">
+        <label for="email"> 邮箱</label>
+        <!-- 下拉框 -->
+        <select id="email" size="3">
+            <!-- 分组，实现功能：上面的邮箱是一组，组名弹出选项，下面的邮箱一组，组名费弹出选项 -->
+            <optgroup label="弹出选项">
+                <option value="">qq.com</option>
+                <option value="">163.com</option>
+                <option value="">edu.com</option>
+                <option value="" selected>qq.com</option>
+                <option value="">163.com</option>
+                <option value="">edu.com</option>
+                <option value="">qq.com</option>
+                <option value="">163.com</option>
+                <option value="">edu.com</option>
+            </optgroup>
+            <!-- 分组 -->
+            <optgroup label="非弹出选项">
+                <option value="">支付宝</option>
+                <option value="">腾讯</option>
+                <option value="">优酷</option>
+                <option value="">土豆</option>
+                <option value="">百度</option>
+            </optgroup>
+        </select>
+    </form>
+    <hr>
+    <form action="">
+        <label for="username">单行文本框</label>
+        <input id="username" type="text" value="默认值">
+        <label for="password">密码框</label>
+        <input id="password" type="password">
+        <hr>
+        <label >单选框</label>
+        <label for="nan">男</label>
+        <input id="nan" type="radio" name="select" value="男">
+        <label for="nv">女</label>
+        <input id="nv" type="radio" name="select" value="女">
+        <hr>
+        <input type="button" value="普通按钮">
+        <input type="reset" value="重置">
+    </form>
+    
+    <hr>
+    <form>
+        <label for="shuru" >请输入</label>
+        <input type="text" value="默认值">
+        <button>提交</button>
+        <button type="button">普通按钮</button>
+        <button type="reset">重置</button>
+        <hr>
+        <label for="chaolianjietijiao" >超链接提交</label>
+        <button id="chaolianjietijiao" >
+            <a href="https://www.baidu.com">百度</a>
+        </button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            border: 1px solid blue;
+            /* 直接变过来太唐突了，可以用过渡,一般加载原始类上，因为鼠标离开了之后就没hover类了，变回去的时候又唐突了 */
+            transition: all 2s ease 0.5s;
+            /* 上面这些属性都可以单独设置 */
+        }
+        .box1:hover{
+            /* 鼠标滑过改变宽高 */
+            width: 500px;
+            height: 500px;
+            background-color: orange;
+        }
+        .box2:hover{
+            /* 背景颜色过渡 */
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2"></div>
+    <div class="box3"></div>
+</body>
+</html>

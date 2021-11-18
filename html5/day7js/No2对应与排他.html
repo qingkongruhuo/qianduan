@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app {
+            border: 1px solid #000;
+            display: inline-block;
+        }
+        .app .header {
+            line-height: 36px;
+        }
+        .app .header span {
+            padding: 0 10px;
+            font-size: 18px;
+        }
+        .app .header span.choose {
+            color: #f30;
+        }
+        .app .body {
+            height: 150px;
+            padding: 10px;
+        }
+        .app .body p {
+            display: none;
+        }
+        .app .body p.choose {
+            display: block;
+        }
+    </style>
+</head>
+<body> 
+    <div id="app" class="app">
+        <!-- 默认选中第一个 -->
+        <div class="header">
+            <span class="choose">精选</span>
+            <span>社会</span>
+            <span>娱乐</span>
+            <span>体育</span>
+        </div>
+        <div class="body">
+            <p class="choose">精选新闻内容</p>
+            <p>社会新闻内容</p>
+            <p>娱乐新闻内容</p>
+            <p>体育新闻内容</p>
+        </div>
+    </div>
+<script>
+// 获取元素
+var app = document.getElementById('app');
+// 批量获取span标签 
+var spans = app.getElementsByTagName('span');
+// 批量获取p标签
+var ps = app.getElementsByTagName('p');
+// 绑定事件
+for (var i = 0, len = spans.length; i < len; i++) {
+    // 设置索引值
+    spans[i].index = i;
+    // 绑定事件
+    spans[i].onclick = function() {
+        // 排它法设置样式
+        // 清除所有
+        for (var j = 0; j < len; j++) {
+            // 清除每一个span的类
+            spans[j].className = '';
+        }
+        // 设置被点击的span的类
+        spans[this.index].className = 'choose';
+        // 对p使用排它
+        for (var k = 0, klen = ps.length; k < klen; k++) {
+            // 清除所有p的类
+            ps[k].className = '';
+        }
+        // 设置特殊的：对应法
+        ps[this.index].className = 'choose';
+    }
+}
+</script>
+</body>
+</html>

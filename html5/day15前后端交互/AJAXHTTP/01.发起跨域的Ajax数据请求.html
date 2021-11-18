@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./No1图书管理案例/lib/jquery.js"></script>
+</head>
+
+<body>
+  <script>
+    //这里请求的是http协议，自己的是file？
+    $.ajax({
+      method: 'GET',
+      url: 'http://ajax.frontend.itheima.net:3006/api/jsonp',
+      data: {
+        name: 'zs',
+        age: 20
+      },
+      success: function (res) {
+        console.log(res)
+      }
+    })  
+  </script>
+</body>
+
+</html>

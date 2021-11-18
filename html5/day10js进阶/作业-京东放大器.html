@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- 实现放大器：鼠标移动过去显示放大的图片 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./ickt.js"></script>
+    <script>
+    // 将图片和元素直接写在页面中，然后通过css写样式
+    // 封装一个工具库插件，可以在不同页面中使用
+    var app = document.getElementById('app');
+    // 使用插件
+    imageZoom(app, './images/big.jpg', 400, 400);
+
+    // 将视图绘制出来,函数提升，所以写下面也没事，而且这么写的目的是以后复用这个函数
+    function imageZoom(dom, url, width, height) {
+        // 创建图片有两种方式：new Image()  document.createElement('img');
+        //需要两个弹层，先创建两个div
+        var mask = document.createElement('div');
+        // 放下元素
+        var big = document.createElement('div');
+        // 将元素放到app中
+        app.appendChild(mask)
+        app.appendChild(big)
+        // 设置样式
+        css(app, {
+            width: width + 'px',
+            height: height + 'px',
+            position: 'relative',
+            backgroundImage: 'url(' + url + ')',
+            backgroundSize: 'cover',
+            border: '1px solid #ccc',
+            // top: '20px',
+            // left: '29px'
+        })
+        // 遮罩层
+        css(mask, {
+            width: width / 2 + 'px',
+            height: height / 2 + 'px',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            backgroundColor: 'yellow',
+            opacity: 0.5,
+            // 鼠标移动到上面的光标
+            cursor: 'move', 
+            // display: 'none'
+        })
+        // 设置右侧放大器
+        css(big, {
+            width: width + 'px',
+            height: height + 'px',
+            position: 'absolute',
+            top: 0,
+            left: '100%',//放在父元素最右侧
+            backgroundImage: 'url(' + url + ')',
+            border: '1px solid #ccc'
+        })
+        // mask显隐交互
+        // mouseover,mouseout       mouseenter, mouseleave后者没有事件冒泡，只经过自身盒子触发。
+        // 获取元素在页面中的位置
+        var pos = offset(dom);
+        function demo(e) {
+            // 鼠标的位置就是mask的位置（中心点）
+            // 获取鼠标位置,页面中的位置减去盒子在页面中的位置就是鼠标相对于盒子的位置
+            var x = e.pageX - pos.left;
+            var y = e.pageY - pos.top;
+            // console.log(x, y);
+            // 将中心点换算到顶点位置
+            x -= width / 4;
+            y -= height / 4; 
+            // 边界处理
+            if (x < 0) {
+                x = 0;
+            // 超出右边
+            // } else if (x + width / 2 > width) {
+            } else if (x > width / 2) {
+                // x = width - width / 2;
+                x = width / 2;
+            }
+            if (y < 0) {
+                y = 0;
+            // 超出底边
+            // } else if (y + height / 2 > height) {}
+            } else if (y > height / 2) {
+                y = height / 2;
+            }
+            // 设置样式
+            css(mask, {
+                left: x + 'px',
+                top: y + 'px'
+            })
+            // 大盒子位置，因为大图是div大小的4倍，所以移动背景位置就可以实现效果了。
+            css(big, {
+                backgroundPositionX: x * -2 + 'px',
+                backgroundPositionY: y * -2 + 'px',
+            })
+        }
+        // 执行一次
+        bindEvent(dom, 'mouseenter', function(e) {
+            // 鼠标移入显示mask
+            css(mask, 'display', 'block')
+            css(big, 'display', 'block')
+            // 鼠标移入后绑定鼠标移动事件
+            bindEvent(dom, 'mousemove', demo)
+        })
+        bindEvent(dom, 'mouseleave', function(e) {
+            // 鼠标移出隐藏mask
+            css(mask, 'display', 'none')
+            css(big, 'display', 'none')
+            // 鼠标移出后删除事件
+            removeEvent(dom, 'mousemove', demo)
+        })
+    }
+    </script>
+</body>
+</html>

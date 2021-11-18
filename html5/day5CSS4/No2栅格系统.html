@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-3.4.1-dist/css/bootstrap.css"/>
+    <style>
+        .row div{
+            background-color: pink;
+            height: 50px;
+            font-size: 40px;
+            /* 当然可以写margin */
+            /* 行间距 */
+            margin-bottom: 10px;
+            /* 列间距，如果写了列间距，一行放不下12个了，因为每一个都是百分比设置的 */
+            /* 栅格系统设置列间距是在每个列中间再写个div来设置？ */
+        }
+        .container{
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <!-- 1、 定义容器 -->
+    <div class="container">
+        <!-- 行 -->
+        <div class="row">
+            <!-- 列 .col-xs-,.col-sm-,.col-md-,.col-lg-从小到大-->
+            <!-- 注意！现在用的lg，即大屏幕，如果想兼容其它屏幕，需要在类中多写几个！偏移量也都要全写上！ -->
+            <!-- 一行可以放12个元素，第13个下来，这个col-lg-n，数字是几占几个位置 -->
+            <div class="col-lg-1">1</div>
+            <div class="col-lg-1">2</div>
+            <div class="col-lg-1">3</div>
+            <div class="col-lg-1">4</div>
+            <div class="col-lg-1">5</div>
+            <div class="col-lg-1">6</div>
+            <div class="col-lg-1">7</div>
+            <div class="col-lg-1">8</div>
+            <div class="col-lg-1">9</div>
+            <div class="col-lg-1">10</div>
+            <div class="col-lg-1">11</div>
+            <div class="col-lg-1">12</div>
+            <div class="col-lg-3">13</div>
+            <!-- 偏移量：希望13和14隔n个，加个offset-n -->
+            <div class="col-lg-5 col-lg-offset-1">14</div>
+            <!-- 隔5个，不够地方，会换行的 换行顶头隔5个，上一行空的地方不算了-->
+            <div class="col-lg-5 col-lg-offset-5">15</div>
+        </div>
+    </div>
+</body>
+</html>

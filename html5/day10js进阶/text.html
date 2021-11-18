@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1 {
+            height: 1000px;
+            width: 3000px;
+            padding-top: 200px;
+            background-color: pink;
+        }
+        #box2 {
+            height: 400px;
+            border: 100px solid gold;
+            background-color: green;
+            padding: 100px;
+        }
+        .box3 {
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2">
+            <div class="box3"></div>
+            <hr>
+            <div class="box3"></div>
+        </div>
+    </div>
+    <script>
+    // 盒子2绑定事件,通过id绑定事件。事件对象会被作为参数传进事件回调函数的
+    box2.addEventListener('click', function(e) {
+        // console.log(e);
+        console.log('client', e.clientX, e.clientY);
+        console.log('screen', e.screenX, e.screenY);
+        console.log('offset', e.offsetX, e.offsetY);
+        console.log('page', e.pageX, e.pageY);
+        console.log('layer', e.layerX, e.layerY);
+        console.log('x, y', e.x, e.y);
+    })
+    // box2.attachEvent('onclick', function(e) {
+    //     // console.log(e);
+    //     console.log('client', e.clientX, e.clientY);
+    //     console.log('screen', e.screenX, e.screenY);
+    //     console.log('offset', e.offsetX, e.offsetY);
+    //     console.log('page', e.pageX, e.pageY);
+    //     console.log('layer', e.layerX, e.layerY);
+    //     console.log('x, y', e.x, e.y);
+    //     console.log(e);
+    // })
+    </script>
+</body>
+</html>

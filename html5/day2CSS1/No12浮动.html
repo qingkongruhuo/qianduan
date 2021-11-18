@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 800px;
+            margin: 0px auto;
+            border: 2px solid gold ;
+            padding: 50px;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            /* 如果不写下面的代码，下面的样式是：文字，下面图片，下面文字，若想实现文字环绕图片的效果 */
+            float: left;
+        }
+        #fudong{
+            /* clear: both; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="./继承.png" alt="">
+        <p>这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻
+            内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新
+            闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内这是新
+            闻内容
+        </p>
+        
+        <p id="fudong">这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻
+            内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新
+            闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内容这是新闻内这是新
+            闻内容
+        </p>
+    </div>
+</body>
+</html>

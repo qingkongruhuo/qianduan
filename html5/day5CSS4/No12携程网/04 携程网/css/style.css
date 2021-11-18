@@ -1,0 +1,42 @@
+/* rem布局，暂时不用响应式布局了（栅格化） */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a {
+    /* 文字样式，比如下划线之类的 */
+    text-decoration: none;
+    color: #000;
+}
+/* 1rem与1px等价 */
+html {
+    font-size: 0.3125vw;
+}
+/* app模块 */
+.app {
+    display: flex;
+    align-items: center;
+    height: 60rem;
+}
+.app img {
+    margin: 0 15rem;
+    /* 移动端的图片大小都设置成宽高的一半 
+    因为手机屏幕比较吊*/
+    width: 36rem;
+    height: 36rem;
+}
+.content {
+    /* 变形，占满剩余内容 */
+    flex: 1;
+}
+.btn {
+    height: 28rem;
+    width: 80rem;
+    color: #fff;
+    line-height: 28rem;
+    text-align: center;
+    margin: 0 15rem;
+    background-color: #3a99f6;
+    border-radius: 14rem;
+}

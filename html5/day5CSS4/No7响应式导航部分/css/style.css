@@ -1,0 +1,65 @@
+html, 
+body {
+    background-color: #f8f3ed;
+}
+.nav {
+    background-color: #fff;
+}
+.nav .container {
+    /* height: 100px; */
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.nav img {
+    /* width: 244px; */
+    /* height: 59px; */
+    width: 20.854700854700856%;
+    /* align-self: center; */
+}
+.nav .list {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.nav .list li {
+    padding: 0 20px;
+    height: 60px;
+    line-height: 60px;
+}
+.nav .list li.choose,
+.nav .list li:hover {
+    background-color: #000;
+    color: #fff;
+}
+@media (max-width: 991px) {
+    /* 中等屏幕的视口 */
+    .nav .list li {
+        padding: 0 10px;
+    }
+}
+@media (max-width: 767px) {
+    /* 手机屏幕的视口，为了避免挤压在一起写在两行 */
+    .nav .container {
+        flex-wrap: wrap;
+        /* height: 100px; */
+        align-items: center;
+    }
+    .nav img {
+        width: 244px;
+        height: 59px;
+    }
+    .nav .list {
+        min-width: 412px;
+    }
+    .nav .list li {
+        /* 最小页面的时候可以压缩 li*/
+        flex: 1;
+        text-align: center;
+    }
+}
+.banner {
+    background: url(../img/banner1.jpg) no-repeat center top;
+    background-size: contain;
+    height: 500px;
+}

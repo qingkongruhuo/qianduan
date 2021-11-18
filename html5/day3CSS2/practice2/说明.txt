@@ -1,0 +1,10 @@
+博雅互动
+1、四个板块nav banner content footer
+    可以把body设置成网页的图片，然后照下面的方法，在浏览器开发者工具上去和背景比对
+    .nav{
+        /* 可以先写个背景色，然后调成半透明，看和背景图片差多少 */
+        height: 59px;
+        background-color: pink;
+        opacity: 0.5;
+    }
+2、banner

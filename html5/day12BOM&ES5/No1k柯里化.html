@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function curry (fn, currArgs) {
+        return function() {
+            let args = [].slice.call(arguments);
+            // 首次调用时，若未提供最后一个参数currArgs，则不用进行args的拼接
+            if (currArgs !== undefined) {
+                args = args.concat(currArgs);
+            }
+            // 递归调用
+            console.log(fn.length);
+            if (args.length < fn.length) {//fn.length就是定义形参个数
+                return curry(fn, args);
+            }
+            // 递归出口
+            return fn.apply(null, args);
+        }
+    }
+    function sum(a, b, c) {
+        console.log(a + b + c);
+    }
+    const fn = curry(sum);
+    fn(1, 2, 3); // 6
+    // 解读：首先fn等于上面return里面的一大堆，然后给fn传参数123，arg的长度是3，
+    // 3不小于fn.length=3,所以执行到递归出口，fn.apply(null,args)，
+    // 也就是fn.apply(null,[1,2,3])执行
+    fn(1, 2)(3); // 6
+    //首先fn等于上面return里面的一大堆，调用fn(1,2)给fn传参数12，args的长度是2，小于fn.length=3;
+    //进入递归，返回的是curry(fn,1,2),然后调用fn(1,2)(3)时，args=1，2，3等于3，return fn.apply(null,1,2,3)
+    fn(1)(2, 3); // 6
+    fn(1)(2)(3); // 6            
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn1">获取内容</button>
+    <button class="btn2">修改内容</button>
+    <hr>
+    <button class="btn3">添加类</button>
+    <button class="btn4">删除类</button>
+    <button class="btn5">切换类</button>
+    <button class="btn6">判断类</button>
+    <hr>
+    <button class="btn7">添加属性</button>
+    <button class="btn8">获取属性</button>
+    <div class="box">hello</div>
+<script src="./jquery.js"></script>
+<script>
+$('.btn1').click(function() {
+    // 获取内容
+    console.log($('.box').html());
+})
+$('.btn2').click(function() {
+    // 修改内容
+    // $('.box').html('爱创课堂')
+    // 可以渲染标签
+    $('.box').html('<h1>爱创课堂</h1>')
+})
+$('.btn3').click(function() {
+    // 添加类
+    $('.box').addClass('red')
+})
+$('.btn4').click(function() {
+    // 删除类
+    $('.box').removeClass('red')
+})
+$('.btn5').click(function() {
+    // 切换类
+    $('.box').toggleClass('red')
+})
+$('.btn6').click(function() {
+    // 判断类的存在
+    console.log($('.box').hasClass('red'));
+})
+$('.btn7').click(function() {
+    // 添加属性
+    // $('.box').attr('title', 'hello ickt')
+    // $('.box').attr('ickt', 'hello ickt')
+    $('.box').attr({
+        title: 'hello',
+        ickt: 100,
+        num: 200
+    })
+})
+$('.btn8').click(function() {
+    // 获取属性
+    console.log($('.box').attr('title'));
+})
+</script>
+</body>
+</html>

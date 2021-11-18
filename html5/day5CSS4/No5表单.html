@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap-3.4.1-dist/css/bootstrap.css"/>
+</head>
+<body>
+    <form action="" class="form-horizontal">
+        <!-- row用form-group代替 -->
+        <!-- 栅格布局中，列用col代替 -->
+        <div class="form-group"><!--这个就是row：行-->
+            <label for="" class="col-lg-2 control-label">用户名</label>
+            <div class="col-lg-3">
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <!-- 通过col-lg类，对划分栅格区域 -->
+            <!-- 同构control-label类，为label添加对齐样式 -->
+            <label for="" class="col-lg-2 control-label">密码</label>
+            <div class="col-lg-3">
+                <!-- 通过form-control为input添加样式 -->
+                <input type="text" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-3 col-lg-offset-2">
+                <button class="btn btn-success">登录</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

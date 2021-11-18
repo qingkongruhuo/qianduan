@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!-- 超长页面，如果拉到下面显示一个返回顶部的按钮，点击返回顶部 -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #gotop {
+        /* 固定定位 */
+        position: fixed;
+        bottom: 100px;
+        right: 100px;
+        font-size: 20px;
+        height: 40px;
+        width: 40px;
+        padding: 10px;
+        background: green;
+        line-height: 1;
+        color: red;
+        display: none;
+        opacity: 0;
+    }
+    </style>
+</head>
+<body>
+    <h1>1-1-1</h1>
+    <h1>2-2-2</h1>
+    <h1>3-3-3</h1>
+    <h1>4-4-4</h1>
+    <h1>5-5-5</h1>
+    <h1>6-6-6</h1>
+    <h1>7-7-7</h1>
+    <h1>8-8-8</h1>
+    <h1>9-9-9</h1>
+    <h1>10-10-10</h1>
+    <h1>11-11-11</h1>
+    <h1>12-12-12</h1>
+    <h1>13-13-13</h1>
+    <h1>14-14-14</h1>
+    <h1>15-15-15</h1>
+    <h1>16-16-16</h1>
+    <h1>17-17-17</h1>
+    <h1>18-18-18</h1>
+    <h1>19-19-19</h1>
+    <h1>20-20-20</h1>
+    <h1>21-21-21</h1>
+    <h1>22-22-22</h1>
+    <h1>23-23-23</h1>
+    <h1>24-24-24</h1>
+    <h1>25-25-25</h1>
+    <h1>26-26-26</h1>
+    <h1>27-27-27</h1>
+    <h1>28-28-28</h1>
+    <h1>29-29-29</h1>
+    <h1>30-30-30</h1>
+    <h1>31-31-31</h1>
+    <h1>32-32-32</h1>
+    <h1>33-33-33</h1>
+    <h1>34-34-34</h1>
+    <h1>35-35-35</h1>
+    <h1>36-36-36</h1>
+    <h1>37-37-37</h1>
+    <h1>38-38-38</h1>
+    <h1>39-39-39</h1>
+    <h1>40-40-40</h1>
+    <h1>41-41-41</h1>
+    <h1>42-42-42</h1>
+    <h1>43-43-43</h1>
+    <h1>44-44-44</h1>
+    <h1>45-45-45</h1>
+    <h1>46-46-46</h1>
+    <h1>47-47-47</h1>
+    <h1>48-48-48</h1>
+    <h1>49-49-49</h1>
+    <h1>50-50-50</h1>
+    <div id="gotop">返回顶部</div>
+    <script src="./ickt.js"></script>
+    <script>
+    // 获取元素
+    var goTop = document.getElementById('gotop');
+    // 监听页面滚动
+    bindEvent(window, 'scroll', function() {
+        // demo();
+        // 防抖
+        throttle_event(demo)
+    })
+    // 封装方法
+    function demo() {
+        // console.log('111')
+        // 获取数据
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop || scrollY;
+        // 当卷曲值大于300，显示返回顶部，否则隐藏
+        if (scrollTop > 300) {
+            // 如果已经显示了，不要再做动画了
+            if (getStyle(goTop, 'opacity') == 1) {
+                return;
+            }
+            // 显示
+            goTop.style.display = 'block';
+            goTop.style.opacity = 0;
+            // 动画显示
+            animate(goTop, { opacity: 1 }, 200)
+        } else {
+            goTop.style.opacity = 1;
+            // 动画显示
+            animate(goTop, { opacity: 0 }, 200, function() {
+                // 动画完成将其隐藏
+                goTop.style.display = 'none';
+            })
+        }
+    }
+    //点击回到顶部
+    bindEvent(goTop,'click',function(){
+        document.documentElement.scrollTop=0;
+    });
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border: 5px solid green;
+            /* 盒子计算高度会由内容最高的来撑起和magin padding无关，即保留内容，但是
+            子元素的背景色会绘制到padding区域的，只不过在父元素这里不计算高度 */
+        }
+        span{
+            border: 1px solid black;
+        }
+        .span1{
+            margin-top: 20px;
+        }
+        .span2{
+            margin-bottom: 20px;
+        }
+        .span3{
+            padding-top: 30px;
+            background-color: pink;
+            display: inline-block;
+            height: 20px;
+        }
+        .span4{
+            padding-bottom: 30px;
+            background-color: pink;
+        }
+        .span6{
+            /* 一旦浮动会打乱顺序，因为float只是不与bfc重叠，ifc去你吗 */
+            padding-bottom: 30px;
+            background-color: pink;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="span1">1</span>
+        <span class="span2">2</span>
+        <span class="span3">3</span>
+        <span class="span4">4</span>
+        <span class="span5">5</span>
+        <span class="span6">6</span>
+    </div>
+</body>
+</html>

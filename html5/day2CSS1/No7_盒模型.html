@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box2{
+            box-sizing: content-box;
+        }
+        .box1,.box2,.box3,.box4{
+            text-indent:2em;
+            width: 200px;
+            height: 200px;
+            padding: 25px;
+            border: 10px solid green;
+            margin: 100px;
+            background: pink;
+        }
+        .box3{
+            box-sizing: border-box;
+            white-space: pre-wrap;
+        }
+        .box4{
+            box-sizing: content-box;
+            white-space: pre-wrap;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-right: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!--盒模型-->
+    <div class="box1">手写的标准盒模型</div>
+    <div class="box2">标准盒模型</div>
+    <p class="box3">IE盒模型,border, pandding, content 加一起是200*200
+    </p>
+
+    <div class="box4">自己写的盒模型，调整外边距
+    </div>
+</body>
+</html>

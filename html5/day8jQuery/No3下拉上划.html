@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.js"></script>
+    <style>
+        .box{
+            width: 300px;
+            height: 300px;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <button>下拉</button>
+    <button>上划</button>
+    <button>切换</button>
+    <hr>
+    <div class="box"></div>
+<script>
+//获取元素
+var btns = $('button');
+var box = $('.box');
+//为三个按钮绑定事件
+//下拉
+btns.eq(0).click(function(){
+    box.slideDown();
+});
+//上划
+btns.eq(1).click(function(){
+    box.slideUp();
+});
+//切换
+btns.eq(2).click(function(){
+    box.slideToggle();
+});
+</script>
+</body>
+</html>

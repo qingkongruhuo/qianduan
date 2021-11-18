@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- 实现拖拽功能：
+    鼠标按下，开始拖拽
+    鼠标弹起，停止拖拽
+    拖拽：跟着鼠标一起移动。 
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #box1 {
+        width: 800px;
+        height: 500px;
+        border: 2px solid #000;
+        position: relative;
+        margin: 0 auto;
+    }
+    #box2 {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background-color: green;
+    }
+    </style>
+</head>
+<body>
+    <div id="box1">
+        <div id="box2"></div>
+    </div>
+    <script src="./ickt.js"></script>
+    <script>
+    // 获取元素
+    var box2 = document.getElementById('box2');
+    // 定义方法
+    function demo(e) {
+        // 获取鼠标位置
+        var x = e.clientX;
+        var y = e.clientY;
+        // console.log(box2._x, box2._y, box2._top, box2._left, x, y);
+        // 修改元素的位置，这和计算样式无关，
+        box2.style.top = box2._top + y - box2._y + 'px';
+        box2.style.left = box2._left + x - box2._x + 'px';
+        // box.x和.y分别是点击时鼠标的位置，x和y分别是鼠标移动时的位置，
+        //移动时的位置减去点击时的位置就是鼠标相对于大div盒子的位置，因为
+        //box2是绝对定位是相对于box1的。
+    }
+    // 绑定事件
+    bindEvent(box2, 'mousedown', function(e) {
+        // 获取定位偏移量,这个getStyle是自己写的获取计算后的样式
+        //把变量绑到元素对象上是为了避免污染全局。
+        box2._top = parseInt(getStyle(box2, 'top'));
+        box2._left = parseInt(getStyle(box2, 'left'));
+        // 获取鼠标位置信息
+        box2._x = e.clientX;
+        box2._y = e.clientY;
+        // 鼠标移动，给document绑定的意义是：如果绑定的是box2，那么鼠标划得
+        //太快了超出了box2的大小那么box2就不动辣，因为绑定的是box2.如果绑定
+        //到document就没吊事了爱咋滑咋滑永远超不出document的位置（只要在浏览器内）
+        bindEvent(document, 'mousemove', demo)
+    })
+    // 鼠标弹起，停止移动
+    bindEvent(box2, 'mouseup', function() {
+        // 移除document的事件，自己封装好的
+        removeEvent(document, 'mousemove', demo)
+    })
+    </script>
+</body>
+</html>

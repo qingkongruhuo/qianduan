@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+function *demo(num1){
+    console.log(1,num1);//111只有当第一次调用next方法才能拿到，因为var g = demo(111)只是初始化而已，第一次执行next方法相当于从函数开始执行到第一个yield并暂停
+    var num2 = yield 'red';
+    console.log(2,num2);//2，222
+    var num3 = yield 'blue';
+    console.log(3,num3);//3,333
+    var num4 = yield 'green';
+    console.log(4,num4);//4,444
+}
+var g = demo(111);
+//给方法传递数据，可以在内部接收数据
+console.log(g.next())//第一次使用next是启动，不能传递数据，可以用demo去传递数据
+console.log(g.next(222));
+console.log(g.next(333));
+console.log(g.next(444));
+    </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 正则匹配ymd
+    // 获取匹配字母的个数，
+    // 根据个数确定日期格式
+    // var tpl = 'adsf yyyy aid yy f$^$ mm %$ m ^%&hdladddhflad';
+    var tpl = '今天是yyyy年mm月dd日';
+    // 获取时间
+    var time = new Date();
+    // 替换
+    var result = tpl
+        // 处理年
+        .replace(/(y{1,4})/g, function(match, $1) {
+            // 获取年
+            var year = time.getFullYear();
+            // console.log($1, typeof year);
+            // 用总长度减去$1的长度，就是截取位置
+            return String(year).slice(4 - $1.length)
+        })
+        // 处理月
+        .replace(/(m{1,2})/g, function(match, $1) {
+            // 获取月
+            // 月是从0开始计数的
+            var month = String(time.getMonth() + 1);
+            // console.log(month, typeof month, $1);
+            // $1是两个m，保留两位数的月份，否则保留一位数的月份
+            return $1.length === 2 ? (month.length === 1 ? '0' + month : month) : month;
+        })
+        // 处理日
+        .replace(/(d{1,2})/g, function(match, $1) {
+            // 获取日
+            var day = String(time.getDate());
+            // 判断$1的个数
+            return $1.length === 2 ? (day.length === 1 ? '0' + day : day) : day;
+        })
+    console.log(result);
+    </script>
+</body>
+</html>

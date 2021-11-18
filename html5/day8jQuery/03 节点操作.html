@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <p><strong>hello1</strong></p>
+        <p>hello2</p>
+        <p>hello3</p>
+        <h1 class="title">111</h1>
+        <h2>222</h2>
+        <p>hello4</p>
+    </div>
+    <div class="box2">
+        <p><strong>hello1</strong></p>
+        <p>hello2</p>
+        <p>hello3</p>
+        <h1>111</h1>
+        <h2>222</h2>
+        <p>hello4</p>
+    </div>
+<script src="./jquery.js"></script>
+<script>
+// 点击p获取它的内容
+// $('p').click(function() {
+//     // console.log(this, $(this), $(this).html())//this原生p标签，$(this)是jquery对象 
+//     // 获取父节点
+//     console.log($(this).parent()[0]);//即获取js对象
+//     console.log($(this).parents());//获取全部祖先元素
+//     console.log($(this).parents('body'));//指定为body的祖先元素
+// })
+// 点击div，获取子节点
+// $('.box').click(function() {
+//     console.log($(this).children('h1'));
+// })
+// 兄弟节点
+// console.log($('.title').siblings());
+// h1后满的元素
+// console.log($('.title').next())
+// console.log($('.title').nextAll())
+// h1前面的元素
+// console.log($('.title').prev());
+// console.log($('.title').prevAll());
+
+// 查早后代子元素
+// 继续查找将在strong内查找
+// console.log($('.box').find('strong'));
+// console.log($('.box').find('strong').find('h1'));
+// // end方法，返回最初的jq对象
+// console.log($('.box').find('strong').find('h1').end().end().find('h1'));
+// 获取p
+// console.log($('p'));
+// $('p').eq(3).css('background', 'pink')
+// $('p').index(2).css('background', 'pink')
+// console.log($('p').index());
+// 点击p，获取p在列表中的索引值
+// $('p').click(function() {
+//     console.log($(this).index());
+// })
+// 对每一个p元素处理
+$('p').each(function(index, item) {
+    console.log(item, this)
+})
+</script>
+</body>
+</html>

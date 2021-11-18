@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 伪元素在html代码中看不见，只能在css中添加 */
+        h1::before{
+            /* 必须设置content属性，即伪元素内容 */
+            content: "我是伪元素";
+            /* 可以设置各种格式属性 */
+            font-size: 60px;
+            display: block;
+            color: bisque;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="box">hello</h1>
+</body>
+</html>

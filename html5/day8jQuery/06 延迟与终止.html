@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            position: relative;
+            background-color: pink;
+        }
+        .box2 {
+            background-color: green;
+            margin-left: 120px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn">执行动画</button>
+    <div class="box2"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+<script src="./jquery.js"></script>
+<script>
+// 点击按钮，更改元素位置
+// $('.btn').click(function() {
+//     // 直接书写动画，动画会立即执行
+//     // $('.box1').animate({ left: 1200 }, 2000);
+//     console.log('click btn')
+//     // 1秒之后执行
+//     $('.box1').delay(1000).animate({ left: 1200 }, 2000);
+// })
+// $('.btn').click(function() {
+//     // 这些盒子每个1秒钟执行一次
+//     $('.box1').each(function(index, item) {
+//         // 获取元素: $(this), $(item)
+//         $(item).delay(index * 1000).animate({ left: 1200 }, 2000)
+//     })
+// })
+
+// 点击按钮执行动画
+$('.btn').click(function() {
+    // 动画1，向右移动1500
+    $('.box2').animate({ left: 1500 }, 2000)
+    // 动画2，向下移动500
+    $('.box2').animate({ top: 500 }, 2000)
+    // 动画3，向左移动1000
+    $('.box2')
+        // .stop()                  // 停止当前执行的动画（停止动画1），立即执行下一个（执行动画2）
+        // .stop(false, true)       // 当前动画是动画1，立即停止，闭关执行完毕，执行下一个动画（动画2）
+        // .stop(true, true)        // 清空动画队列（删除动画1和动画2），当前动画是动画1，被立即停止并执行完毕
+        .stop(true)                 // 清空动画队列（删除动画1和动画2），当前动画是动画1，被立即停止
+        .animate({ left: 500 }, 2000)
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        header{
+            height: 50px;
+            background-color: red;
+            /* 宽度自适应 ,设置最小宽度*/
+            min-width: 1000px;
+        }
+        section{
+            background-color: yellow; 
+            /* 需要被浮动撑起来创建bfc */
+            overflow: hidden;
+            /* 居中 */
+            margin: 0px auto;
+            /* 设置自适应宽度，拖滚动条时不影响布局 */
+            width: 80%;
+            /* 设置最大宽度，最小宽度，高度，省的被滚动条挤没了 */
+            min-width: 800px;
+        }
+        article{
+            float: left;
+            height: 500px;
+            background-color: gold;
+            width: 300px ;
+        }
+        .slider{
+            margin-left: 310px;
+            height: 300px;
+            background-color: green;
+        }
+        footer{
+            height: 40px;
+            background-color: pink;
+            /* 宽度自适应 ,设置最小宽度*/
+            min-width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 浮动布局 -->
+    <header></header>
+    <section>
+        <article></article>
+        <div class="slider"></div>
+    </section>
+    <footer></footer>
+</body>
+</html>

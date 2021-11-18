@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="./js/Block.js"></script>
+    <script src="./js/Map.js"></script>
+    <script src="./js/Food.js"></script>
+    <script src="./js/Snake.js"></script>
+    <script src="./js/Game.js"></script>
+    <script>
+    // 实例化各个类
+    var block = new Block();
+    var map = new Map();
+    var food = new Food();
+    var Snake = new Snake();
+    // 将四个属性传递给Game类
+    var Game = new Game(Snake, map, food, block);
+    </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+/* 1rem与1px等价 */
+html {
+    font-size: 0.3125vw;
+}
+html,
+body {
+    background-color: #fafafc;
+}
+/* app模块 */
+.app {
+    display: flex;
+    align-items: center;
+    height: 60rem;
+}
+.app img {
+    margin: 0 15rem;
+    width: 36rem;
+    height: 36rem;
+}
+.content {
+    flex: 1;
+}
+.btn {
+    height: 28rem;
+    width: 80rem;
+    color: #fff;
+    line-height: 28rem;
+    text-align: center;
+    margin: 0 15rem;
+    background-color: #3a99f6;
+    border-radius: 14rem;
+}
+/* banner区域 */
+/* 太夸张了，这banner里面三块，search，user和list全做绝对定位固定位置。。 */
+.banner {
+    background: url(../img/banner.jpg) no-repeat center top;
+    background-size: cover;
+    height: 150rem;
+    position: relative;
+}
+.banner .search {
+    position: absolute;
+    top: 8rem;
+    left: 12rem;
+    right: 50rem;
+    /* 为了给input标签占满整个区域用的 */
+    display: flex;
+}
+.banner .search input {
+    height: 28rem;
+    line-height: 28rem;
+    font-size: 12rem;
+    border-radius: 14rem;
+    display: block;
+    padding-left: 40rem;
+    /* 让input占满整个区域 */
+    flex: 1;
+}
+.banner .search .icon {
+    position: absolute;
+    width: 16rem;
+    height: 16rem;
+    top: 6rem;
+    left: 15rem;
+    background: url(../img/search.png) no-repeat;
+    background-size: cover;
+}
+.banner .user {
+    top: 6rem;
+    right: 12rem;
+    position: absolute;
+    color: #fff;
+    font-size: 12rem;
+    text-align: center;
+}
+.banner .user span {
+    width: 18rem;
+    height: 18rem;
+    display: inline-block;
+    background: url(../img/my.png) no-repeat;
+    background-size: cover;
+}
+.banner .list {
+    position: absolute;
+    /* 这里list设计已经超出banner，设计绝对定位bottom是-32rem */
+    bottom: -32rem;
+    height: 64rem;
+    left: 12rem;
+    right: 12rem;
+    background-color: #fff;
+    border-radius: 10rem;
+    display: flex;
+    text-align: center;
+}
+.banner .list li {
+    flex: 1;
+    padding-top: 3rem;
+}
+.banner .list li span {
+    display: inline-block;
+    width: 40rem;
+    height: 40rem;
+    background: url(../img/tabs.png) no-repeat;
+    /* 精灵图缩放 */
+    background-size: 40rem 200rem;
+}
+/* 儿子序列选择器这么用！ */
+.banner .list li:nth-child(1) span {
+    background-position: 0 0;
+}
+.banner .list li:nth-child(2) span {
+    background-position: 0 -40rem;
+}
+.banner .list li:nth-child(3) span {
+    background-position: 0 -80rem;
+}
+.banner .list li:nth-child(4) span {
+    background-position: 0 -120rem;
+}
+.banner .list li:nth-child(5) span {
+    background-position: 0 -160rem;
+}

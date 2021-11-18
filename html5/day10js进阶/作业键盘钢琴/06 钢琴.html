@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    ul {
+        width: 700px;
+        margin: 50px auto;
+        height: 400px;
+        border: 1px solid #000;
+        display: flex;
+    }
+    li {
+        /* 弹性盒子，缩放比例都是1 */
+        flex: 1;
+        border-right: 1px solid #000;
+    }
+    li:last-child {
+        border-right: none;
+    }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <audio autoplay></audio>
+    <script>
+    // 世界名曲：欢乐颂： 333454321123322   333454321123211
+    // 创建audio元素
+    var audio = document.getElementsByTagName('audio')[0];
+    // 获取所有的li
+    var lis = document.getElementsByTagName('li');
+    // document.onclick = function() {
+    //     console.log(111)
+    //     // 设置属性
+    //     audio.src = './audio/1.mp3'
+    // }
+    // 监听键盘事件
+    document.onkeydown = function(e) {
+        // 获取key，e.key是键盘按下的是啥键
+        var key = e.key;
+        // 清空所有li的样式
+        // for (var i = 0; i < lis.length; i++) {
+        //     lis[i].style.backgroundColor = '';
+        // }
+        // 判断按下的键
+        switch (key) {
+            // 如果时1
+            // case '1':
+            //     // 播放 do
+            //     audio.src = './audio/' + key + '.mp3';
+            //     // 设置li的背景
+            //     lis[key - 1].style.backgroundColor = 'pink';
+            //     break;
+            // case '2':
+            //     // 播放re
+            //     audio.src = './audio/' + key + '.mp3';
+            //     // 设置li
+            //     lis[key - 1].style.backgroundColor = 'pink';
+            // 一起配置
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+                // 播放 do
+                audio.src = './audio/' + key + '.mp3';
+                // 设置li的背景
+                lis[key - 1].style.backgroundColor = 'pink';
+                break;
+            // 其它的提示错误
+            default: 
+                console.log('点击错了');
+                break;
+        }
+    }
+    // 鼠标弹起，取消背景色
+    document.onkeyup = function(e) {
+        // 获取简直
+        var key = e.key;
+        // 判断键值
+        switch (key) {
+            case '1':
+            case '2':
+            case '3':
+            case '4':
+            case '5':
+            case '6':
+            case '7':
+                lis[key - 1].style.backgroundColor = '';
+            default: 
+                // console.log('点错了');
+                break;
+        }
+    }
+    </script>
+</body>
+</html>

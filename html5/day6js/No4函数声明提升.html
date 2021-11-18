@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function demo1(num1){
+            console.log(num1);
+            function num1(){
+                console.log(1);
+            }
+        }
+        console.log(demo1(10));
+        /*
+        解释：首先num1作为形参加载到AO属性，然后调用函数的时候
+        里面的还有个函数名叫num1，直接覆盖AO的num1属性
+        所以demo1里打印num1是一个函数，也就是function
+        */
+        function demo2(num2){
+            console.log(num2);
+            var num2=1;
+            function num2(){
+                console.log(1);
+            }
+        }
+        console.log(demo2(10));
+        /*
+        解释：首先num2作为形参加载到AO属性，然后调用函数的时候
+        里面的还有个变量叫num2，但是这声明的是变量，之前有个AO属性也是num2
+        无事发生，接下来发现有个函数名是num2，覆盖AO的num2属性，
+        demo2打印是一个函数
+        */
+        function demo3(num3){
+            console.log(num3);
+            var num3=1;
+            console.log(num3)
+        }
+        console.log(demo3(10));
+        // 解释：首先num3作为形参加载到AO属性，调用函数的时候给num3赋值10
+        // 然后函数内部，变量num3提升，但是发现AO有个属性num3，跳过无事发生
+        // 第一条打印10，接下来给num3赋值为1，下面打印1
+        function demo4(num4){
+            console.log(111,num4);
+            function num4(){
+                console.log(222);
+            }
+            console.log(222,num4)
+        }
+        console.log(demo4(10));
+        // 解释：首先num4作为形参加载到AO属性，调用函数的时候给num4赋值10
+        // 然后函数内部，发现有一个num4函数，提升，覆盖掉之前num4，
+        // 所以函数内部第一次打印111,function，下面打印222，function
+        function demo5(num5){
+            console.log(111,num5);
+            var num5 = 20;
+            console.log(333,num5);
+            function num5(){
+                console.log(222);
+            }
+            console.log(222,num5)
+        }
+        console.log(demo5(10));
+        // 解释：首先num5作为形参加载到AO属性，调用函数的时候给num5赋值10
+        // 然后函数内部，发现有一个num5的变量声明，而AO中有一个num5属性，
+        //当无视发生发现有一个num5函数，提升，覆盖之前的num5，所以第一个
+        // 打印111,function，然后num5被赋值成20，打印333,20,然后最下面,222,20
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border:5px solid green;
+            height: 1000px;
+            background: pink;
+            margin-bottom: 50px;
+        }
+        .container div{
+            margin-top : 50px;
+        }
+        /* 会出现塌陷 */
+        .box1{
+            width: 100px;
+            height: 100px;
+            background: gold;
+            /* 如果没下面这行代码，浮动块由于浮动效果，会和box1重合 ，即box1顶上去*/
+            /* 但是有了下面的代码，会创建一个bfc，而bfc的效果是不与浮动重合，所以会看到box1在浮动块右边 */
+            display: inline-block;
+        }
+        .box2{
+            width: 200px;
+            height: 200px;
+            background: blue;
+
+        }
+        .box3{
+            float: left;
+            margin: 0px;
+            width: 50px;
+            height: 50px;
+            background: gray;
+        }   
+        /*可以看到设置了container2创建bfc，浮动元素也能将其撑开 */
+        .container2{
+            border: 5px solid black;
+            overflow: hidden;
+            background-color: gray;
+        }
+        .box4{
+            width: 50px;
+            height: 50px;
+            float: left;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box3"><span>浮动块</span></div>
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+    <!-- bfc高度计算浮动元素 -->
+    <div class="container2">
+        <div class="box4"></div>
+    </div>
+</body>
+</html>

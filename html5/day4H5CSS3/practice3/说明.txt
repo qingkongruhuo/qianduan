@@ -1,0 +1,22 @@
+博雅互动
+1、四个板块nav banner content footer
+    可以把body设置成网页的图片，然后照下面的方法，在浏览器开发者工具上去和背景比对
+    .nav{
+        /* 可以先写个背景色，然后调成半透明，看和背景图片差多少 */
+        height: 59px;
+        background-color: pink;
+        opacity: 0.5;
+    }
+2、banner
+
+相比practice，这里做了博雅互动按钮 
+    就是鼠标挪到在线游戏下面出来三个按钮
+    1、插进去一个div和3个span
+    2、span里加载精灵图
+    3、调整位置大小
+    4、之前的父类有clearfix，这个div会将其撑起，将父类first设置成固定高度
+    5、因为默认情况不显示，鼠标滑动到上面去后才会显示，设置div display为none
+    6、利用hover：鼠标移动到btn后显示icons
+        .btn:hover .icons{
+            display:block;
+        }

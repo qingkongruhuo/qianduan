@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        html {
+            /* 字号是屏幕宽度的百分之一 */
+            font-size: 1vw;
+        }
+        .box {
+            width: 50rem;
+            height: 50rem;
+            background-color: pink;
+        }
+        .box2 {
+            width: 50vw;
+            height: 50vw;
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <!-- 可以缩放，两个盒子占窗口的比例一直是不变的50% -->
+    <div class="box"></div>
+    <div class="box2"></div>
+</body>
+</html>

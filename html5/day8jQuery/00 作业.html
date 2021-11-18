@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app {
+            width: 900px;
+            height: 540px;
+            margin: 0 auto;
+        }
+        #app img {
+            position: absolute;
+            display: none;
+        }
+        .btns {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <img src="./img/loop/0.jpg" alt="">
+        <img src="./img/loop/1.jpg" alt="">
+        <img src="./img/loop/2.jpg" alt="">
+        <img src="./img/loop/3.jpg" alt="">
+        <img src="./img/loop/4.jpg" alt="">
+        <img src="./img/loop/5.jpg" alt="">
+        <img src="./img/loop/6.jpg" alt="">
+    </div>
+    <div class="btns">
+        <button>上一张</button>
+        <button>下一张</button>
+    </div>
+<script src="./jquery.js"></script>
+<script>
+// 当前图片的索引值
+var index = 0;
+// 获取图片
+var imgs = $('img');
+// 设置默认状态
+imgs.eq(index).show()
+// 为按钮绑定事件
+$('button').eq(0).click(function() {
+    // 点击上一张按钮的时候，就是将当前的图片隐藏，上一张显示
+    imgs.eq(index).fadeOut(500);
+    // 上一张
+    index--;
+    // 边界：如果是第一张，上一张是最后一张
+    if (index < 0) {
+        index = imgs.length - 1;
+    }
+    // 显示上一张图片
+    imgs.eq(index).fadeIn(500)
+})
+// 点击下一张按钮
+$('button').eq(1).click(function() {
+    // 点击下一张按钮，就是将当前的隐藏，下一张显示
+    imgs.eq(index).fadeOut(500);
+    // 下一张
+    index++;
+    // 边界：最后一张的下一张是第一张
+    if (index >= imgs.length) {
+        index = 0;
+    }
+    // 显示下一张图片
+    imgs.eq(index).fadeIn(500)
+})
+</script>
+<script>
+// // 获取按钮
+// var btns = document.getElementsByTagName('button');
+// // 获取图片
+// var imgs = document.getElementsByTagName('img');
+// // 当前显示的索引值
+// var index = 6;
+// // 图片的个数
+// var len = imgs.length;
+// // 排它法设置样式
+// function toggle() {
+//     // 排它法显示
+//     for (var i = 0; i < len; i++) {
+//         // 将所有的图片隐藏
+//         imgs[i].style.display = 'none';
+//     }
+//     // 显示
+//     imgs[index].style.display = 'block';
+// }
+// // 绑定事件
+// btns[0].onclick = function() {
+//     // 显示上一张
+//     index--;
+//     // 如果是第一张，它的上一张是最后一张
+//     if (index < 0) {
+//         index = len - 1;
+//     }
+//     // // 排它法显示
+//     // for (var i = 0; i < len; i++) {
+//     //     // 将所有的图片隐藏
+//     //     imgs[i].style.display = 'none';
+//     // }
+//     // // 显示
+//     // imgs[index].style.display = 'block';
+//     // 切换样式
+//     toggle()
+
+// }
+// btns[1].onclick = function() {
+//     // 显示下一张
+//     index++;
+//     // 如果是最后一张，下一张是第一张
+//     if (index >= len) {
+//         index = 0;
+//     }
+//     // // 排它法设置样式
+//     // for (var i = 0; i < len; i++) {
+//     //     // 将所有的图片隐藏
+//     //     imgs[i].style.display = 'none';
+//     // }
+//     // // 显示
+//     // imgs[index].style.display = 'block';
+//     // 切换样式
+//     toggle()
+
+// }
+</script>
+</body>
+</html>

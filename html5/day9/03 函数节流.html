@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>1</h1>
+    <h1>2</h1>
+    <h1>3</h1>
+    <h1>4</h1>
+    <h1>5</h1>
+    <h1>6</h1>
+    <h1>7</h1>
+    <h1>8</h1>
+    <h1>9</h1>
+    <h1>10</h1>
+    <h1>11</h1>
+    <h1>12</h1>
+    <h1>13</h1>
+    <h1>14</h1>
+    <h1>15</h1>
+    <h1>16</h1>
+    <h1>17</h1>
+    <h1>18</h1>
+    <h1>19</h1>
+    <h1>20</h1>
+    <h1>21</h1>
+    <h1>22</h1>
+    <h1>23</h1>
+    <h1>24</h1>
+    <h1>25</h1>
+    <h1>26</h1>
+    <h1>27</h1>
+    <h1>28</h1>
+    <h1>29</h1>
+    <h1>30</h1>
+<script>
+// 定义数字
+var num = 0;
+// 定义函数，打印num
+function demo() {
+    console.log(++num)
+}
+// 基于操作的节流：  防抖，；两次操作间隔大于0.2s才会重复触发
+// 原理：给高频高频事件触发的函数做个操作：放在延迟启动的函数setTimeout中，
+// 下面例子延迟0.2s启动。当拖动进度条时，先清除定时器timebar，只要连续滑动的两次
+// 操作没有超过0.2s，那么函数还没来得及启动，timebar就被清除了，进入下一次的延时启动
+// 中。直到操作确确实实停止了（0.2s内没进行下一次操作），延时启动0.2s后才会运行函数
+// 定义定时器句柄
+// var timebar;
+// 高频事件：下面的是拖动滚动条事件，如果不节流就疯狂触发，想实现效果：
+//只有拖滚动条停止，才会触发
+// window.onscroll = function() {
+//     // 如果不设置节流直接执行函数,疯狂触发
+//     // demo();
+// ==========================================
+//     // 基于操作的，在高频事件中，执行最后一次。
+//     // 将函数放在定时器中，每次触发事件，取消执行，
+//     // clearTimeout(timebar)
+//     // 直到最后一次
+//     // timebar = setTimeout(demo, 200)
+//     // 这种基于操作的节流也被称为防抖
+//     // 使用防抖函数
+//     throttle(demo)
+// }
+// // 封装防抖(节流)函数
+// function throttle(fn) {
+//     // 清除定时器，
+//     clearTimeout(fn.__timebar);
+//     // 执行定时器
+//     // 函数也属于对象，因此可以添加属性，__双下线代表私有属性，而js没私有属性，只是这么干尽量让别人不访问到。
+//     //这么搞的目的是不想在外面var timebar罢了。
+//     fn.__timebar = setTimeout(fn, 200);
+// }
+
+// 定义锁
+// var lock = false;
+// 基于时间的节流，下面的操作能让高频事件过一秒执行一次
+// 延时启动函数每1s会把开关改成false，只有当开关成了false才能执行函数。
+window.onscroll = function() {
+    // 为true的时候不能执行
+    // if (lock) {
+    //     return;
+    // }
+    // // 设置锁
+    // lock = true;
+    // // demo();
+    // // 在1秒之内，无论出发多少次，只能执行一次。
+    // demo();
+    // // 启动定时器
+    // setTimeout(function() {
+    //     // 解除锁
+    //     lock = false;
+    // }, 1000)
+
+    // 节流函数
+    throttle(demo);
+}
+
+// 节流器方法
+function throttle(fn) {
+    // 在函数自身添加锁
+    if (fn.__lock) {
+        // 被锁住了就不能执行
+        return;
+    }
+    // 添加锁
+    fn.__lock = true;
+    // 执行函数
+    fn();
+    // 1秒之后解锁
+    setTimeout(function() {
+        fn.__lock = false;
+    }, 1000)
+}
+</script>
+</body>
+</html>

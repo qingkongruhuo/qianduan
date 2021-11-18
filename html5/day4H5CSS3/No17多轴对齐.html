@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 1000px;
+            height: 800px;
+            background-color: pink;
+            border: 1px solid black;
+            margin: 0 auto;
+            /*弹性盒 */
+            display: flex;
+            /* 换行 */
+            flex-wrap: wrap;
+            /* 设置交叉轴对齐方式 */
+            /* align-items: flex-end; */
+            /* 多条轴(其实就是多行，上面写了换行，当项目多了就会自动换行)
+            ：设置交叉轴对齐方式 */
+            /* 底部对齐 */
+            align-content: flex-end;
+        }
+        .box{
+            width: 150px;
+            height: 150px;
+            border: 1px solid green;
+            background-color: skyblue;
+            font-size: 40px;
+            color: white;
+            text-align: center;
+        }
+        .box1{
+            width: 100px;
+            height: 100px;
+        }
+        .box2{
+            width: 300px;
+            height: 250px;
+        }
+        .box3{
+            width: 100px;
+            height: 300px;
+        }
+        .box4{
+            width: 250px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+    </div>
+</body>
+</html>

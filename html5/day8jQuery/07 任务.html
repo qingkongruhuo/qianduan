@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            position: relative;
+            background-color: pink;
+        }
+        .box2 {
+            background-color: green;
+            margin-left: 120px;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn1">去广州</button>
+    <button class="btn2">去北京</button>
+    <div class="box1"></div>
+<script src="./jquery.js"></script>
+<script>
+$('.btn1').click(function() {
+    $('.box1').animate({ left: 1500 }, 4000)
+});
+
+$('.btn2').click(function() {
+    // $('.box1').animate({ top: 500 }, 3000)
+    // 接到命令就立即改变行程
+    // $('.box1').stop(true).animate({ top: 500 }, 3000)
+    
+    // 判断正在执行动画
+    // console.log($('.box1').is(':animated'));
+    if ($('.box1').is(':animated')) {
+        // 不接其它任务
+        return;
+    }
+    $('.box1').stop(true).animate({ top: 500 }, 3000)
+});
+</script>
+</body>
+</html>

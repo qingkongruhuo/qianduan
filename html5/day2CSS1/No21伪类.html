@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 需求：在获取焦点时字体变红 */
+        /* 下面的方法不管是不是获取焦点都会变红 */
+        /* .inp{
+            color: red;
+        } */
+        /* 所以普通的类没法描述这种状态，就要用伪类 */
+        .inp:focus{
+            color: red;
+            /* focus伪类：获取焦点时变化 */
+            /* 伪类：用来展示某个状态时展示的某个样式 */
+        }
+        .container:hover p{
+            /* 伪类可以写在选择器中间，写哪都行 */
+            color: gold;
+        }
+        /* ===================================== */
+        a:link{
+            color: red;
+        }
+        a:visited{
+            color:green;
+        }
+        a:hover{
+            color: gold;
+        }
+        a:active{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <input class="inp" type="text" value="hello">
+    </form>
+    <div class="container">
+        <p>鼠标滑过内容变成金色</p>
+    </div>
+    <a href="https://www.baidu.com">link-1</a>
+    <br>
+    <a href="https://www.qq.com">link-2</a>
+    <br>
+    <a href="https://www.taobao.com">link-3</a>
+</body>
+</html>

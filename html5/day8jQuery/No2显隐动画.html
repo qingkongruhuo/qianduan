@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 400px;
+            height: 400px;
+            background-color: green;
+        }
+    </style>
+    <script src="./jquery.js"></script>
+</head>
+<body>
+    <button>显示</button>
+    <button>隐藏</button>
+    <button>切换</button>
+    <div class="box"></div>
+<script>
+    //获取按钮元素
+    var btns = $('button');
+    //获取box元素
+    var box = $('.box');
+    btns.eq(0).click(function(){
+        //点击显示,参数单位为毫秒，变化时间
+        box.show(1000);
+    });
+    btns.eq(1).click(function(){
+        //点击隐藏
+        box.hide(1000);
+    });
+    btns.eq(2).click(function(){
+        //切换显示
+        box.toggle(1000);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            width: 1000px;
+            margin: 0 auto;
+            height: 2000px;
+            background-color: pink;
+        }
+        .slider{
+            /* 需求：让淘宝侧边栏一直留在main右侧紧贴  */
+            height: 200px;
+            width: 60px;
+            background-color: green;
+            position: fixed;
+            /* 不可以设置固定值，如果设置了浏览器窗口变小固定位置还是固定值，贴不住,所以需要百分比方式设置 */
+            /* 1、居中 */
+            right: 50%;
+            /* 2、移动main宽度的一半+自身的60宽度 */
+            margin-right: -560px;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <p>1</p>
+        <p>2</p>
+        <p>3</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>
+        <p>7</p>
+        <p>8</p>
+        <p>9</p>
+        <p>10</p>
+        <p>11</p>
+        <p>12</p>
+        <p>13</p>
+        <p>14</p>
+        <p>15</p>
+        <p>16</p>
+        <p>17</p>
+        <p>18</p>
+        <p>19</p>
+        <p>20</p>
+    </div>
+    <div class="slider">
+
+    </div>
+</body>
+</html>
